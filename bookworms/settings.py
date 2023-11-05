@@ -44,14 +44,10 @@ REST_AUTH = {
     'USE_JWT': True,
     'JWT_AUTH_COOKIE': 'bookworms-auth',
     'JWT_AUTH_REFRESH_COOKIE': 'bookworms-refresh-token',
+    'JWT_AUTH_HTTPONLY' : False,
+    'USER_DETAILS_SERIALIZER': 'bookworms.serializers.CurrentUserSerializer'
 }
-# REST_USE_JWT = True
-# JWT_AUTH_SECURE = True
-# JWT_AUTH_SAMESITE = 'None'
 
-# REST_AUTH_SERIALIZERS = {
-#     'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'
-# }
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -60,7 +56,7 @@ REST_AUTH = {
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEBUG' in os.environ
+DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST'),
@@ -88,6 +84,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'dj_rest_auth.registration',
     'corsheaders',
+
+    'profiles',
 ]
 
 SITE_ID = 1
