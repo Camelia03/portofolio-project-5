@@ -10,9 +10,6 @@ import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 function App() {
   const currentUser = useCurrentUser();
-  if (!currentUser) {
-    return null;
-  }
   return (
     <div className="App">
       <NavBar />

@@ -21,6 +21,8 @@ const ProfilePage = () => {
     <Container>
       <h1>My profile</h1>
       <p>{profile?.full_name}</p>
+      <img src={profile?.avatar}></img>
+      <p>{profile?.description}</p>
     </Container>
   );
 };
