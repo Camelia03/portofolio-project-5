@@ -28,10 +28,10 @@ class Book(models.Model):
     goodreads_star_rating_4 = models.IntegerField(blank=False)
     goodreads_star_rating_5 = models.IntegerField(blank=False)
     publish_date = models.DateField(blank=False)
-    authors = models.ManyToManyField(Author, related_name='published_books')
+    authors = models.ManyToManyField(Author)
     description = models.TextField(blank=False)
     ISBN = models.CharField(max_length=255, blank=False)
-    genre = models.ManyToManyField(Genre)
+    genres = models.ManyToManyField(Genre)
     number_of_pages = models.IntegerField(blank=False)
     language_code = models.CharField(max_length=255, blank=False)
 
