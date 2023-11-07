@@ -56,7 +56,7 @@ const NavBar = () => {
                   to="/profile"
                   activeClassName={styles.Active}
                 >
-                  <i class="fa-solid fa-user"></i>My profile
+                  <i className="fa-solid fa-user"></i>My profile
                 </NavLink>
               </>
             ) : (
