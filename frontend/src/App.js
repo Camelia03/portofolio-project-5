@@ -7,6 +7,7 @@ import SignInPage from "./pages/auth/SignInPage";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/profile/ProfilePage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
+import BookDetailsPage from "./pages/BookDetailsPage";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/signin" render={() => <SignInPage />} />
           <Route exact path="/signup" render={() => <SignUpPage />} />
           <Route exact path="/profile" render={() => <ProfilePage />} />
+          <Route exact path="/books/:id" render={() => <BookDetailsPage />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
