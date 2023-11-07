@@ -1,31 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
-import { axiosReq } from "../api/axiosDefaults";
 import Loader from "../components/Loader";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import { NavLink } from "react-router-dom";
+import useReq from "../hooks/useReq";
 
 const HomePage = () => {
-  const [books, setBooks] = useState();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const getBooks = async () => {
-      try {
-        const response = await axiosReq.get(`/api/books`);
-        setBooks(response.data);
-      } catch (error) {
-        setError(error);
-      }
-
-      setLoading(false);
-    };
-    getBooks();
-  }, []);
+  const { data: books, loading, error } = useReq(`/api/books`);
 
   if (loading) {
     return (
