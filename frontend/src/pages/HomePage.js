@@ -1,17 +1,15 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import Card from "react-bootstrap/Card";
 import Loader from "../components/Loader";
-import Col from "react-bootstrap/Col";
-import Image from "react-bootstrap/Image";
-import Row from "react-bootstrap/Row";
-import { NavLink } from "react-router-dom";
 import useReq from "../hooks/useReq";
+import BookListItem from "../components/BookListItem";
+import styles from "../styles/HomePage.module.css";
 
 const HomePage = () => {
-  const { data: books, loading, error } = useReq(`/api/books`);
+  const booksReq = useReq(`/api/books`);
+  const genresReq = useReq("/api/genres");
 
-  if (loading) {
+  if (booksReq.loading || genresReq.loading) {
     return (
       <Container className="d-flex justify-content-center align-items-center vh-100">
         <Loader />
@@ -19,49 +17,38 @@ const HomePage = () => {
     );
   }
 
-  if (error) {
+  if (booksReq.error || genresReq.error) {
     return (
       <Container className="text-center my-4">
-        <p className="text-danger">Error loading profile data.</p>
+        <p className="text-danger">Error loading data.</p>
       </Container>
     );
   }
+
+  const books = booksReq.data;
+  const genres = genresReq.data;
 
   return (
     <Container>
       <h1>Home Page</h1>
 
-      {books?.results.map((book) => (
-        <BookListItem key={book.id} book={book} />
-      ))}
+      <div className="d-flex">
+        <div className="me-2 flex-fill">
+          {books.results.map((book) => (
+            <BookListItem key={book.id} book={book} />
+          ))}
+        </div>
+
+        <div>
+          <h3 className={styles.GenresListHeader}>Genres</h3>
+          <ul className={styles.GenresList}>
+            {genres.results.map((genre) => (
+              <li key={genre.id}>{genre.name}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </Container>
-  );
-};
-
-const BookListItem = ({ book }) => {
-  const { id, title, number_of_pages, description, image_url } = book;
-
-  return (
-    <Card className="mb-3">
-      <Row className="g-0">
-        <Col xs="auto">
-          <Image src={image_url} fluid rounded="start" alt="book image" />
-        </Col>
-        <Col>
-          <Card.Body className="card-body">
-            <Card.Title>
-              <NavLink to={`books/${id}`}>{title}</NavLink>
-            </Card.Title>
-            <Card.Text>{description}</Card.Text>
-            <Card.Text>
-              <small className="text-body-secondary">
-                Last updated 3 mins ago
-              </small>
-            </Card.Text>
-          </Card.Body>
-        </Col>
-      </Row>
-    </Card>
   );
 };
 
