@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
@@ -9,10 +9,12 @@ import {
   useSetCurrentUser,
 } from "../contexts/CurrentUserContext";
 import { removeTokenTimestamp } from "../utils/utils";
+import SearchForm from "./SearchForm";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+
   const handleSignOut = async () => {
     try {
       await axios.post("dj-rest-auth/logout/");
@@ -22,6 +24,7 @@ const NavBar = () => {
       console.log(error);
     }
   };
+
   return (
     <Navbar className={styles.NavBar} expand="md" fixed="top">
       <Container>
@@ -31,33 +34,24 @@ const NavBar = () => {
           </Navbar.Brand>
         </NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+        <Navbar.Collapse className="all" id="basic-navbar-nav">
+          <Nav className="ms-auto">
             {currentUser ? (
               <>
-                <NavLink
-                  exact
-                  className={styles.NavLink}
-                  activeClassName={styles.Active}
-                  to="/"
-                >
-                  <i className="fas fa-home"></i>Home
-                </NavLink>
+                <SearchForm />
 
-                <NavLink
-                  className={styles.NavLink}
-                  to="/"
-                  onClick={handleSignOut}
+                <NavDropdown
+                  title={`Hi ${currentUser.username}`}
+                  id="nav-dropdown"
                 >
-                  <i className="fa-solid fa-right-from-bracket"></i>Sign out
-                </NavLink>
-                <NavLink
-                  className={styles.NavLink}
-                  to="/profile"
-                  activeClassName={styles.Active}
-                >
-                  <i className="fa-solid fa-user"></i>My profile
-                </NavLink>
+                  <NavDropdown.Item as={NavLink} to="/profile">
+                    <i className="fa-solid fa-user"></i>My profile
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item onClick={handleSignOut}>
+                    <i className="fa-solid fa-right-from-bracket"></i>Sign out
+                  </NavDropdown.Item>
+                </NavDropdown>
               </>
             ) : (
               <>

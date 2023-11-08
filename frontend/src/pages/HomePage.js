@@ -5,9 +5,15 @@ import useReq from "../hooks/useReq";
 import BookListItem from "../components/BookListItem";
 import styles from "../styles/HomePage.module.css";
 import ListGroup from "react-bootstrap/ListGroup";
+import useQuery from "../hooks/useQuery";
 
 const HomePage = () => {
-  const booksReq = useReq(`/api/books`);
+  const urlQuery = useQuery();
+  const searchQuery = urlQuery.get("q") || "";
+
+  const booksReq = useReq(`/api/books?title__icontains=${searchQuery}`, [
+    searchQuery,
+  ]);
   const genresReq = useReq("/api/genres");
 
   if (booksReq.loading || genresReq.loading) {

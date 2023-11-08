@@ -1,13 +1,14 @@
 import { axiosReq } from "../api/axiosDefaults";
 import { useEffect, useState } from "react";
 
-const useReq = (url) => {
+const useReq = (url, dependencies = []) => {
   const [response, setResponse] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const doRequest = async () => {
+      setLoading(true);
       try {
         const response = await axiosReq.get(url);
 
@@ -20,7 +21,7 @@ const useReq = (url) => {
     };
 
     doRequest();
-  }, []);
+  }, dependencies);
 
   return {
     data: response,
