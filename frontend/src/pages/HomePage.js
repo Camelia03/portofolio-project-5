@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Loader from "../components/Loader";
 import useReq from "../hooks/useReq";
@@ -6,14 +6,22 @@ import BookListItem from "../components/BookListItem";
 import styles from "../styles/HomePage.module.css";
 import ListGroup from "react-bootstrap/ListGroup";
 import useQuery from "../hooks/useQuery";
+import OrderingSelect from "../components/OrderingSelect";
+import { Col, Row } from "react-bootstrap";
 
 const HomePage = () => {
   const urlQuery = useQuery();
   const searchQuery = urlQuery.get("q") || "";
 
-  const booksReq = useReq(`/api/books?title__icontains=${searchQuery}`, [
-    searchQuery,
-  ]);
+  const [ordering, setOrdering] = useState("");
+  const handleOrderChange = (value) => {
+    setOrdering(value);
+  };
+
+  const booksReq = useReq(
+    `/api/books?title__icontains=${searchQuery}&ordering=${ordering}`,
+    [searchQuery, ordering]
+  );
   const genresReq = useReq("/api/genres");
 
   if (booksReq.loading || genresReq.loading) {
@@ -37,15 +45,24 @@ const HomePage = () => {
 
   return (
     <Container>
-      <h1>Home Page</h1>
-      <div className="d-flex">
-        <div className="me-2 flex-fill">
-          {books.results.map((book) => (
-            <BookListItem key={book.id} book={book} />
-          ))}
-        </div>
+      <Row>
+        <Col md="10">
+          <div className="d-flex justify-content-between mb-2">
+            <h1>Home Page</h1>
 
-        <div className={`sidebar ${styles.Sidebar}`}>
+            <OrderingSelect value={ordering} onChange={handleOrderChange} />
+          </div>
+
+          <div className="d-flex">
+            <div className="flex-fill">
+              {books.results.map((book) => (
+                <BookListItem key={book.id} book={book} />
+              ))}
+            </div>
+          </div>
+        </Col>
+
+        <Col md="2" className={styles.Sidebar}>
           <div className="d-flex align-items-center justify-content-between">
             <h6 className="ps-2">GENRES</h6>
           </div>
@@ -62,8 +79,8 @@ const HomePage = () => {
               </ListGroup.Item>
             ))}
           </ListGroup>
-        </div>
-      </div>
+        </Col>
+      </Row>
     </Container>
   );
 };

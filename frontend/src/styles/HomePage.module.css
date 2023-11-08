@@ -1,7 +1,6 @@
   .Sidebar {
     min-height: 100vh;
-    border-right: 1px solid #ccc;
-    min-width: 250px;
+    border-left: 1px solid #ccc;
   }
   
   .Sidebar h6 {
