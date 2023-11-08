@@ -1,0 +1,19 @@
+.profile-container {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+.profile-avatar {
+    border: 2px solid #4A5D5E;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.edit-profile-button {
+  background-color: #4A5D5E;
+  border-color: #4A5D5E;
+  color: #F8F8EC; 
+}
