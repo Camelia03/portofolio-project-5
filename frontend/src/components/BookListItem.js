@@ -4,9 +4,19 @@ import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import { NavLink } from "react-router-dom";
+import Rating from "react-rating-stars-component";
 
 const BookListItem = ({ book }) => {
-  const { id, title, number_of_pages, description, image_url } = book;
+  const {
+    id,
+    title,
+    description,
+    ISBN,
+    authors,
+    genres,
+    image_url,
+    goodreads_average_rating,
+  } = book;
 
   return (
     <Card className="mb-3">
@@ -21,9 +31,24 @@ const BookListItem = ({ book }) => {
             </Card.Title>
             <Card.Text>{description}</Card.Text>
             <Card.Text>
-              <small className="text-body-secondary">
-                Last updated 3 mins ago
-              </small>
+              <strong>ISBN:</strong> {ISBN}
+            </Card.Text>
+            <Card.Text>
+              <strong>Authors:</strong>{" "}
+              {authors.map((author) => author.full_name).join(", ")}
+            </Card.Text>
+            <Card.Text>
+              <strong>Genres:</strong>{" "}
+              {genres.map((genre) => genre.name).join(", ")}
+            </Card.Text>
+            <Card.Text>
+              <strong>Rating:</strong>{" "}
+              <Rating
+                value={goodreads_average_rating}
+                count={5}
+                size={24}
+                edit={false}
+              />
             </Card.Text>
           </Card.Body>
         </Col>

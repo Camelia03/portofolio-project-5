@@ -1,8 +1,10 @@
-.GenresList {
-    list-style: none;
-    padding-left: 0;
-}
-
-.GenresListHeader {
-    background-color: blue;
-}
+  .Sidebar {
+    min-height: 100vh;
+    border-right: 1px solid #ccc;
+    min-width: 250px;
+  }
+  
+  .Sidebar h6 {
+    color: grey;
+  }
+  
