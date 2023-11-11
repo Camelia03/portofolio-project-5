@@ -6,20 +6,20 @@ const useReq = (url, dependencies = []) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const doRequest = async () => {
+    setLoading(true);
+    try {
+      const response = await axiosReq.get(url);
+
+      setResponse(response.data);
+    } catch (error) {
+      setError(error);
+    }
+
+    setLoading(false);
+  };
+
   useEffect(() => {
-    const doRequest = async () => {
-      setLoading(true);
-      try {
-        const response = await axiosReq.get(url);
-
-        setResponse(response.data);
-      } catch (error) {
-        setError(error);
-      }
-
-      setLoading(false);
-    };
-
     doRequest();
   }, dependencies);
 
@@ -27,6 +27,7 @@ const useReq = (url, dependencies = []) => {
     data: response,
     loading,
     error,
+    refresh: doRequest,
   };
 };
 

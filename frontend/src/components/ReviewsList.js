@@ -2,13 +2,26 @@ import React from "react";
 import useReq from "../hooks/useReq";
 import Loader from "./Loader";
 import ReactStars from "react-rating-stars-component";
+import ConfirmDeleteButton from "./ConfirmDeleteButton";
+import { axiosReq } from "../api/axiosDefaults";
 
 const ReviewsList = ({ bookId }) => {
   const {
     data: reviews,
     error,
     loading,
+    refresh,
   } = useReq(`/api/books/${bookId}/reviews`);
+
+  const handleDelete = async (id) => {
+    try {
+      await axiosReq.delete(`/api/reviews/${id}`);
+
+      refresh();
+    } catch (error) {
+      // TODO: handle error case
+    }
+  };
 
   if (loading) {
     return (
@@ -29,7 +42,7 @@ const ReviewsList = ({ bookId }) => {
   return (
     <div>
       {reviews.results.map((review) => (
-        <div key={review.id}>
+        <div key={review.id} className="mb-4">
           <div>{review.content}</div>
           <div>
             on {review.created_at} by {review.username}
@@ -43,6 +56,16 @@ const ReviewsList = ({ bookId }) => {
               activeColor="#ffd700"
             />
           </div>
+
+          {review.is_owner && (
+            <div>
+              <ConfirmDeleteButton
+                modalHeader="Delete review"
+                modalBody="Are you sure you want to delete this review?"
+                onConfirm={() => handleDelete(review.id)}
+              />
+            </div>
+          )}
         </div>
       ))}
     </div>
