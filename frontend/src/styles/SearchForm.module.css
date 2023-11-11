@@ -1,0 +1,30 @@
+/* Remove blue outline */
+.form-control:focus {
+    box-shadow: none;
+    border-color: #d1d1b2;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    border: 2px solid #4A5D5E;
+    border-radius: 5px;
+    padding: 8px;
+    width: 200px;
+}
+
+.search-button {
+    background-color: #4A5D5E;
+    color: #d1d1b2;
+    border: 2px solid #4A5D5E;
+    border-radius: 0 5px 5px 0;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #344446;
+}

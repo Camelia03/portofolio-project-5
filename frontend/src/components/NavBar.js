@@ -41,15 +41,22 @@ const NavBar = () => {
                 <SearchForm />
 
                 <NavDropdown
-                  title={`Hi ${currentUser.username}`}
+                  title={`Welcome, ${currentUser.username}`}
                   id="nav-dropdown"
+                  className={styles.NavDropdown}
                 >
                   <NavDropdown.Item as={NavLink} to="/profile">
-                    <i className="fa-solid fa-user"></i>My profile
+                    <i
+                      className={`fa-solid fa-user ${styles.NavDropdownIcon}`}
+                    ></i>
+                    My profile
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={handleSignOut}>
-                    <i className="fa-solid fa-right-from-bracket"></i>Sign out
+                    <i
+                      className={`fa-solid fa-right-from-bracket ${styles.NavDropdownIcon}`}
+                    ></i>
+                    Sign out
                   </NavDropdown.Item>
                 </NavDropdown>
               </>
