@@ -47,14 +47,20 @@ const NavBar = () => {
                 >
                   <NavDropdown.Item as={NavLink} to="/profile">
                     <i
-                      className={`fa-solid fa-user ${styles.NavDropdownIcon}`}
+                      className={`fa-solid fa-user fa-xs ${styles.NavDropdownIcon}`}
                     ></i>
                     My profile
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={NavLink} to="/my-reviews">
+                    <i
+                      className={`fa-solid fa-star fa-xs ${styles.NavDropdownIcon}`}
+                    ></i>
+                    My reviews
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={handleSignOut}>
                     <i
-                      className={`fa-solid fa-right-from-bracket ${styles.NavDropdownIcon}`}
+                      className={`fa-solid fa-right-from-bracket fa-xs ${styles.NavDropdownIcon}`}
                     ></i>
                     Sign out
                   </NavDropdown.Item>
