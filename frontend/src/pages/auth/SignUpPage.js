@@ -26,7 +26,7 @@ function SignUpPage() {
     event.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", signupData);
-      history.push("/");
+      history.push("/signin");
     } catch (error) {}
   };
 
