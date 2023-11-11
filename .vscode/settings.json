@@ -21,11 +21,11 @@
       "**/CVS": true
    },
    "files.autoSave": "off",
-   "workbench.colorTheme": "Visual Studio Dark",
+   "workbench.colorTheme": "Dracula",
    "terminal.integrated.gpuAcceleration": "canvas",
-   "editor.defaultFormatter": "ms-python.python",
+   "editor.defaultFormatter": "ms-python.autopep8",
    "[python]": {
-      "editor.defaultFormatter": "ms-python.python"
+      "editor.defaultFormatter": "ms-python.autopep8"
    },
    "editor.formatOnSave": true,
    "[javascript]": {
