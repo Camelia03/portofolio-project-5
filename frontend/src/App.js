@@ -10,6 +10,7 @@ import { useCurrentUser } from "./contexts/CurrentUserContext";
 import BookDetailsPage from "./pages/BookDetailsPage";
 import GenreDetailPage from "./pages/GenreDetailPage";
 import CreateReviewPage from "./pages/CreateReviewPage";
+import EditReviewPage from "./pages/EditReviewPage";
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
             path="/books/:id/review"
             render={() => <CreateReviewPage />}
           />
-
+          <Route exact path="/reviews/:id" render={() => <EditReviewPage />} />
           <Route
             exact
             path="/genres/:name"

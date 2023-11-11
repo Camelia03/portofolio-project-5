@@ -4,6 +4,8 @@ import Loader from "./Loader";
 import ReactStars from "react-rating-stars-component";
 import ConfirmDeleteButton from "./ConfirmDeleteButton";
 import { axiosReq } from "../api/axiosDefaults";
+import { Button } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
 const ReviewsList = ({ bookId }) => {
   const {
@@ -59,6 +61,14 @@ const ReviewsList = ({ bookId }) => {
 
           {review.is_owner && (
             <div>
+              <Button
+                as={NavLink}
+                variant="secondary"
+                to={`/reviews/${review.id}`}
+              >
+                Edit
+              </Button>
+
               <ConfirmDeleteButton
                 modalHeader="Delete review"
                 modalBody="Are you sure you want to delete this review?"

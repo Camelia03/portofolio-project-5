@@ -1,22 +1,22 @@
 import React, { useState } from "react";
-import { Alert, Button, Container, Form } from "react-bootstrap";
-import ReactStars from "react-rating-stars-component";
-import { useParams, useHistory } from "react-router-dom";
-import useReq from "../hooks/useReq";
-import Loader from "../components/Loader";
-import { axiosReq } from "../api/axiosDefaults";
 import ReviewForm from "../components/ReviewForm";
+import { axiosReq } from "../api/axiosDefaults";
+import { useHistory, useParams } from "react-router-dom";
+import useReq from "../hooks/useReq";
+import { Container } from "react-bootstrap";
+import Loader from "../components/Loader";
 
-const CreateReviewPage = () => {
-  const { id } = useParams();
+const EditReviewPage = () => {
+  const { id: reviewId } = useParams();
   const history = useHistory();
-  const { data: book, loading, error } = useReq(`/api/books/${id}`);
+  const { data: review, loading, error } = useReq(`/api/reviews/${reviewId}`);
+
   const [errors, setErrors] = useState({});
 
   const handleSubmit = async (review) => {
     try {
-      await axiosReq.post(`/api/books/${id}/reviews`, review);
-      history.push(`/books/${id}`);
+      await axiosReq.put(`/api/reviews/${reviewId}`, review);
+      history.push(`/books/${review.book_id}`);
     } catch (error) {
       setErrors(error.response?.data);
     }
@@ -40,10 +40,11 @@ const CreateReviewPage = () => {
 
   return (
     <Container>
-      <h1>New review for book: {book.title}</h1>
+      <h1>Edit review for book: {review.book_title}</h1>
 
       <ReviewForm
-        submitBtnText="Post review"
+        review={review}
+        submitBtnText="Update"
         errors={errors}
         onSubmit={handleSubmit}
       />
@@ -51,4 +52,4 @@ const CreateReviewPage = () => {
   );
 };
 
-export default CreateReviewPage;
+export default EditReviewPage;
