@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom";
 import { axiosReq } from "../api/axiosDefaults";
 import Loader from "../components/Loader";
 import Container from "react-bootstrap/Container";
+import { Button } from "react-bootstrap";
 import ReviewsList from "../components/ReviewsList";
+import { NavLink } from "react-router-dom";
 
 const BookDetailsPage = () => {
   const { id } = useParams();
@@ -45,6 +47,12 @@ const BookDetailsPage = () => {
       <h2>{book.title}</h2>
 
       <h2>Reviews</h2>
+
+      <div>
+        <Button variant="primary" as={NavLink} to={`/books/${id}/review`}>
+          Leave review
+        </Button>
+      </div>
 
       <ReviewsList bookId={id} />
     </Container>

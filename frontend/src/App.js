@@ -9,6 +9,7 @@ import ProfilePage from "./pages/profile/ProfilePage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import BookDetailsPage from "./pages/BookDetailsPage";
 import GenreDetailPage from "./pages/GenreDetailPage";
+import CreateReviewPage from "./pages/CreateReviewPage";
 
 function App() {
   return (
@@ -21,6 +22,12 @@ function App() {
           <Route exact path="/signup" render={() => <SignUpPage />} />
           <Route exact path="/profile" render={() => <ProfilePage />} />
           <Route exact path="/books/:id" render={() => <BookDetailsPage />} />
+          <Route
+            exact
+            path="/books/:id/review"
+            render={() => <CreateReviewPage />}
+          />
+
           <Route
             exact
             path="/genres/:name"
