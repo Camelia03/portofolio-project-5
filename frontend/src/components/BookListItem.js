@@ -47,7 +47,7 @@ const BookListItem = ({ book }) => {
                 </span>
               ))}
             </Card.Text>
-            <Card.Text>
+            <Card.Text as="div">
               <strong>Rating:</strong>
               <Rating
                 value={goodreads_average_rating}

@@ -1,7 +1,7 @@
 import { axiosReq } from "../api/axiosDefaults";
 import { useEffect, useState } from "react";
 
-const useReq = (url, dependencies = []) => {
+const useReq = (url, dependencies = [url]) => {
   const [response, setResponse] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Loader from "../components/Loader";
 import useReq from "../hooks/useReq";
-import BookListItem from "../components/BookListItem";
 import styles from "../styles/HomePage.module.css";
 import ListGroup from "react-bootstrap/ListGroup";
 import useQuery from "../hooks/useQuery";
 import OrderingSelect from "../components/OrderingSelect";
 import { Col, Row } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import BooksList from "./BooksList";
 
 const HomePage = () => {
   const urlQuery = useQuery();
@@ -19,13 +19,9 @@ const HomePage = () => {
     setOrdering(value);
   };
 
-  const booksReq = useReq(
-    `/api/books?title__icontains=${searchQuery}&ordering=${ordering}`,
-    [searchQuery, ordering]
-  );
   const genresReq = useReq("/api/genres");
 
-  if (booksReq.loading || genresReq.loading) {
+  if (genresReq.loading) {
     return (
       <Container className="d-flex justify-content-center align-items-center vh-100">
         <Loader />
@@ -33,7 +29,7 @@ const HomePage = () => {
     );
   }
 
-  if (booksReq.error || genresReq.error) {
+  if (genresReq.error) {
     return (
       <Container className="text-center my-4">
         <p className="text-danger">Error loading data.</p>
@@ -41,7 +37,6 @@ const HomePage = () => {
     );
   }
 
-  const books = booksReq.data;
   const genres = genresReq.data;
 
   return (
@@ -49,16 +44,14 @@ const HomePage = () => {
       <Row>
         <Col md="10">
           <div className="d-flex justify-content-between mb-2">
-            <h1>Home Page ({books.count} books)</h1>
+            <h1>Home Page</h1>
 
             <OrderingSelect value={ordering} onChange={handleOrderChange} />
           </div>
 
           <div className="d-flex">
             <div className="flex-fill">
-              {books.results.map((book) => (
-                <BookListItem key={book.id} book={book} />
-              ))}
+              <BooksList ordering={ordering} searchQuery={searchQuery} />
             </div>
           </div>
         </Col>
