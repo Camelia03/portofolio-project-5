@@ -8,6 +8,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import useQuery from "../hooks/useQuery";
 import OrderingSelect from "../components/OrderingSelect";
 import { Col, Row } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
 const HomePage = () => {
   const urlQuery = useQuery();
@@ -74,7 +75,9 @@ const HomePage = () => {
                 className={`${styles.SidebarListItem}`}
               >
                 <div className="ms-2 me-auto">
-                  <div className="fw-bold">{genre.name}</div>
+                  <NavLink className="fw-bold" to={`/genres/${genre.name}`}>
+                    {genre.name}
+                  </NavLink>
                 </div>
               </ListGroup.Item>
             ))}
