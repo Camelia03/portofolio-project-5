@@ -1,6 +1,7 @@
 import React from "react";
 import useReq from "../hooks/useReq";
 import Loader from "./Loader";
+import ReactStars from "react-rating-stars-component";
 
 const ReviewsList = ({ bookId }) => {
   const {
@@ -33,7 +34,15 @@ const ReviewsList = ({ bookId }) => {
           <div>
             on {review.created_at} by {review.username}
           </div>
-          <div>{review.stars}</div>
+          <div>
+            <ReactStars
+              count={5}
+              edit={false}
+              value={review.stars}
+              size={24}
+              activeColor="#ffd700"
+            />
+          </div>
         </div>
       ))}
     </div>
