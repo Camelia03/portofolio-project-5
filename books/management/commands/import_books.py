@@ -12,6 +12,9 @@ class Command(BaseCommand):
             csv_reader = csv.DictReader(csv_file, delimiter=',')
             line_count = 0
             for row in csv_reader:
+                if line_count > 5000:
+                    break
+
                 if line_count == 0:
                     self.stdout.write(f'Column names are {", ".join(row)}')
                     line_count += 1
