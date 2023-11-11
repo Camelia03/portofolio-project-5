@@ -4,4 +4,4 @@ from .models import Book
 class BookFilter(FilterSet):
     class Meta:
         model = Book
-        fields = {'title': ['icontains'], 'language_code': ['exact']}
+        fields = {'title': ['icontains'], 'genres__name': ['exact']}
