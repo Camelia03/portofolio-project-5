@@ -6,7 +6,7 @@ import styles from "../styles/SearchForm.module.css";
 
 const SearchForm = () => {
   const urlQuery = useQuery();
-  const searchQuery = urlQuery.get("q");
+  const searchQuery = urlQuery.get("q") || "";
   const [queryValue, setQueryValue] = useState(searchQuery);
   const history = useHistory();
 
