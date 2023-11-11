@@ -3,6 +3,13 @@ from .models import Review
 from books.models import Book
 
 class ReviewSerializer(serializers.ModelSerializer):
+    username = serializers.ReadOnlyField(source='owner.username')
+    is_owner = serializers.SerializerMethodField()
+
+    def get_is_owner(self, obj):
+        request = self.context['request']
+        return request.user == obj.owner
+
     class Meta:
         model = Review
-        fields = ['id', 'updated_at', 'created_at', 'content', 'stars']
+        fields = ('id', 'username', 'is_owner', 'updated_at', 'created_at', 'content', 'stars')

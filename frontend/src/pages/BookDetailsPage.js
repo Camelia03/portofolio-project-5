@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { axiosReq } from "../api/axiosDefaults";
 import Loader from "../components/Loader";
 import Container from "react-bootstrap/Container";
+import ReviewsList from "../components/ReviewsList";
 
 const BookDetailsPage = () => {
   const { id } = useParams();
@@ -39,7 +40,15 @@ const BookDetailsPage = () => {
       </Container>
     );
   }
-  return <div>{book.title}</div>;
+  return (
+    <Container>
+      <h2>{book.title}</h2>
+
+      <h2>Reviews</h2>
+
+      <ReviewsList bookId={id} />
+    </Container>
+  );
 };
 
 export default BookDetailsPage;
