@@ -10,7 +10,7 @@ const BookListItem = ({ book }) => {
   const {
     id,
     title,
-    description,
+    summary,
     ISBN,
     authors,
     genres,
@@ -29,20 +29,26 @@ const BookListItem = ({ book }) => {
             <Card.Title>
               <NavLink to={`books/${id}`}>{title}</NavLink>
             </Card.Title>
-            <Card.Text>{description}</Card.Text>
+            <Card.Text>{summary}</Card.Text>
             <Card.Text>
               <strong>ISBN:</strong> {ISBN}
             </Card.Text>
             <Card.Text>
-              <strong>Authors:</strong>{" "}
+              <strong>Authors: </strong>
               {authors.map((author) => author.full_name).join(", ")}
             </Card.Text>
             <Card.Text>
-              <strong>Genres:</strong>{" "}
-              {genres.map((genre) => genre.name).join(", ")}
+              <strong>Genres: </strong>
+              {genres.map((genre, idx) => (
+                <span key={idx}>
+                  <NavLink to={`/genres/${genre.name}`}>{genre.name}</NavLink>
+
+                  {idx + 1 != genres.length && <span className="me-1">,</span>}
+                </span>
+              ))}
             </Card.Text>
             <Card.Text>
-              <strong>Rating:</strong>{" "}
+              <strong>Rating:</strong>
               <Rating
                 value={goodreads_average_rating}
                 count={5}

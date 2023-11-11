@@ -15,7 +15,13 @@ class AuthorSerializer(serializers.ModelSerializer):
 class BookSerializer(serializers.ModelSerializer):
     authors = AuthorSerializer(read_only=True, many=True)
     genres = GenreSerializer(read_only=True, many=True)
+    summary = serializers.SerializerMethodField() 
 
+    def get_summary(self, obj):
+        if len(obj.description) > 200:
+            return obj.description[:200] + '...'
+        
+        return obj.description
 
     class Meta:
         model = Book
