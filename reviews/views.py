@@ -2,6 +2,7 @@ from rest_framework import generics
 from .models import Review
 from books.models import Book
 from .serializers import ReviewSerializer
+from bookworms.permissions import IsOwnerOrReadOnly
 
 # Create your views here.
 class Reviews(generics.ListCreateAPIView):
@@ -14,3 +15,9 @@ class Reviews(generics.ListCreateAPIView):
         book = Book.objects.get(id=self.kwargs.get('book_id'))
 
         serializer.save(owner=self.request.user, book=book)
+
+
+class ReviewDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Review.objects
+    serializer_class = ReviewSerializer
+    permission_classes = [IsOwnerOrReadOnly]
