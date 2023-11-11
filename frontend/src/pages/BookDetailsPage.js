@@ -1,31 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import { axiosReq } from "../api/axiosDefaults";
 import Loader from "../components/Loader";
 import Container from "react-bootstrap/Container";
 import { Button } from "react-bootstrap";
-import ReviewsList from "../components/ReviewsList";
+import BookReviewsList from "../components/BookReviewsList";
 import { NavLink } from "react-router-dom";
+import useReq from "../hooks/useReq";
 
 const BookDetailsPage = () => {
   const { id } = useParams();
-  const [book, setBook] = useState();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const getBooks = async () => {
-      try {
-        const response = await axiosReq.get(`/api/books/${id}`);
-        setBook(response.data);
-      } catch (error) {
-        setError(error);
-      }
-
-      setLoading(false);
-    };
-    getBooks();
-  }, []);
+  const { data: book, loading, error } = useReq(`/api/books/${id}`);
 
   if (loading) {
     return (
@@ -54,7 +39,7 @@ const BookDetailsPage = () => {
         </Button>
       </div>
 
-      <ReviewsList bookId={id} />
+      <BookReviewsList bookId={id} />
     </Container>
   );
 };
