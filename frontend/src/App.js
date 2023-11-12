@@ -12,6 +12,8 @@ import GenreDetailPage from "./pages/GenreDetailPage";
 import CreateReviewPage from "./pages/CreateReviewPage";
 import EditReviewPage from "./pages/EditReviewPage";
 import MyReviewsPage from "./pages/MyReviewsPage";
+import MyListsPage from "./pages/MyListsPage";
+import CreateListPage from "./pages/CreateListPage";
 
 function App() {
   return (
@@ -36,6 +38,12 @@ function App() {
             render={() => <GenreDetailPage />}
           />
           <Route exact path="/my-reviews" render={() => <MyReviewsPage />} />
+          <Route exact path="/my-lists" render={() => <MyListsPage />} />
+          <Route
+            exact
+            path="/my-lists/create"
+            render={() => <CreateListPage />}
+          />
 
           <Route render={() => <p>Page not found!</p>} />
         </Switch>

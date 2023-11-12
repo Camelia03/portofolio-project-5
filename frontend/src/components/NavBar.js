@@ -57,6 +57,12 @@ const NavBar = () => {
                     ></i>
                     My reviews
                   </NavDropdown.Item>
+                  <NavDropdown.Item as={NavLink} to="/my-lists">
+                    <i
+                      className={`fa-solid fa-list fa-xs ${styles.NavDropdownIcon}`}
+                    ></i>
+                    My Lists
+                  </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={handleSignOut}>
                     <i
