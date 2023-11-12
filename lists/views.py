@@ -40,9 +40,12 @@ class AddRemoveBook(APIView):
 
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    # def delete(self, request, *args, **kwargs):
-    #     queryset = self.filter_queryset(self.get_queryset())
-    #     # CAREFUL! This could easily delete all the items in this queryset.
-    #     queryset.delete()
-    #     # You might want some additional checking
-    #     return Response(status=status.HTTP_204_NO_CONTENT)
+    def delete(self, request, *args, **kwargs):
+        list = get_object_or_404(List, id=kwargs['pk'])
+        book = get_object_or_404(Book, id=kwargs['book_id'])
+
+        list.books.remove(book)
+
+        list.save()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
