@@ -13,9 +13,12 @@ from rest_framework.response import Response
 
 
 class ListCreateLists(generics.ListCreateAPIView):
-    queryset = List.objects.all().order_by('name')
+    permission_classes = [IsAuthenticated]
     serializer_class = ListSerializer
     pagination_class = None
+
+    def get_queryset(self):
+        return List.objects.filter(owner=self.request.user).order_by('name')
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
