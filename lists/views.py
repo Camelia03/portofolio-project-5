@@ -8,6 +8,7 @@ from rest_framework import generics
 class ListCreateLists(generics.ListCreateAPIView):
     queryset = List.objects.all().order_by('name')
     serializer_class = ListSerializer
+    pagination_class = None
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
