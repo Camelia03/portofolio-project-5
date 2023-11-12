@@ -27,7 +27,7 @@ const BookListItem = ({ book }) => {
         <Col>
           <Card.Body className="card-body">
             <Card.Title>
-              <NavLink to={`books/${id}`}>{title}</NavLink>
+              <NavLink to={`/books/${id}`}>{title}</NavLink>
             </Card.Title>
             <Card.Text>{summary}</Card.Text>
             <Card.Text>
