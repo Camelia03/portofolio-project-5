@@ -49,9 +49,9 @@ const MyListsPage = () => {
         {lists.length > 0 ? (
           lists.map((list) => (
             <div className="mb-4" key={list.id}>
-              <div>
+              <NavLink to={`/my-lists/${list.id}`}>
                 {list.name} {list.created_at}
-              </div>
+              </NavLink>
 
               <div>
                 <ConfirmDeleteButton
