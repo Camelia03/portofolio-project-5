@@ -6,6 +6,7 @@ import { Button } from "react-bootstrap";
 import BookReviewsList from "../components/BookReviewsList";
 import { NavLink } from "react-router-dom";
 import useReq from "../hooks/useReq";
+import AddToListModal from "../components/AddToListModal";
 
 const BookDetailsPage = () => {
   const { id } = useParams();
@@ -37,6 +38,8 @@ const BookDetailsPage = () => {
         <Button variant="primary" as={NavLink} to={`/books/${id}/review`}>
           Leave review
         </Button>
+
+        <AddToListModal book={book} />
       </div>
 
       <BookReviewsList bookId={id} />
