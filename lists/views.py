@@ -1,3 +1,4 @@
+from bookworms.permissions import IsOwnerOrReadOnly
 from .serializers import ListSerializer
 from .models import List
 from rest_framework import generics
@@ -12,3 +13,9 @@ class ListCreateLists(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+
+class ListDetails(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsOwnerOrReadOnly]
+    queryset = List.objects
+    serializer_class = ListSerializer
