@@ -12,7 +12,11 @@ const MyListsPage = () => {
   const onDelete = async (listId) => {
     try {
       await axiosReq.delete(`/api/lists/${listId}`);
-    } catch (error) {}
+      refresh();
+    } catch (error) {
+      console.log(error);
+      // TODO: handle error
+    }
   };
 
   if (loading) {
@@ -52,9 +56,18 @@ const MyListsPage = () => {
               <div>
                 <ConfirmDeleteButton
                   modalHeader="Delete list"
-                  modalBody={`Are you sure you want to delete list: ${list.name}?`}
+                  modalBody={
+                    <span>
+                      Are you sure you want to delete list:{" "}
+                      <strong>{list.name}</strong>
+                    </span>
+                  }
                   onConfirm={() => onDelete(list.id)}
                 />
+
+                <Button as={NavLink} to={`/my-lists/${list.id}/edit`}>
+                  Edit
+                </Button>
               </div>
             </div>
           ))

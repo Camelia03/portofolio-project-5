@@ -2,24 +2,15 @@ import React, { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { axiosReq } from "../api/axiosDefaults";
 import { useHistory } from "react-router-dom";
+import ListForm from "../components/ListForm";
+import Loader from "../components/Loader";
 
 const CreateListPage = () => {
   const history = useHistory();
-  const [list, setList] = useState({
-    name: "",
-  });
+
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (event) => {
-    setList({
-      ...list,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const onSubmit = async (event) => {
-    event.preventDefault();
-
+  const onSubmit = async (list) => {
     try {
       setLoading(true);
       await axiosReq.post("/api/lists", list);
@@ -31,16 +22,17 @@ const CreateListPage = () => {
     setLoading(false);
   };
 
+  if (loading) {
+    return (
+      <Container className="d-flex justify-content-center align-items-center vh-100">
+        <Loader />
+      </Container>
+    );
+  }
+
   return (
     <Container>
-      <Form onSubmit={onSubmit}>
-        <Form.Group controlId="list-name">
-          <Form.Label>Name</Form.Label>
-          <Form.Control name="name" onChange={handleChange} value={list.name} />
-        </Form.Group>
-
-        <Button type="submit">Create</Button>
-      </Form>
+      <ListForm onSubmit={onSubmit} />
     </Container>
   );
 };

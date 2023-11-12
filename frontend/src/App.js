@@ -14,6 +14,7 @@ import EditReviewPage from "./pages/EditReviewPage";
 import MyReviewsPage from "./pages/MyReviewsPage";
 import MyListsPage from "./pages/MyListsPage";
 import CreateListPage from "./pages/CreateListPage";
+import EditListPage from "./pages/EditListPage";
 
 function App() {
   return (
@@ -43,6 +44,11 @@ function App() {
             exact
             path="/my-lists/create"
             render={() => <CreateListPage />}
+          />
+          <Route
+            exact
+            path="/my-lists/:id/edit"
+            render={() => <EditListPage />}
           />
 
           <Route render={() => <p>Page not found!</p>} />
