@@ -50,7 +50,7 @@ const MyListsPage = () => {
           lists.map((list) => (
             <div className="mb-4" key={list.id}>
               <NavLink to={`/my-lists/${list.id}`}>
-                {list.name} {list.created_at}
+                {list.name} {list.created_at} {list.books.length} books
               </NavLink>
 
               <div>
