@@ -33,6 +33,11 @@ const NavBar = () => {
             <img src={logo} alt="logo" height="45" />
           </Navbar.Brand>
         </NavLink>
+
+        <NavLink activeClassName={styles.Active} to="/search">
+          Books
+        </NavLink>
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="all" id="basic-navbar-nav">
           <Nav className="ms-auto">
@@ -45,19 +50,34 @@ const NavBar = () => {
                   id="nav-dropdown"
                   className={styles.NavDropdown}
                 >
-                  <NavDropdown.Item as={NavLink} to="/profile">
+                  <NavDropdown.Item
+                    as={NavLink}
+                    className={styles.NavDropdownLink}
+                    activeClassName={styles.Active}
+                    to="/profile"
+                  >
                     <i
                       className={`fa-solid fa-user fa-xs ${styles.NavDropdownIcon}`}
                     ></i>
                     My profile
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={NavLink} to="/my-reviews">
+                  <NavDropdown.Item
+                    as={NavLink}
+                    className={styles.NavDropdownLink}
+                    activeClassName={styles.Active}
+                    to="/my-reviews"
+                  >
                     <i
                       className={`fa-solid fa-star fa-xs ${styles.NavDropdownIcon}`}
                     ></i>
                     My reviews
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={NavLink} to="/my-lists">
+                  <NavDropdown.Item
+                    as={NavLink}
+                    className={styles.NavDropdownLink}
+                    activeClassName={styles.Active}
+                    to="/my-lists"
+                  >
                     <i
                       className={`fa-solid fa-list fa-xs ${styles.NavDropdownIcon}`}
                     ></i>
