@@ -13,7 +13,9 @@ const GenreDetailPage = () => {
     loading,
   } = useReq(`/api/books?genres__name=${name}`, [name]);
 
-  if (loading) {
+  const genreReq = useReq(`/api/genres/${name}`, [name]);
+
+  if (loading || genreReq.loading) {
     return (
       <Container className="d-flex justify-content-center align-items-center vh-100">
         <Loader />
@@ -21,7 +23,7 @@ const GenreDetailPage = () => {
     );
   }
 
-  if (error) {
+  if (error || genreReq.error) {
     return (
       <Container className="text-center my-4">
         <p className="text-danger">Error loading data.</p>
@@ -29,9 +31,15 @@ const GenreDetailPage = () => {
     );
   }
 
+  const genre = genreReq.data;
+
   return (
     <Container>
-      <h1 className="mb-4">{name[0].toUpperCase() + name.slice(1)} Genre</h1>
+      <h1 className="mb-4">
+        {genre.name[0].toUpperCase() + genre.name.slice(1)} Genre
+      </h1>
+
+      {genre.description && <p>{genre.description}</p>}
 
       {books.results?.map((book) => (
         <BookListItem key={book.id} book={book} />

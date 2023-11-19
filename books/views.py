@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from rest_framework import generics, filters
 from .models import Book, Genre
 from .serializers import BookSerializer, GenreSerializer
@@ -24,3 +24,8 @@ class BookDetail(generics.RetrieveAPIView):
 class GenresList(generics.ListAPIView):
     queryset = Genre.objects.all().order_by('name')
     serializer_class = GenreSerializer
+
+class GenreDetail(generics.RetrieveAPIView):
+    serializer_class = GenreSerializer
+    lookup_field = 'name'
+    queryset = Genre.objects
