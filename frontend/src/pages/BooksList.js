@@ -46,7 +46,9 @@ const BooksList = ({ ordering, searchQuery }) => {
         endMessage={<p>No more data to load.</p>}
       >
         {items.map((book) => (
-          <BookListItem key={book.id} book={book} />
+          <div key={book.id} className="mb-3">
+            <BookListItem book={book} />
+          </div>
         ))}
       </InfiniteScroll>
     </div>
