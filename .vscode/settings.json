@@ -33,4 +33,7 @@
    },
    "python.analysis.autoImportCompletions": true,
    "python.analysis.typeCheckingMode": "basic",
+   "[css]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+   },
 }
