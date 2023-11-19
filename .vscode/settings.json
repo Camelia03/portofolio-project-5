@@ -31,4 +31,6 @@
    "[javascript]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
    },
+   "python.analysis.autoImportCompletions": true,
+   "python.analysis.typeCheckingMode": "basic",
 }
