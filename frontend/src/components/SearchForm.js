@@ -17,7 +17,7 @@ const SearchForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    history.push(`/?q=${queryValue}`);
+    history.push(`/search?q=${queryValue}`);
   };
 
   return (
