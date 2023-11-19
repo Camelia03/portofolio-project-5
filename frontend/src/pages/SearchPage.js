@@ -44,7 +44,7 @@ const SearchPage = () => {
       <Row>
         <Col md="10">
           <div className="d-flex justify-content-between mb-2">
-            <h1>Home Page</h1>
+            <h1>All books</h1>
 
             <OrderingSelect value={ordering} onChange={handleOrderChange} />
           </div>
