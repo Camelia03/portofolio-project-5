@@ -47,8 +47,8 @@ const BookListItem = ({ book }) => {
                 </span>
               ))}
             </Card.Text>
-            <Card.Text as="div">
-              <strong>Rating:</strong>
+            <Card.Text as="div" className="d-flex align-items-center">
+              <strong className="me-2">Rating:</strong>
               <Rating
                 value={goodreads_average_rating}
                 count={5}
