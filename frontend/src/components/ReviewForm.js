@@ -35,15 +35,18 @@ const ReviewForm = ({
 
   return (
     <Form onSubmit={handleSubmit}>
-      <ReactStars
-        count={5}
-        value={review.stars}
-        onChange={handleRatingChange}
-        size={24}
-        activeColor="#ffd700"
-      />
+      <Form.Group controlId="stars" className="mb-2 d-flex align-items-center">
+        <div>Stars: </div>
+        <ReactStars
+          count={5}
+          value={review.stars}
+          onChange={handleRatingChange}
+          size={24}
+          activeColor="#ffd700"
+        />
+      </Form.Group>
 
-      <Form.Group controlId="content">
+      <Form.Group controlId="content" className="mb-2">
         <Form.Label>Content:</Form.Label>
         <Form.Control
           value={review.content}
