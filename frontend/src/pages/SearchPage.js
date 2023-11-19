@@ -61,7 +61,7 @@ const SearchPage = () => {
             <h6 className="ps-2">GENRES</h6>
           </div>
           <ListGroup variant="flush">
-            {genres.results.map((genre) => (
+            {genres.map((genre) => (
               <ListGroup.Item
                 action
                 key={genre.id}

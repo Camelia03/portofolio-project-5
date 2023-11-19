@@ -25,6 +25,7 @@ class BookDetail(generics.RetrieveAPIView):
 class GenresList(generics.ListAPIView):
     queryset = Genre.objects.all().order_by('name')
     serializer_class = GenreSerializer
+    pagination_class = None
 
 
 class GenreDetail(generics.RetrieveAPIView):

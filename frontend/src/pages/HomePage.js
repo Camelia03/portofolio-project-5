@@ -50,7 +50,7 @@ const HomePage = () => {
           </div>
 
           <ListGroup variant="flush">
-            {genres.results.map((genre) => (
+            {genres.map((genre) => (
               <ListGroup.Item action key={genre.id}>
                 <div className="ms-2 me-auto">
                   <NavLink className="fw-bold" to={`/genres/${genre.name}`}>
