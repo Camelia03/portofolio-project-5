@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Alert, Button, Container, Form } from "react-bootstrap";
-import ReactStars from "react-rating-stars-component";
-import { useParams, useHistory } from "react-router-dom";
-import useReq from "../hooks/useReq";
-import Loader from "../components/Loader";
+import { Container } from "react-bootstrap";
+import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../api/axiosDefaults";
+import Loader from "../components/Loader";
 import ReviewForm from "../components/ReviewForm";
+import useReq from "../hooks/useReq";
 
 const CreateReviewPage = () => {
   const { id } = useParams();
@@ -42,11 +41,14 @@ const CreateReviewPage = () => {
     <Container>
       <h1>New review for book: {book.title}</h1>
 
-      <ReviewForm
-        submitBtnText="Post review"
-        errors={errors}
-        onSubmit={handleSubmit}
-      />
+      <div className="my-4">
+        <h2 className="mb-3">Write a Review</h2>
+        <ReviewForm
+          submitBtnText="Post Review"
+          errors={errors}
+          onSubmit={handleSubmit}
+        />
+      </div>
     </Container>
   );
 };
