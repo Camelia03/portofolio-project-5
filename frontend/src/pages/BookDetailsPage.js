@@ -64,12 +64,15 @@ const BookDetailsPage = () => {
           <div className="d-flex align-items-center mb-3">
             <strong className="me-2">Rating:</strong>
             <Rating
-              value={book.goodreads_average_rating}
+              value={Math.round(book.goodreads_average_rating)}
               count={5}
               size={24}
               edit={false}
             />
-            <span>({book.goodreads_ratings_count} reviews)</span>
+            <span>
+              ({book.goodreads_average_rating}) ({book.goodreads_ratings_count}{" "}
+              ratings)
+            </span>
           </div>
           <p>
             <strong>Description:</strong> {book.description}
