@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import { Route, Switch } from "react-router-dom";
 import SignUpPage from "./pages/auth/SignUpPage";
 import SignInPage from "./pages/auth/SignInPage";
-import HomePage from "./pages/HomePage";
+import SearchPage from "./pages/SearchPage";
 import ProfilePage from "./pages/profile/ProfilePage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import BookDetailsPage from "./pages/BookDetailsPage";
@@ -16,6 +16,9 @@ import MyListsPage from "./pages/MyListsPage";
 import CreateListPage from "./pages/CreateListPage";
 import EditListPage from "./pages/EditListPage";
 import ListDetails from "./pages/ListDetails";
+import HomePage from "./pages/HomePage";
+import "tippy.js/dist/tippy.css";
+import "tippy.js/themes/light.css";
 
 function App() {
   return (
@@ -24,6 +27,7 @@ function App() {
       <Container className={styles.Main}>
         <Switch>
           <Route exact path="/" render={() => <HomePage />} />
+          <Route exact path="/search" render={() => <SearchPage />} />
           <Route exact path="/signin" render={() => <SignInPage />} />
           <Route exact path="/signup" render={() => <SignUpPage />} />
           <Route exact path="/profile" render={() => <ProfilePage />} />

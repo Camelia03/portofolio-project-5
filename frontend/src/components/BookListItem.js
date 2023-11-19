@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import { NavLink } from "react-router-dom";
 import Rating from "react-rating-stars-component";
 
-const BookListItem = ({ book }) => {
+const BookListItem = ({ book, showImage = true }) => {
   const {
     id,
     title,
@@ -16,14 +16,17 @@ const BookListItem = ({ book }) => {
     genres,
     image_url,
     goodreads_average_rating,
+    goodreads_ratings_count,
   } = book;
 
   return (
-    <Card className="mb-3">
+    <Card>
       <Row className="g-0">
-        <Col xs="auto">
-          <Image src={image_url} fluid rounded="start" alt="book image" />
-        </Col>
+        {showImage && (
+          <Col xs="auto">
+            <Image src={image_url} fluid rounded="start" alt="book image" />
+          </Col>
+        )}
         <Col>
           <Card.Body className="card-body">
             <Card.Title>
@@ -50,11 +53,14 @@ const BookListItem = ({ book }) => {
             <Card.Text as="div" className="d-flex align-items-center">
               <strong className="me-2">Rating:</strong>
               <Rating
-                value={goodreads_average_rating}
+                value={Math.round(goodreads_average_rating)}
                 count={5}
                 size={24}
                 edit={false}
               />
+              <span>
+                ({goodreads_average_rating}) ({goodreads_ratings_count} ratings)
+              </span>
             </Card.Text>
           </Card.Body>
         </Col>
