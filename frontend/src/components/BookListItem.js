@@ -38,7 +38,15 @@ const BookListItem = ({ book, showImage = true }) => {
             </Card.Text>
             <Card.Text>
               <strong>Authors: </strong>
-              {authors.map((author) => author.full_name).join(", ")}
+              {authors.map((author, idx) => (
+                <span key={author.id}>
+                  <NavLink to={`/authors/${author.id}`}>
+                    {author.full_name}
+                  </NavLink>
+
+                  {idx + 1 != authors.length && <span className="me-1">,</span>}
+                </span>
+              ))}
             </Card.Text>
             <Card.Text>
               <strong>Genres: </strong>

@@ -1,8 +1,8 @@
 from django.shortcuts import get_object_or_404, render
 from rest_framework import generics, filters
 from books.paginations import ClientPagination
-from .models import Book, Genre
-from .serializers import BookSerializer, GenreSerializer
+from .models import Author, Book, Genre
+from .serializers import AuthorSerializer, BookSerializer, GenreSerializer
 from .filters import BookFilter
 from django_filters.rest_framework import DjangoFilterBackend
 
@@ -32,3 +32,17 @@ class GenreDetail(generics.RetrieveAPIView):
     serializer_class = GenreSerializer
     lookup_field = 'name'
     queryset = Genre.objects
+
+
+class AuthorDetail(generics.RetrieveAPIView):
+    serializer_class = AuthorSerializer
+    queryset = Author.objects
+
+
+class AuthorBooksList(generics.ListAPIView):
+    serializer_class = BookSerializer
+    pagination_class = ClientPagination
+
+    def get_queryset(self):
+        author = get_object_or_404(Author, id=self.kwargs.get('pk'))
+        return Book.objects.filter(authors__in=[author])

@@ -19,6 +19,7 @@ import ListDetails from "./pages/ListDetails";
 import HomePage from "./pages/HomePage";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
+import AuthorPage from "./pages/AuthorPage";
 
 function App() {
   return (
@@ -57,6 +58,8 @@ function App() {
           />
 
           <Route exact path="/my-lists/:id" render={() => <ListDetails />} />
+
+          <Route exact path="/authors/:id" render={() => <AuthorPage />} />
 
           <Route render={() => <p>Page not found!</p>} />
         </Switch>

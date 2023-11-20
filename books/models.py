@@ -9,12 +9,15 @@ class Genre(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
 class Author(models.Model):
     full_name = models.CharField(max_length=255, blank=False)
+    description = models.TextField(blank=True)
 
     def __str__(self):
         return self.full_name
+
 
 class Book(models.Model):
     original_title = models.CharField(max_length=255, blank=False)
@@ -38,7 +41,3 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
-
-
-
-
