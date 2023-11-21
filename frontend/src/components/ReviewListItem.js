@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import ReactStars from "react-rating-stars-component";
 import ConfirmDeleteButton from "./ConfirmDeleteButton";
-import { Button } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { axiosReq } from "../api/axiosDefaults";
 import CommentsList from "./CommentsList";
+import styles from "../styles/ReviewListItem.module.css";
+import AppButton from "./AppButton";
 
 const ReviewListItem = ({ review: origReview, handleDelete }) => {
   const [review, setReview] = useState(origReview);
@@ -47,53 +49,93 @@ const ReviewListItem = ({ review: origReview, handleDelete }) => {
   };
 
   return (
-    <div>
-      <div>{review.content}</div>
-      <div>
-        on {review.created_at} by {review.username}
-      </div>
-      <div>
-        <ReactStars
-          count={5}
-          edit={false}
-          value={review.stars}
-          size={24}
-          activeColor="#ffd700"
-        />
-      </div>
-
-      {review.like_id ? (
-        <div>
-          <Button onClick={() => handleDislike(review.like_id)}>DisLike</Button>
-        </div>
-      ) : (
-        <div>
-          <Button onClick={handleLike}>Like</Button>
-        </div>
-      )}
-
-      {review.is_owner && (
-        <div>
-          <Button as={NavLink} variant="secondary" to={`/reviews/${review.id}`}>
-            Edit
-          </Button>
-
-          <ConfirmDeleteButton
-            modalHeader="Delete review"
-            modalBody="Are you sure you want to delete this review?"
-            onConfirm={() => handleDelete(review.id)}
+    <Row>
+      <Col xs="auto">
+        <div>{review.username}</div>
+      </Col>
+      <Col>
+        <div className="d-flex justify-content-between align-items-center">
+          <ReactStars
+            count={5}
+            edit={false}
+            value={review.stars}
+            size={24}
+            activeColor="#ffd700"
           />
+
+          <div className={styles.CreatedAt}>{review.created_at}</div>
         </div>
-      )}
 
-      <div>Likes: {review.likes_count}</div>
+        <div className="mb-2">{review.content}</div>
 
-      <div>
-        <Button onClick={handleCommentClick}>Comment</Button>
+        <div className={`${styles.Likes} mb-2`}>{review.likes_count} likes</div>
+
+        <div className="d-flex">
+          {review.like_id ? (
+            <AppButton
+              className="me-2"
+              title="Dislike"
+              variant="clear"
+              onClick={() => handleDislike(review.like_id)}
+            >
+              <i class="fa-solid fa-xl fa-thumbs-up"></i>
+            </AppButton>
+          ) : (
+            <AppButton
+              className="me-2"
+              title="Like"
+              variant="clear"
+              onClick={handleLike}
+            >
+              <i class="fa-regular fa-xl fa-thumbs-up"></i>
+            </AppButton>
+          )}
+
+          <AppButton
+            title="Comment"
+            className="me-2"
+            variant="clear"
+            onClick={handleCommentClick}
+          >
+            <i class="fa-solid fa-xl fa-comment"></i>
+          </AppButton>
+
+          {review.is_owner && (
+            <>
+              <AppButton
+                title="Edit"
+                variant="clear"
+                className="me-2"
+                as={NavLink}
+                to={`/reviews/${review.id}`}
+              >
+                <i class="fa-solid fa-xl fa-pen-to-square"></i>
+              </AppButton>
+
+              <ConfirmDeleteButton
+                modalHeader="Delete review"
+                modalBody="Are you sure you want to delete this review?"
+                onConfirm={() => handleDelete(review.id)}
+              >
+                {(handleShow) => (
+                  <AppButton
+                    title="Delete"
+                    onClick={handleShow}
+                    variant="clear"
+                  >
+                    <i class="fa-solid fa-xl fa-trash"></i>
+                  </AppButton>
+                )}
+              </ConfirmDeleteButton>
+            </>
+          )}
+        </div>
 
         {isCommentsOpen && <CommentsList reviewId={review.id} />}
-      </div>
-    </div>
+
+        <hr />
+      </Col>
+    </Row>
   );
 };
 

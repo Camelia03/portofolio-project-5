@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
 const ConfirmDeleteButton = ({
+  children,
   onConfirm,
   modalHeader,
   modalBody,
@@ -21,9 +22,7 @@ const ConfirmDeleteButton = ({
 
   return (
     <>
-      <Button variant="danger" onClick={handleShow}>
-        {btnText}
-      </Button>
+      {children(handleShow)}
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -44,3 +43,9 @@ const ConfirmDeleteButton = ({
 };
 
 export default ConfirmDeleteButton;
+
+// || (
+//   <Button variant="danger" onClick={handleShow}>
+//     {btnText}
+//   </Button>
+// )

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Children, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import useReq from "../hooks/useReq";
@@ -6,7 +6,7 @@ import { Alert, Container, Form } from "react-bootstrap";
 import Loader from "./Loader";
 import { axiosReq } from "../api/axiosDefaults";
 
-const AddToListModal = ({ book }) => {
+const AddToListModal = ({ children, book }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => {
@@ -39,9 +39,7 @@ const AddToListModal = ({ book }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Add to list
-      </Button>
+      {children(handleShow)}
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

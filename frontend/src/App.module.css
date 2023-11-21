@@ -26,9 +26,9 @@ a:hover i {
   transition: color ease-in-out 0.3s;
 }
 
-i {
-  color: #cfced3;
-  font-size: 1.6rem;
-  padding: 7px;
-  vertical-align: middle;
+h1,
+h2,
+h3 {
+  font-weight: bold;
+  color: #4a5d5e;
 }

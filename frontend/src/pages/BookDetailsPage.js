@@ -7,6 +7,7 @@ import AddToListModal from "../components/AddToListModal";
 import BookReviewsList from "../components/BookReviewsList";
 import Loader from "../components/Loader";
 import useReq from "../hooks/useReq";
+import AppButton from "../components/AppButton";
 
 const BookDetailsPage = () => {
   const { id } = useParams();
@@ -32,10 +33,20 @@ const BookDetailsPage = () => {
   return (
     <Container>
       <Row className="mb-4">
-        <Col xs={12} md={4}>
-          <Image src={book.image_url} fluid alt={book.title} />
+        <Col xs={12} md={3}>
+          <div className="mb-3">
+            <Image src={book.image_url} fluid alt={book.title} />
+          </div>
+
+          <AddToListModal book={book}>
+            {(handleShow) => (
+              <AppButton variant="primary" onClick={handleShow}>
+                Add to list
+              </AppButton>
+            )}
+          </AddToListModal>
         </Col>
-        <Col xs={12} md={8}>
+        <Col xs={12} md={9}>
           <h2>{book.title}</h2>
           <p>
             <strong>Original Title:</strong> {book.original_title}
@@ -86,13 +97,15 @@ const BookDetailsPage = () => {
         </Col>
       </Row>
 
-      <h2>Reviews</h2>
+      <div className="mb-3 d-flex justify-content-between">
+        <h3 className="mb-0 me-3">
+          <i class="fa-solid fa-worm fa-sm"></i> Bookworms Reviews
+        </h3>
 
-      <Button variant="primary" as={NavLink} to={`/books/${id}/review`}>
-        Leave review
-      </Button>
-
-      <AddToListModal book={book} />
+        <AppButton variant="primary" as={NavLink} to={`/books/${id}/review`}>
+          <i class="fa-solid fa-sm fa-plus"></i> add review
+        </AppButton>
+      </div>
 
       <BookReviewsList bookId={id} />
     </Container>
