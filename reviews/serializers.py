@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Like, Review
+from .models import Comment, Like, Review
 from django.db import IntegrityError
 
 
@@ -45,3 +45,16 @@ class LikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Like
         fields = ('id', 'username', 'review')
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    username = serializers.ReadOnlyField(source='owner.username')
+    is_owner = serializers.SerializerMethodField()
+
+    def get_is_owner(self, obj):
+        request = self.context['request']
+        return request.user == obj.owner
+
+    class Meta:
+        model = Comment
+        fields = ('id', 'username', 'review', 'text', 'is_owner')

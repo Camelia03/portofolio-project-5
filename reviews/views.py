@@ -1,8 +1,9 @@
 from django.db.models import Count
+from django.shortcuts import get_object_or_404
 from rest_framework import generics
-from .models import Review, Like
+from .models import Comment, Review, Like
 from books.models import Book
-from .serializers import LikeSerializer, ReviewSerializer
+from .serializers import CommentSerializer, LikeSerializer, ReviewSerializer
 from bookworms.permissions import IsOwnerOrReadOnly
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
@@ -46,3 +47,27 @@ class LikeDetail(generics.RetrieveDestroyAPIView):
     serializer_class = LikeSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Like.objects.all()
+
+
+class CommentsList(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    serializer_class = CommentSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+
+class CommentDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Comment.objects
+    serializer_class = CommentSerializer
+    permission_classes = [IsOwnerOrReadOnly]
+
+
+class ReviewComments(generics.ListAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    serializer_class = CommentSerializer
+    pagination_class = None
+
+    def get_queryset(self):
+        review = get_object_or_404(Review, id=self.kwargs.get('review_id'))
+        return Comment.objects.filter(review=review).order_by('-created_at')

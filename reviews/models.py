@@ -31,3 +31,15 @@ class Like(models.Model):
 
     def __str__(self) -> str:
         return f"{self.owner} likes review: {self.review}"
+
+
+class Comment(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    review = models.ForeignKey(
+        Review, on_delete=models.CASCADE, related_name='comments'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    text = models.TextField()
+
+    def __str__(self) -> str:
+        return f"{self.owner} comment on review: {self.review}"

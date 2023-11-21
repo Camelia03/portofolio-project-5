@@ -4,9 +4,15 @@ import ConfirmDeleteButton from "./ConfirmDeleteButton";
 import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { axiosReq } from "../api/axiosDefaults";
+import CommentsList from "./CommentsList";
 
 const ReviewListItem = ({ review: origReview, handleDelete }) => {
   const [review, setReview] = useState(origReview);
+  const [isCommentsOpen, setIsCommentsOpen] = useState(false);
+
+  const handleCommentClick = () => {
+    setIsCommentsOpen((prevValue) => !prevValue);
+  };
 
   const handleLike = async () => {
     try {
@@ -81,6 +87,12 @@ const ReviewListItem = ({ review: origReview, handleDelete }) => {
       )}
 
       <div>Likes: {review.likes_count}</div>
+
+      <div>
+        <Button onClick={handleCommentClick}>Comment</Button>
+
+        {isCommentsOpen && <CommentsList reviewId={review.id} />}
+      </div>
     </div>
   );
 };
