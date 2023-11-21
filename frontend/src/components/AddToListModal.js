@@ -55,7 +55,9 @@ const AddToListModal = ({ book }) => {
               <Form.Select name="list" onChange={handleChange}>
                 <option selected>Select a list</option>
                 {lists?.map((list) => (
-                  <option value={list.id}>{list.name}</option>
+                  <option key={list.id} value={list.id}>
+                    {list.name}
+                  </option>
                 ))}
               </Form.Select>
 
