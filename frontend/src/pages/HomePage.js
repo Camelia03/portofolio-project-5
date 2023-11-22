@@ -36,11 +36,26 @@ const HomePage = () => {
     <Container className={`mb-5 ${styles.Container}`}>
       <Row>
         <Col xs="9">
-          <h1>Home</h1>
+          <h1>
+            <i class="fa-solid fa-worm fa-sm"></i> Welcome to Bookworms!
+          </h1>
           <h2 className="mb-3">Top rated books</h2>
+          <p>
+            Embark on a journey through our meticulously curated selection of
+            timeless classics and contemporary masterpieces. Discover stories
+            that have captured hearts and minds, earning their place among the
+            most revered reads.
+          </p>
+
           <BooksList url={bookLists.topRated} />
           <hr />
           <h2 className="mb-3">Newest releases</h2>
+          <p>
+            Immerse yourself in the pulse of the literary world with our latest
+            creations penned by visionary authors. From fresh narratives to
+            groundbreaking ideas, explore the newest additions to our
+            collection.
+          </p>
           <BooksList url={bookLists.newestReleases} />
         </Col>
 
