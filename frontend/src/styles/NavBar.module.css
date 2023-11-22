@@ -1,5 +1,6 @@
 .NavBar {
   background-color: #4a5d5e;
+  position: fixed;
 }
 
 .NavBar a {
