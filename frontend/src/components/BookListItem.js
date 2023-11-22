@@ -25,7 +25,13 @@ const BookListItem = ({ book, showImage = true }) => {
       <Row className="g-0">
         {showImage && (
           <Col xs="auto">
-            <Image src={image_url} fluid rounded="start" alt="book image" />
+            <Image
+              width="120"
+              src={image_url}
+              fluid
+              rounded="start"
+              alt="book image"
+            />
           </Col>
         )}
         <Col>
