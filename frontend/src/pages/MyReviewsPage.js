@@ -46,7 +46,7 @@ const MyReviewsPage = () => {
     <Container>
       <h1>My reviews</h1>
 
-      {reviews.results.map((review) => (
+      {reviews.map((review) => (
         <div key={review.id} className="mb-4">
           <div>
             <span>Book: </span>

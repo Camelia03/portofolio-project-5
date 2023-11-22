@@ -5,7 +5,7 @@ from .models import Comment, Review, Like
 from books.models import Book
 from .serializers import CommentSerializer, LikeSerializer, ReviewSerializer
 from bookworms.permissions import IsOwnerOrReadOnly
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 
 
 class BookReviews(generics.ListCreateAPIView):
@@ -30,6 +30,8 @@ class ReviewDetails(generics.RetrieveUpdateDestroyAPIView):
 
 class UserReviews(generics.ListAPIView):
     serializer_class = ReviewSerializer
+    pagination_class = None
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         return Review.objects.filter(owner=self.kwargs.get('user_id'))
