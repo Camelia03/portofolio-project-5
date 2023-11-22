@@ -5,6 +5,7 @@ import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import { NavLink } from "react-router-dom";
 import Rating from "react-rating-stars-component";
+import AuthorsList from "./AuthorsList";
 
 const BookListItem = ({ book, showImage = true }) => {
   const {
@@ -38,15 +39,7 @@ const BookListItem = ({ book, showImage = true }) => {
             </Card.Text>
             <Card.Text>
               <strong>Authors: </strong>
-              {authors.map((author, idx) => (
-                <span key={author.id}>
-                  <NavLink to={`/authors/${author.id}`}>
-                    {author.full_name}
-                  </NavLink>
-
-                  {idx + 1 != authors.length && <span className="me-1">,</span>}
-                </span>
-              ))}
+              <AuthorsList authors={authors} />
             </Card.Text>
             <Card.Text>
               <strong>Genres: </strong>

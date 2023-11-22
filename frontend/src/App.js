@@ -15,7 +15,6 @@ import MyReviewsPage from "./pages/MyReviewsPage";
 import MyListsPage from "./pages/MyListsPage";
 import CreateListPage from "./pages/CreateListPage";
 import EditListPage from "./pages/EditListPage";
-import ListDetails from "./pages/ListDetails";
 import HomePage from "./pages/HomePage";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
@@ -56,8 +55,6 @@ function App() {
             path="/my-lists/:id/edit"
             render={() => <EditListPage />}
           />
-
-          <Route exact path="/my-lists/:id" render={() => <ListDetails />} />
 
           <Route exact path="/authors/:id" render={() => <AuthorPage />} />
 

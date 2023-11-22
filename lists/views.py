@@ -28,6 +28,7 @@ class ListDetails(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly, IsAuthenticated]
     queryset = List.objects
     serializer_class = ListSerializer
+    pagination_class = None
 
 
 class AddRemoveBook(APIView):

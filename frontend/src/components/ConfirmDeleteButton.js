@@ -6,7 +6,6 @@ const ConfirmDeleteButton = ({
   onConfirm,
   modalHeader,
   modalBody,
-  btnText = "Delete",
 }) => {
   const [show, setShow] = useState(false);
 
