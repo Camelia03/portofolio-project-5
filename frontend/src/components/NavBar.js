@@ -95,18 +95,14 @@ const NavBar = () => {
             ) : (
               <>
                 <NavLink
-                  className={styles.NavLink}
+                  className="me-3"
                   activeClassName={styles.Active}
                   to="/signin"
                 >
-                  <i className="fa-solid fa-right-to-bracket"></i>Sign in
+                  <i className="fa-solid fa-right-to-bracket"></i> Sign in
                 </NavLink>
-                <NavLink
-                  className={styles.NavLink}
-                  activeClassName={styles.Active}
-                  to="/signup"
-                >
-                  <i className="fa-solid fa-user-plus"></i>Sign up
+                <NavLink activeClassName={styles.Active} to="/signup">
+                  <i className="fa-solid fa-user-plus"></i> Sign up
                 </NavLink>
               </>
             )}
