@@ -40,7 +40,7 @@ const BookReviewsList = ({ bookId }) => {
 
   return (
     <div>
-      {reviews.results.map((review) => (
+      {reviews.map((review) => (
         <div key={review.id} className="mb-4">
           <ReviewListItem handleDelete={handleDelete} review={review} />
         </div>

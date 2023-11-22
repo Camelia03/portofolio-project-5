@@ -11,6 +11,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 class BookReviews(generics.ListCreateAPIView):
     serializer_class = ReviewSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
+    pagination_class = None
 
     def get_queryset(self):
         return Review.objects.filter(book=self.kwargs.get('book_id')).annotate(
