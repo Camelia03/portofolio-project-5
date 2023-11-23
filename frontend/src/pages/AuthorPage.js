@@ -31,6 +31,7 @@ const AuthorPage = () => {
       <h2>{author.full_name}</h2>
       <p>{author.description}</p>
 
+      <h3>Author's books:</h3>
       <AuthorBooksList author_id={author.id} />
     </Container>
   );
