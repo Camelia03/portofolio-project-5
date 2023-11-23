@@ -4,7 +4,8 @@ from django.db import IntegrityError
 
 
 class ReviewSerializer(serializers.ModelSerializer):
-    username = serializers.ReadOnlyField(source='owner.username')
+    user = serializers.SerializerMethodField()
+
     book_id = serializers.ReadOnlyField(source='book.id')
     book_title = serializers.ReadOnlyField(source='book.title')
 
@@ -12,6 +13,14 @@ class ReviewSerializer(serializers.ModelSerializer):
     likes_count = serializers.ReadOnlyField()
 
     is_owner = serializers.SerializerMethodField()
+
+    def get_user(self, obj):
+        return {
+            'id': obj.owner.id,
+            'username': obj.owner.username,
+            'profile_id': obj.owner.profile.id,
+            'profile_image': obj.owner.profile.avatar.url
+        }
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -27,7 +36,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Review
-        fields = ('id', 'username', 'is_owner', 'updated_at', 'like_id', 'likes_count',
+        fields = ('id', 'user', 'is_owner', 'updated_at', 'like_id', 'likes_count',
                   'created_at', 'stars', 'book_id', 'book_title', 'content')
 
 

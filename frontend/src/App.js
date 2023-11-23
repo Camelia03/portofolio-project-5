@@ -31,6 +31,7 @@ function App() {
           <Route exact path="/signin" render={() => <SignInPage />} />
           <Route exact path="/signup" render={() => <SignUpPage />} />
           <Route exact path="/profile" render={() => <ProfilePage />} />
+          <Route exact path="/profile/:id" render={() => <ProfilePage />} />
           <Route exact path="/books/:id" render={() => <BookDetailsPage />} />
           <Route
             exact

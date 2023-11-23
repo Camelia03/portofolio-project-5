@@ -7,6 +7,7 @@ import { axiosReq } from "../api/axiosDefaults";
 import CommentsList from "./CommentsList";
 import styles from "../styles/ReviewListItem.module.css";
 import AppButton from "./AppButton";
+import UserBadge from "./UserBadge";
 
 const ReviewListItem = ({
   review: origReview,
@@ -55,7 +56,7 @@ const ReviewListItem = ({
   return (
     <Row>
       <Col xs="auto">
-        <div>{review.username}</div>
+        <UserBadge user={review.user} />
       </Col>
       <Col>
         <div className="d-flex justify-content-between align-items-center">

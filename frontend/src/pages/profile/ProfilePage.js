@@ -6,23 +6,21 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import styles from "../../styles/ProfilePage.module.css";
 import Loader from "../../components/Loader";
+import { useParams } from "react-router-dom";
 
 const ProfilePage = () => {
+  const { id } = useParams();
   const currentUser = useCurrentUser();
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!currentUser || !currentUser.profile_id) {
-      return;
-    }
+    const profileId = id || currentUser.profile_id;
 
     const getProfile = async () => {
       try {
-        const response = await axiosReq.get(
-          `/api/profiles/${currentUser.profile_id}`
-        );
+        const response = await axiosReq.get(`/api/profiles/${profileId}`);
         setProfile(response.data);
         setLoading(false);
       } catch (err) {
@@ -31,7 +29,7 @@ const ProfilePage = () => {
       }
     };
     getProfile();
-  }, [currentUser]);
+  }, [id, currentUser]);
 
   if (loading) {
     return (
@@ -53,7 +51,7 @@ const ProfilePage = () => {
     <Container className={`text-center ${styles["profile-container"]} my-4`}>
       <Card bg="light" text="dark">
         <Card.Body>
-          <Card.Title className="mt-4">My Profile</Card.Title>
+          <Card.Title className="mt-4">{profile.owner}'s Profile</Card.Title>
           <div className="my-4">
             <img
               src={profile?.avatar}
@@ -75,12 +73,15 @@ const ProfilePage = () => {
           <Card.Text className="mb-2">
             <strong>Updated At:</strong> {profile?.updated_at}
           </Card.Text>
-          <Button
-            variant="secondary"
-            className={`mb-2 ${styles["edit-profile-button"]}`}
-          >
-            Edit Profile
-          </Button>
+
+          {profile.is_owner && (
+            <Button
+              variant="secondary"
+              className={`mb-2 ${styles["edit-profile-button"]}`}
+            >
+              Edit Profile
+            </Button>
+          )}
         </Card.Body>
       </Card>
     </Container>
