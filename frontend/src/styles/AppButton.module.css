@@ -25,15 +25,15 @@
 
 .Secondary {
   background-color: #f8f8ec;
-  color: #ffffff;
+  color: #4a5d5e;
 }
 
 .Secondary:hover {
-  background-color: #f8f8ec;
+  background-color: #f1f1da;
 }
 
 .Secondary:active {
-  background-color: #f8f8ec;
+  background-color: #eaeac8;
 }
 
 .Clear {

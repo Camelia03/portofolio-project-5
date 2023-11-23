@@ -48,7 +48,7 @@ const NavBar = () => {
                 <NavDropdown
                   title={`Welcome, ${currentUser.username}`}
                   id="nav-dropdown"
-                  className={styles.NavDropdown}
+                  className={`${styles.NavDropdown} ms-3`}
                 >
                   <NavDropdown.Item
                     as={NavLink}

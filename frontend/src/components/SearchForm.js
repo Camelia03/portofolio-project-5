@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import useQuery from "../hooks/useQuery";
 import styles from "../styles/SearchForm.module.css";
+import AppButton from "./AppButton";
 
 const SearchForm = () => {
   const urlQuery = useQuery();
@@ -22,17 +23,22 @@ const SearchForm = () => {
 
   return (
     <Form className={styles["search-form"]} onSubmit={handleSubmit}>
-      <Form.Control
-        type="text"
-        placeholder="Search"
-        className={styles["search-input"]}
-        value={queryValue}
-        onChange={handleChange}
-      />
-
-      <Button className={styles["search-button"]} type="submit">
-        <i className="fa-solid fa-magnifying-glass fa-xs"></i>
-      </Button>
+      <InputGroup>
+        <Form.Control
+          type="text"
+          placeholder="Search"
+          className={styles["search-input"]}
+          value={queryValue}
+          onChange={handleChange}
+        />
+        <AppButton
+          variant="secondary"
+          className={styles["search-button"]}
+          type="submit"
+        >
+          <i className="fa-solid fa-magnifying-glass fa-xs"></i>
+        </AppButton>
+      </InputGroup>
     </Form>
   );
 };
