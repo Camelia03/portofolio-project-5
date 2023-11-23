@@ -55,7 +55,7 @@ const MyListsPage = () => {
 
   return (
     <Container>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-between mt-3 mb-3">
         <h2>My book lists</h2>
 
         <div>
