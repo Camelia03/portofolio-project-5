@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import axios from "axios";
 import {
   useCurrentUser,
@@ -14,12 +14,14 @@ import SearchForm from "./SearchForm";
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+  const history = useHistory();
 
   const handleSignOut = async () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
       removeTokenTimestamp();
+      history.push("/signin");
     } catch (error) {
       console.log(error);
     }
@@ -34,9 +36,11 @@ const NavBar = () => {
           </Navbar.Brand>
         </NavLink>
 
-        <NavLink activeClassName={styles.Active} to="/search">
-          Books
-        </NavLink>
+        {currentUser && (
+          <NavLink activeClassName={styles.Active} to="/search">
+            Books
+          </NavLink>
+        )}
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="all" id="basic-navbar-nav">
