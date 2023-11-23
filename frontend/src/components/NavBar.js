@@ -84,7 +84,10 @@ const NavBar = () => {
                     My Lists
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item onClick={handleSignOut}>
+                  <NavDropdown.Item
+                    className={styles.NavDropdownLink}
+                    onClick={handleSignOut}
+                  >
                     <i
                       className={`fa-solid fa-right-from-bracket fa-xs ${styles.NavDropdownIcon}`}
                     ></i>
