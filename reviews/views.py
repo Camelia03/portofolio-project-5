@@ -35,7 +35,8 @@ class UserReviews(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Review.objects.filter(owner=self.kwargs.get('user_id'))
+        return Review.objects.filter(owner=self.kwargs.get('user_id')).annotate(
+            likes_count=Count('likes'))
 
 
 class CreateLike(generics.CreateAPIView):

@@ -8,7 +8,11 @@ import CommentsList from "./CommentsList";
 import styles from "../styles/ReviewListItem.module.css";
 import AppButton from "./AppButton";
 
-const ReviewListItem = ({ review: origReview, handleDelete }) => {
+const ReviewListItem = ({
+  review: origReview,
+  handleDelete,
+  showLikeBtn = true,
+}) => {
   const [review, setReview] = useState(origReview);
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
 
@@ -71,25 +75,26 @@ const ReviewListItem = ({ review: origReview, handleDelete }) => {
         <div className={`${styles.Likes} mb-2`}>{review.likes_count} likes</div>
 
         <div className="d-flex">
-          {review.like_id ? (
-            <AppButton
-              className="me-2"
-              title="Dislike"
-              variant="clear"
-              onClick={() => handleDislike(review.like_id)}
-            >
-              <i class="fa-solid fa-xl fa-thumbs-up"></i>
-            </AppButton>
-          ) : (
-            <AppButton
-              className="me-2"
-              title="Like"
-              variant="clear"
-              onClick={handleLike}
-            >
-              <i class="fa-regular fa-xl fa-thumbs-up"></i>
-            </AppButton>
-          )}
+          {showLikeBtn &&
+            (review.like_id ? (
+              <AppButton
+                className="me-2"
+                title="Dislike"
+                variant="clear"
+                onClick={() => handleDislike(review.like_id)}
+              >
+                <i class="fa-solid fa-xl fa-thumbs-up"></i>
+              </AppButton>
+            ) : (
+              <AppButton
+                className="me-2"
+                title="Like"
+                variant="clear"
+                onClick={handleLike}
+              >
+                <i class="fa-regular fa-xl fa-thumbs-up"></i>
+              </AppButton>
+            ))}
 
           <AppButton
             title="Comment"

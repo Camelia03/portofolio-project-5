@@ -56,7 +56,12 @@ const MyReviewsPage = () => {
               </NavLink>
             </span>
           </div>
-          <ReviewListItem handleDelete={handleDelete} review={review} />
+
+          <ReviewListItem
+            showLikeBtn={false}
+            handleDelete={handleDelete}
+            review={review}
+          />
         </div>
       ))}
     </Container>
