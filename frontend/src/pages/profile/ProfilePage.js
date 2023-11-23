@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { axiosReq } from "../../api/axiosDefaults";
-import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import styles from "../../styles/ProfilePage.module.css";
+import Container from "react-bootstrap/Container";
+import { NavLink, useParams } from "react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults";
+import AppButton from "../../components/AppButton";
 import Loader from "../../components/Loader";
-import { useParams } from "react-router-dom";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import styles from "../../styles/ProfilePage.module.css";
 
 const ProfilePage = () => {
   const { id } = useParams();
@@ -75,12 +75,9 @@ const ProfilePage = () => {
           </Card.Text>
 
           {profile.is_owner && (
-            <Button
-              variant="secondary"
-              className={`mb-2 ${styles["edit-profile-button"]}`}
-            >
+            <AppButton as={NavLink} to="/profile/edit">
               Edit Profile
-            </Button>
+            </AppButton>
           )}
         </Card.Body>
       </Card>

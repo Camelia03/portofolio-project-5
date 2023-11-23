@@ -26,6 +26,7 @@
 .Secondary {
   background-color: #f8f8ec;
   color: #4a5d5e;
+  padding: 5px 10px;
 }
 
 .Secondary:hover {
