@@ -38,6 +38,14 @@ const BookReviewsList = ({ bookId }) => {
     );
   }
 
+  if (reviews.length === 0) {
+    return (
+      <div className="">
+        <p>No reviews yet!</p>
+      </div>
+    );
+  }
+
   return (
     <div>
       {reviews.map((review) => (
