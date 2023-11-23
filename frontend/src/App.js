@@ -24,7 +24,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <Container className={styles.Main}>
+      <div className={`${styles.Main} pt-5 pb-5`}>
         <Switch>
           <Route exact path="/" render={() => <HomePage />} />
           <Route exact path="/search" render={() => <SearchPage />} />
@@ -60,7 +60,7 @@ function App() {
 
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
-      </Container>
+      </div>
     </div>
   );
 }
