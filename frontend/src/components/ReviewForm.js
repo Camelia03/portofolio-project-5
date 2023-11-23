@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
 import ReactStars from "react-rating-stars-component";
+import AppButton from "./AppButton";
 
 const ReviewForm = ({
   review: initialReview = {
@@ -57,9 +58,9 @@ const ReviewForm = ({
         />
       </Form.Group>
 
-      <Button variant="primary" type="submit">
+      <AppButton variant="primary" type="submit">
         {submitBtnText}
-      </Button>
+      </AppButton>
 
       {errors.non_field_errors?.map((message, idx) => (
         <Alert key={idx} variant="warning" className="mt-3">
