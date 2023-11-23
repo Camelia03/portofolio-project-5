@@ -8,6 +8,7 @@ import { setTokenTimestamp } from "../../utils/utils";
 import Alert from "react-bootstrap/Alert";
 import { Col, Image, Row } from "react-bootstrap";
 import AppButton from "../../components/AppButton";
+import welcome from "../../assets/welcome.avif";
 
 function SignInPage() {
   const setCurrentUser = useSetCurrentUser();
@@ -42,11 +43,11 @@ function SignInPage() {
   return (
     <Container>
       <Row
-        style={{ minHeight: "calc(100vh - 61px)" }}
+        style={{ height: "calc(100vh - 61px)" }}
         className="justify-content-center align-items-center"
       >
         <Col className="h-100">
-          <Image src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1382993429i/778267.jpg" />
+          <Image className="h-100" src={welcome} alt="Sign in welcome image" />
         </Col>
 
         <Col>

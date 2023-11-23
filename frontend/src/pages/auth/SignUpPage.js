@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { Col, Image, Row } from "react-bootstrap";
 import AppButton from "../../components/AppButton";
+import welcome from "../../assets/welcome.avif";
 
 function SignUpPage() {
   const history = useHistory();
@@ -35,11 +35,11 @@ function SignUpPage() {
   return (
     <Container>
       <Row
-        style={{ minHeight: "calc(100vh - 61px)" }}
+        style={{ height: "calc(100vh - 61px)" }}
         className="justify-content-center align-items-center"
       >
         <Col className="h-100">
-          <Image src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1382993429i/778267.jpg" />
+          <Image className="h-100" src={welcome} alt="Sign up welcome image" />
         </Col>
 
         <Col>
