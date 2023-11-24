@@ -55,7 +55,7 @@ const ReviewListItem = ({
 
   return (
     <Row>
-      <Col xs="auto">
+      <Col xs="2">
         <UserBadge user={review.user} />
       </Col>
       <Col>
