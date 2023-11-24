@@ -5,6 +5,7 @@ import useReq from "../hooks/useReq";
 import Loader from "../components/Loader";
 import { NavLink } from "react-router-dom";
 import styles from "../styles/HomePage.module.css";
+import header_logo from "../assets/header_logo.png";
 
 const HomePage = () => {
   const genresReq = useReq("/api/genres");
@@ -37,8 +38,15 @@ const HomePage = () => {
       <Row>
         <Col xs="9">
           <h1>
-            <i class="fa-solid fa-worm fa-sm"></i> Welcome to Bookworms!
+            Welcome to
+            <img src={header_logo} alt="Logo" width="230px" />
           </h1>
+          <p>
+            Dive into a world of literary treasures, where stories come alive
+            and reading opens doors to endless adventures. Discover new
+            favorites, explore timeless classics, and join a community
+            passionate about the written word. Happy reading!
+          </p>
           <h2 className="mb-3">Top rated books</h2>
           <p>
             Embark on a journey through our meticulously curated selection of
