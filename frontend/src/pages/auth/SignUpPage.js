@@ -1,13 +1,16 @@
-import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-import Container from "react-bootstrap/Container";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
 import { Col, Image, Row } from "react-bootstrap";
-import AppButton from "../../components/AppButton";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import { useHistory } from "react-router-dom";
 import welcome from "../../assets/welcome.avif";
+import AppButton from "../../components/AppButton";
+import useNotification from "../../hooks/useNotification";
 
 function SignUpPage() {
+  const showNotification = useNotification();
+
   const history = useHistory();
   const [signupData, setSignupData] = useState({
     username: "",
@@ -26,8 +29,13 @@ function SignUpPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     try {
       await axios.post("/dj-rest-auth/registration/", signupData);
+      showNotification({
+        message: "Account created succesfully!",
+        header: "Welcome to BookWorms!",
+      });
       history.push("/signin");
     } catch (error) {}
   };
