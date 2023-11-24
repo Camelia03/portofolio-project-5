@@ -103,7 +103,11 @@ const ReviewListItem = ({
             variant="clear"
             onClick={handleCommentClick}
           >
-            <i class="fa-solid fa-xl fa-comment"></i>
+            {isCommentsOpen ? (
+              <i class="fa-solid fa-xl fa-comment" />
+            ) : (
+              <i class="fa-regular fa-xl fa-comment" />
+            )}
           </AppButton>
 
           {review.is_owner && (
