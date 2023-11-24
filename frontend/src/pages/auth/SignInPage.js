@@ -9,8 +9,11 @@ import Alert from "react-bootstrap/Alert";
 import { Col, Image, Row } from "react-bootstrap";
 import AppButton from "../../components/AppButton";
 import welcome from "../../assets/welcome.avif";
+import useNotification from "../../hooks/useNotification";
 
 function SignInPage() {
+  const showNotification = useNotification();
+
   const setCurrentUser = useSetCurrentUser();
   const history = useHistory();
   const [signinData, setSigninData] = useState({
@@ -26,6 +29,14 @@ function SignInPage() {
       ...signinData,
       [event.target.name]: event.target.value,
     });
+
+    setErrors((prevErrors) => {
+      if (!prevErrors[event.target.name]) return prevErrors;
+
+      const errors = { ...prevErrors };
+      delete errors[event.target.name];
+      return errors;
+    });
   };
 
   const handleSubmit = async (event) => {
@@ -34,6 +45,10 @@ function SignInPage() {
       const response = await axios.post("/dj-rest-auth/login/", signinData);
       setCurrentUser(response.data.user);
       setTokenTimestamp(response.data);
+      showNotification({
+        message: "Signed in succesfully!",
+        header: `Welcome ${response.data.user.username}!`,
+      });
       history.push("/");
     } catch (error) {
       setErrors(error.response?.data);
@@ -55,24 +70,40 @@ function SignInPage() {
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formUsername">
               <Form.Label>Username</Form.Label>
+
               <Form.Control
                 type="text"
                 placeholder="User name"
                 name="username"
                 value={username}
                 onChange={handleChange}
+                isInvalid={!!errors.username}
               />
+
+              {errors.username?.map((message, idx) => (
+                <Form.Control.Feedback key={idx} type="invalid">
+                  {message}
+                </Form.Control.Feedback>
+              ))}
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formPassword">
               <Form.Label>Password</Form.Label>
+
               <Form.Control
                 type="password"
                 placeholder="Password"
                 name="password"
                 value={password}
                 onChange={handleChange}
+                isInvalid={!!errors.password}
               />
+
+              {errors.password?.map((message, idx) => (
+                <Form.Control.Feedback key={idx} type="invalid">
+                  {message}
+                </Form.Control.Feedback>
+              ))}
             </Form.Group>
 
             <AppButton variant="primary" type="submit">
