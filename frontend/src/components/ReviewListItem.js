@@ -137,7 +137,13 @@ const ReviewListItem = ({
           )}
         </div>
 
-        {isCommentsOpen && <CommentsList reviewId={review.id} />}
+        {isCommentsOpen && (
+          <>
+            <hr />
+
+            <CommentsList reviewId={review.id} />
+          </>
+        )}
 
         <hr />
       </Col>

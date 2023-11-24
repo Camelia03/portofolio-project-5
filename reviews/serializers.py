@@ -57,8 +57,16 @@ class LikeSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    username = serializers.ReadOnlyField(source='owner.username')
+    user = serializers.SerializerMethodField()
     is_owner = serializers.SerializerMethodField()
+
+    def get_user(self, obj):
+        return {
+            'id': obj.owner.id,
+            'username': obj.owner.username,
+            'profile_id': obj.owner.profile.id,
+            'profile_image': obj.owner.profile.avatar.url
+        }
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -66,4 +74,4 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ('id', 'username', 'review', 'text', 'is_owner')
+        fields = ('id', 'user', 'review', 'text', 'is_owner', 'created_at')

@@ -1,8 +1,20 @@
 import React, { useState } from "react";
 import useReq from "../hooks/useReq";
 import Loader from "./Loader";
-import { Alert, Button, Form, InputGroup, Modal } from "react-bootstrap";
+import {
+  Alert,
+  Button,
+  Col,
+  Form,
+  Image,
+  InputGroup,
+  Modal,
+  Row,
+} from "react-bootstrap";
 import { axiosReq } from "../api/axiosDefaults";
+import AppButton from "./AppButton";
+import { NavLink } from "react-router-dom";
+import ConfirmDeleteButton from "./ConfirmDeleteButton";
 
 const CommentsList = ({ reviewId }) => {
   const {
@@ -74,28 +86,57 @@ const CommentsList = ({ reviewId }) => {
       {comments.length === 0 && <span>No comments</span>}
       {comments.length > 0 &&
         comments.map((comment) => (
-          <div key={comment.id}>
-            <div>
-              {comment.username} wrote {comment.text}
-            </div>
+          <Row key={comment.id} className="mb-3">
+            <Col xs="auto">
+              <Image src={comment.user.profile_image} width="30" />
+            </Col>
+            <Col>
+              <div className="d-flex justify-content-between">
+                <div>
+                  <NavLink to={`/profile/${comment.user.profile_id}`}>
+                    <strong>{comment.user.username}</strong>
+                  </NavLink>
+                  <span className="text-muted ms-2">{comment.created_at}</span>
+                </div>
 
-            {comment.is_owner && (
-              <div>
-                <Button onClick={() => handleDelete(comment.id)}>Delete</Button>
-                <EditCommentModal
-                  comment={comment}
-                  onSubmit={(text) => handleEdit(comment.id, text)}
-                />
+                <div>
+                  {comment.is_owner && (
+                    <div>
+                      <ConfirmDeleteButton
+                        modalHeader="Delete comment"
+                        modalBody="Are you sure you want to delete this comment?"
+                        onConfirm={() => handleDelete(comment.id)}
+                      >
+                        {(handleShow) => (
+                          <AppButton
+                            title="Delete"
+                            onClick={handleShow}
+                            variant="clear"
+                          >
+                            <i class="fa-solid fa-sm fa-trash"></i>
+                          </AppButton>
+                        )}
+                      </ConfirmDeleteButton>
+
+                      <EditCommentModal
+                        comment={comment}
+                        onSubmit={(text) => handleEdit(comment.id, text)}
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
-            )}
-          </div>
+
+              <div>{comment.text}</div>
+            </Col>
+          </Row>
         ))}
       <Form onSubmit={handleSubmit} className="mt-3">
         <InputGroup>
           <Form.Control onChange={handleChange} value={comment} name="text" />
-          <Button type="submit" variant="outline-secondary">
+          <AppButton type="submit" variant="secondary">
             Add comment
-          </Button>
+          </AppButton>
         </InputGroup>
       </Form>
     </div>
@@ -125,14 +166,15 @@ const EditCommentModal = ({ comment, onSubmit }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Edit
-      </Button>
+      <AppButton variant="clear" onClick={handleShow}>
+        <i class="fa-solid fa-sm fa-pen-to-square"></i>
+      </AppButton>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Edit comment</Modal.Title>
         </Modal.Header>
+
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
             <Form.Control
@@ -142,13 +184,15 @@ const EditCommentModal = ({ comment, onSubmit }) => {
             />
           </Form>
         </Modal.Body>
+
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <AppButton variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="primary" onClick={handleSubmit}>
+          </AppButton>
+
+          <AppButton variant="primary" onClick={handleSubmit}>
             Save Changes
-          </Button>
+          </AppButton>
         </Modal.Footer>
       </Modal>
     </>
