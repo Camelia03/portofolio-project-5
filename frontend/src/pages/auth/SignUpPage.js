@@ -55,9 +55,9 @@ function SignUpPage() {
     <Container>
       <Row
         style={{ height: "calc(100vh - 61px)" }}
-        className="justify-content-center align-items-center"
+        className="justify-content-center align-items-md-center"
       >
-        <Col className="h-100">
+        <Col className="h-100 d-none d-md-block">
           <Image className="h-100" src={welcome} alt="Sign up welcome image" />
         </Col>
 
