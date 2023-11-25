@@ -31,7 +31,7 @@ const EditProfilePage = () => {
     data: profile,
     loading,
     error,
-  } = useReq(`/api/profiles/${profile_id}/`);
+  } = useReq(`/api/profiles/${profile_id}`);
 
   useEffect(() => {
     if (!profile) return;
