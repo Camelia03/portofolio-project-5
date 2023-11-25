@@ -6,6 +6,7 @@ import {
   Button,
   Col,
   Form,
+  FormGroup,
   Image,
   InputGroup,
   Modal,
@@ -15,8 +16,11 @@ import { axiosReq } from "../api/axiosDefaults";
 import AppButton from "./AppButton";
 import { NavLink } from "react-router-dom";
 import ConfirmDeleteButton from "./ConfirmDeleteButton";
+import useNotification from "../hooks/useNotification";
 
 const CommentsList = ({ reviewId }) => {
+  const showNotification = useNotification();
+
   const {
     data: comments,
     loading,
@@ -25,9 +29,18 @@ const CommentsList = ({ reviewId }) => {
   } = useReq(`/api/reviews/${reviewId}/comments`);
 
   const [comment, setComment] = useState("");
+  const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
     setComment(event.target.value);
+
+    setErrors((prevErrors) => {
+      if (!prevErrors[event.target.name]) return prevErrors;
+
+      const errors = { ...prevErrors };
+      delete errors[event.target.name];
+      return errors;
+    });
   };
 
   const handleSubmit = async (event) => {
@@ -41,7 +54,7 @@ const CommentsList = ({ reviewId }) => {
 
       refresh();
     } catch (error) {
-      console.log(error);
+      setErrors(error.response?.data);
     }
 
     setComment("");
@@ -132,12 +145,26 @@ const CommentsList = ({ reviewId }) => {
           </Row>
         ))}
       <Form onSubmit={handleSubmit} className="mt-3">
-        <InputGroup>
-          <Form.Control onChange={handleChange} value={comment} name="text" />
-          <AppButton type="submit" variant="secondary">
-            Add comment
-          </AppButton>
-        </InputGroup>
+        <FormGroup controlId="comment-text">
+          <InputGroup>
+            <Form.Control
+              onChange={handleChange}
+              value={comment}
+              name="text"
+              isInvalid={!!errors.text}
+            />
+
+            <AppButton type="submit" variant="secondary">
+              Add comment
+            </AppButton>
+
+            {errors.text?.map((message, idx) => (
+              <Form.Control.Feedback key={idx} type="invalid">
+                {message}
+              </Form.Control.Feedback>
+            ))}
+          </InputGroup>
+        </FormGroup>
       </Form>
     </div>
   );
