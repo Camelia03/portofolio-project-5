@@ -1,14 +1,20 @@
-import React from "react";
-import { Col, Container, ListGroup, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Col, Container, ListGroup, Offcanvas, Row } from "react-bootstrap";
 import CompactBooksList from "../components/CompactBooksList";
 import useReq from "../hooks/useReq";
 import Loader from "../components/Loader";
 import { NavLink } from "react-router-dom";
 import styles from "../styles/HomePage.module.css";
 import header_logo from "../assets/header_logo.png";
+import AppButton from "../components/AppButton";
 
 const HomePage = () => {
   const genresReq = useReq("/api/genres");
+
+  const [showGenres, setShowGenres] = useState(false);
+
+  const handleClose = () => setShowGenres(false);
+  const handleShow = () => setShowGenres(true);
 
   if (genresReq.loading) {
     return (
@@ -36,18 +42,27 @@ const HomePage = () => {
   return (
     <Container className={`mb-5 ${styles.Container}`}>
       <Row>
-        <Col xs="9">
+        <Col md="9">
           <h1>
             Welcome to
             <img src={header_logo} alt="Logo" width="230px" />
           </h1>
+
           <p>
             Dive into a world of literary treasures, where stories come alive
             and reading opens doors to endless adventures. Discover new
             favorites, explore timeless classics, and join a community
             passionate about the written word. Happy reading!
           </p>
-          <h2 className="mb-3">Top rated books</h2>
+
+          <div className="d-flex justify-content-between align-item-center">
+            <h2 className="mb-3">Top rated books</h2>
+
+            <div className="d-block d-md-none">
+              <AppButton onClick={handleShow}>Genres</AppButton>
+            </div>
+          </div>
+
           <p>
             Embark on a journey through our meticulously curated selection of
             timeless classics and contemporary masterpieces. Discover stories
@@ -67,22 +82,32 @@ const HomePage = () => {
           <BooksList url={bookLists.newestReleases} />
         </Col>
 
-        <Col xs="3" className={styles.SideBar}>
-          <div className="d-flex align-items-center justify-content-between">
-            <h6 className="ps-2">GENRES</h6>
-          </div>
+        <Col md="3" className={styles.SideBar}>
+          <Offcanvas show={showGenres} onHide={handleClose} responsive="md">
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title>
+                <h6 className="ps-2">GENRES</h6>
+              </Offcanvas.Title>
+            </Offcanvas.Header>
 
-          <ListGroup variant="flush">
-            {genres.map((genre) => (
-              <ListGroup.Item action key={genre.id}>
-                <div className="ms-2 me-auto">
-                  <NavLink className="fw-bold" to={`/genres/${genre.name}`}>
-                    {genre.name}
-                  </NavLink>
+            <Offcanvas.Body>
+              <ListGroup variant="flush">
+                <div className="d-none d-md-flex align-items-center justify-content-between">
+                  <h6 className="ps-2">GENRES</h6>
                 </div>
-              </ListGroup.Item>
-            ))}
-          </ListGroup>
+
+                {genres.map((genre) => (
+                  <ListGroup.Item action key={genre.id}>
+                    <div className="ms-2 me-auto">
+                      <NavLink className="fw-bold" to={`/genres/${genre.name}`}>
+                        {genre.name}
+                      </NavLink>
+                    </div>
+                  </ListGroup.Item>
+                ))}
+              </ListGroup>
+            </Offcanvas.Body>
+          </Offcanvas>
         </Col>
       </Row>
     </Container>
