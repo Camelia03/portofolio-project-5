@@ -149,7 +149,7 @@ const CommentsList = ({ reviewId }) => {
                             onClick={handleShow}
                             variant="clear"
                           >
-                            <i class="fa-solid fa-sm fa-trash"></i>
+                            <i className="fa-solid fa-sm fa-trash"></i>
                           </AppButton>
                         )}
                       </ConfirmDeleteButton>
@@ -217,7 +217,7 @@ const EditCommentModal = ({ comment, onSubmit }) => {
   return (
     <>
       <AppButton variant="clear" onClick={handleShow}>
-        <i class="fa-solid fa-sm fa-pen-to-square"></i>
+        <i className="fa-solid fa-sm fa-pen-to-square"></i>
       </AppButton>
 
       <Modal show={show} onHide={handleClose}>

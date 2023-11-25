@@ -84,7 +84,7 @@ const ReviewListItem = ({
                 variant="clear"
                 onClick={() => handleDislike(review.like_id)}
               >
-                <i class="fa-solid fa-xl fa-thumbs-up"></i>
+                <i className="fa-solid fa-xl fa-thumbs-up"></i>
               </AppButton>
             ) : (
               <AppButton
@@ -93,7 +93,7 @@ const ReviewListItem = ({
                 variant="clear"
                 onClick={handleLike}
               >
-                <i class="fa-regular fa-xl fa-thumbs-up"></i>
+                <i className="fa-regular fa-xl fa-thumbs-up"></i>
               </AppButton>
             ))}
 
@@ -104,9 +104,9 @@ const ReviewListItem = ({
             onClick={handleCommentClick}
           >
             {isCommentsOpen ? (
-              <i class="fa-solid fa-xl fa-comment" />
+              <i className="fa-solid fa-xl fa-comment" />
             ) : (
-              <i class="fa-regular fa-xl fa-comment" />
+              <i className="fa-regular fa-xl fa-comment" />
             )}
           </AppButton>
 
@@ -119,7 +119,7 @@ const ReviewListItem = ({
                 as={NavLink}
                 to={`/reviews/${review.id}`}
               >
-                <i class="fa-solid fa-xl fa-pen-to-square"></i>
+                <i className="fa-solid fa-xl fa-pen-to-square"></i>
               </AppButton>
 
               <ConfirmDeleteButton
@@ -133,7 +133,7 @@ const ReviewListItem = ({
                     onClick={handleShow}
                     variant="clear"
                   >
-                    <i class="fa-solid fa-xl fa-trash"></i>
+                    <i className="fa-solid fa-xl fa-trash"></i>
                   </AppButton>
                 )}
               </ConfirmDeleteButton>

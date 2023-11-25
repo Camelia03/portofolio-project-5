@@ -99,11 +99,11 @@ const BookDetailsPage = () => {
 
       <div className="mb-3 d-flex justify-content-between">
         <h3 className="mb-0 me-3">
-          <i class="fa-solid fa-worm fa-sm"></i> Bookworms Reviews
+          <i className="fa-solid fa-worm fa-sm"></i> Bookworms Reviews
         </h3>
 
         <AppButton variant="primary" as={NavLink} to={`/books/${id}/review`}>
-          <i class="fa-solid fa-sm fa-plus"></i> add review
+          <i className="fa-solid fa-sm fa-plus"></i> add review
         </AppButton>
       </div>
 
