@@ -58,7 +58,7 @@ const EditProfilePage = () => {
 
     try {
       const { data } = await axiosRes.put(
-        `/api/profiles/${profile_id}/`,
+        `/api/profiles/${profile_id}`,
         formData
       );
       setCurrentUser((currentUser) => ({
