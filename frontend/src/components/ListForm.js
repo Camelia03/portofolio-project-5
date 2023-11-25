@@ -54,7 +54,12 @@ const ListForm = ({
       </Form.Group>
 
       <div className="mt-3">
-        <AppButton onClick={onCancel} className="me-3" variant="secondary">
+        <AppButton
+          type="button"
+          onClick={onCancel}
+          className="me-3"
+          variant="secondary"
+        >
           Cancel
         </AppButton>
 
