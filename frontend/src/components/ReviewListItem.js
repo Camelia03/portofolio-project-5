@@ -26,7 +26,7 @@ const ReviewListItem = ({
 
   const handleLike = async () => {
     try {
-      const { data } = await axiosReq.post("/api/likes/", {
+      const { data } = await axiosReq.post("/api/likes", {
         review: review.id,
       });
       setReview((oldReview) => {

@@ -12,7 +12,7 @@ const BooksList = ({ ordering, searchQuery }) => {
     loading,
     error,
   } = useReq(
-    `/api/books/?title__icontains=${searchQuery}&ordering=${ordering}&page=${page}`
+    `/api/books?title__icontains=${searchQuery}&ordering=${ordering}&page=${page}`
   );
 
   useEffect(() => {
