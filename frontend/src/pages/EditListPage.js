@@ -23,6 +23,10 @@ const EditListPage = () => {
     }
   };
 
+  const handleCancel = () => {
+    history.goBack();
+  };
+
   if (loading) {
     return (
       <Container className="d-flex justify-content-center align-items-center vh-100">
@@ -41,7 +45,7 @@ const EditListPage = () => {
 
   return (
     <Container>
-      <ListForm list={list} onSubmit={onSubmit} />
+      <ListForm onCancel={handleCancel} list={list} onSubmit={onSubmit} />
     </Container>
   );
 };
