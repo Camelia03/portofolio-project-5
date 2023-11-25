@@ -9,6 +9,7 @@ const CreateListPage = () => {
   const history = useHistory();
 
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const onSubmit = async (list) => {
     try {
@@ -16,10 +17,13 @@ const CreateListPage = () => {
       await axiosReq.post("/api/lists", list);
       history.push("/my-lists");
     } catch (error) {
-      // TODO: show error
-      console.log(error);
+      setErrors(error.response?.data);
     }
     setLoading(false);
+  };
+
+  const handleCancel = () => {
+    history.goBack();
   };
 
   if (loading) {
@@ -32,7 +36,12 @@ const CreateListPage = () => {
 
   return (
     <Container>
-      <ListForm onSubmit={onSubmit} />
+      <ListForm
+        onCancel={handleCancel}
+        onSubmit={onSubmit}
+        errors={errors}
+        setErrors={setErrors}
+      />
     </Container>
   );
 };
