@@ -46,7 +46,7 @@ function SignInPage() {
       setCurrentUser(response.data.user);
       setTokenTimestamp(response.data);
       showNotification({
-        message: "Signed in succesfully!",
+        message: "Signed in successfully!",
         header: `Welcome ${response.data.user.username}!`,
       });
       history.push("/");

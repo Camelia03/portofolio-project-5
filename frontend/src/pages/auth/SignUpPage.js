@@ -43,7 +43,7 @@ function SignUpPage() {
     try {
       await axios.post("/dj-rest-auth/registration/", signupData);
       showNotification({
-        message: "Account created succesfully!",
+        message: "Account created successfully!",
         header: "Welcome to BookWorms!",
       });
       history.push("/signin");
