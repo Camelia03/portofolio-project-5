@@ -58,7 +58,7 @@ const ReviewListItem = ({
 
   return (
     <Row>
-      <Col xs="2">
+      <Col md="3">
         <UserBadge showProfileLink={false} user={review.user} />
       </Col>
       <Col>
