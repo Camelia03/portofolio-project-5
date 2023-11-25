@@ -27,7 +27,7 @@ function App() {
     <div className="App">
       <NavBar />
 
-      <div className={`${styles.Main} pt-5 pb-5`}>
+      <div className={`${styles.Main} pt-0 pt-md-5 pb-5`}>
         <Switch>
           <Route exact path="/" render={() => <HomePage />} />
           <Route exact path="/search" render={() => <SearchPage />} />
