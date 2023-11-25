@@ -48,6 +48,7 @@ const ReviewForm = ({
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="stars" className="mb-2 d-flex align-items-center">
         <div>Stars: </div>
+
         <ReactStars
           count={5}
           value={review.stars}
@@ -76,9 +77,20 @@ const ReviewForm = ({
         ))}
       </Form.Group>
 
-      <AppButton variant="primary" type="submit">
-        {submitBtnText}
-      </AppButton>
+      <div className="mt-3">
+        <AppButton
+          type="button"
+          className="me-3"
+          variant="secondary"
+          onClick={onCancel}
+        >
+          Cancel
+        </AppButton>
+
+        <AppButton variant="primary" type="submit">
+          {submitBtnText}
+        </AppButton>
+      </div>
 
       {errors.non_field_errors?.map((message, idx) => (
         <Alert key={idx} variant="warning" className="mt-3">
