@@ -150,12 +150,16 @@ const EditProfilePage = () => {
           </Alert>
         ))}
 
-        <AppButton className="me-3" type="submit">
-          Save changes
-        </AppButton>
-        <AppButton variant="secondary" as={NavLink} to="/profile">
+        <AppButton
+          className="me-3"
+          variant="secondary"
+          as={NavLink}
+          to="/profile"
+        >
           Cancel
         </AppButton>
+
+        <AppButton type="submit">Save changes</AppButton>
       </Form>
     </Container>
   );
