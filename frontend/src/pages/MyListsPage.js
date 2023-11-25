@@ -18,18 +18,30 @@ import ConfirmDeleteButton from "../components/ConfirmDeleteButton";
 import { axiosReq } from "../api/axiosDefaults";
 import AuthorsList from "../components/AuthorsList";
 import styles from "../styles/MyListsPage.module.css";
+import useNotification from "../hooks/useNotification";
 
 const MyListsPage = () => {
   const { data: lists, loading, error, refresh } = useReq("/api/lists");
   const [activeListIndex, setActiveListIndex] = useState(0);
 
+  const showNotification = useNotification();
+
   const onDelete = async (listId) => {
     try {
       await axiosReq.delete(`/api/lists/${listId}`);
+
+      showNotification({
+        header: "List",
+        message: "List deleted successfully",
+      });
+
       refresh();
     } catch (error) {
-      console.log(error);
-      // TODO: handle error
+      showNotification({
+        header: "List",
+        message: "List could not be deleted",
+        type: "danger",
+      });
     }
   };
 
