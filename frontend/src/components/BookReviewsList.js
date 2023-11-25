@@ -3,6 +3,7 @@ import useReq from "../hooks/useReq";
 import Loader from "./Loader";
 import { axiosReq } from "../api/axiosDefaults";
 import ReviewListItem from "./ReviewListItem";
+import useNotification from "../hooks/useNotification";
 
 const BookReviewsList = ({ bookId }) => {
   const {
@@ -12,13 +13,24 @@ const BookReviewsList = ({ bookId }) => {
     refresh,
   } = useReq(`/api/books/${bookId}/reviews`);
 
+  const showNotification = useNotification();
+
   const handleDelete = async (id) => {
     try {
       await axiosReq.delete(`/api/reviews/${id}`);
 
+      showNotification({
+        header: "Review",
+        message: "Review deleted successfully",
+      });
+
       refresh();
     } catch (error) {
-      // TODO: handle error case
+      showNotification({
+        header: "Review",
+        message: "Review could not be deleted",
+        type: "danger",
+      });
     }
   };
 
