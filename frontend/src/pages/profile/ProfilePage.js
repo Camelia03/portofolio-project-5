@@ -75,9 +75,18 @@ const ProfilePage = () => {
           </Card.Text>
 
           {profile.is_owner && (
-            <AppButton as={NavLink} to="/profile/edit">
-              Edit Profile
-            </AppButton>
+            <>
+              <div className="mb-3">
+                <AppButton as={NavLink} to="/profile/edit">
+                  Edit Profile
+                </AppButton>
+              </div>
+              <div>
+                <AppButton as={NavLink} to="/profile/change-password">
+                  Change password
+                </AppButton>
+              </div>
+            </>
           )}
         </Card.Body>
       </Card>

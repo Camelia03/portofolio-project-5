@@ -18,6 +18,7 @@ import SignInPage from "./pages/auth/SignInPage";
 import SignUpPage from "./pages/auth/SignUpPage";
 import EditProfilePage from "./pages/profile/EditProfilePage";
 import ProfilePage from "./pages/profile/ProfilePage";
+import ChangePasswordPage from "./pages/ChangePasswordPage";
 
 function App() {
   return (
@@ -35,7 +36,15 @@ function App() {
             path="/profile/edit"
             render={() => <EditProfilePage />}
           />
+
+          <Route
+            exact
+            path="/profile/change-password"
+            render={() => <ChangePasswordPage />}
+          />
+
           <Route exact path="/profile/:id" render={() => <ProfilePage />} />
+
           <Route exact path="/books/:id" render={() => <BookDetailsPage />} />
           <Route
             exact

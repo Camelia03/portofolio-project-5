@@ -41,6 +41,7 @@ function SignInPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     try {
       const response = await axios.post("/dj-rest-auth/login/", signinData);
       setCurrentUser(response.data.user);

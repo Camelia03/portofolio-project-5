@@ -45,8 +45,9 @@ REST_AUTH = {
     'USE_JWT': True,
     'JWT_AUTH_COOKIE': 'bookworms-auth',
     'JWT_AUTH_REFRESH_COOKIE': 'bookworms-refresh-token',
-    'JWT_AUTH_HTTPONLY' : False,
-    'USER_DETAILS_SERIALIZER': 'bookworms.serializers.CurrentUserSerializer'
+    'JWT_AUTH_HTTPONLY': False,
+    'USER_DETAILS_SERIALIZER': 'bookworms.serializers.CurrentUserSerializer',
+    'OLD_PASSWORD_FIELD_ENABLED': True
 }
 
 
