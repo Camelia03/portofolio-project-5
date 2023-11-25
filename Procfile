@@ -1,1 +1,1 @@
-web: gunicorn go_global.wsgi
+web: gunicorn bookworms.wsgi
