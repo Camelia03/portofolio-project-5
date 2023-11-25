@@ -14,14 +14,13 @@ function SignUpPage() {
   const history = useHistory();
   const [signupData, setSignupData] = useState({
     username: "",
-    email: "",
     password1: "",
     password2: "",
   });
 
   const [errors, setErrors] = useState({});
 
-  const { username, email, password1, password2 } = signupData;
+  const { username, password1, password2 } = signupData;
   const handleChange = (event) => {
     setSignupData({
       ...signupData,
@@ -65,30 +64,6 @@ function SignUpPage() {
         <Col>
           <h1>Sign Up Page</h1>
           <Form noValidate onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formEmail">
-              <Form.Label>Email address</Form.Label>
-
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                name="email"
-                onChange={handleChange}
-                isInvalid={!!errors.email}
-              />
-
-              {!errors.email && (
-                <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text>
-              )}
-
-              {errors.email?.map((message, idx) => (
-                <Form.Control.Feedback key={idx} type="invalid">
-                  {message}
-                </Form.Control.Feedback>
-              ))}
-            </Form.Group>
-
             <Form.Group className="mb-3" controlId="formUsername">
               <Form.Label>Username</Form.Label>
 
