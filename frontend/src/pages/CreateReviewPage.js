@@ -5,16 +5,29 @@ import { axiosReq } from "../api/axiosDefaults";
 import Loader from "../components/Loader";
 import ReviewForm from "../components/ReviewForm";
 import useReq from "../hooks/useReq";
+import useNotification from "../hooks/useNotification";
 
 const CreateReviewPage = () => {
+  const showNotification = useNotification();
+
   const { id } = useParams();
   const history = useHistory();
   const { data: book, loading, error } = useReq(`/api/books/${id}`);
   const [errors, setErrors] = useState({});
 
+  const handleCancel = () => {
+    history.goBack();
+  };
+
   const handleSubmit = async (review) => {
     try {
       await axiosReq.post(`/api/books/${id}/reviews`, review);
+
+      showNotification({
+        header: "Review",
+        message: "Review added successfully",
+      });
+
       history.push(`/books/${id}`);
     } catch (error) {
       setErrors(error.response?.data);
@@ -43,9 +56,12 @@ const CreateReviewPage = () => {
 
       <div className="my-4">
         <h2 className="mb-3">Write a Review</h2>
+
         <ReviewForm
           submitBtnText="Post Review"
           errors={errors}
+          setErrors={setErrors}
+          onCancel={handleCancel}
           onSubmit={handleSubmit}
         />
       </div>

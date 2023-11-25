@@ -6,9 +6,10 @@ import AppButton from "./AppButton";
 const ReviewForm = ({
   review: initialReview = {
     content: "",
-    stars: 0,
+    stars: 1,
   },
-  errors,
+  errors = {},
+  setErrors = () => {},
   onSubmit,
   submitBtnText,
 }) => {
@@ -18,6 +19,14 @@ const ReviewForm = ({
     setReview({
       ...review,
       [event.target.name]: event.target.value,
+    });
+
+    setErrors((prevErrors) => {
+      if (!prevErrors[event.target.name]) return prevErrors;
+
+      const errors = { ...prevErrors };
+      delete errors[event.target.name];
+      return errors;
     });
   };
 
@@ -49,13 +58,21 @@ const ReviewForm = ({
 
       <Form.Group controlId="content" className="mb-2">
         <Form.Label>Content:</Form.Label>
+
         <Form.Control
           value={review.content}
           name="content"
           as="textarea"
           rows={3}
           onChange={handleContentChange}
+          isInvalid={!!errors.content}
         />
+
+        {errors.content?.map((message, idx) => (
+          <Form.Control.Feedback key={idx} type="invalid">
+            {message}
+          </Form.Control.Feedback>
+        ))}
       </Form.Group>
 
       <AppButton variant="primary" type="submit">
