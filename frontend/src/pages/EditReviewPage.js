@@ -5,8 +5,10 @@ import { useHistory, useParams } from "react-router-dom";
 import useReq from "../hooks/useReq";
 import { Container } from "react-bootstrap";
 import Loader from "../components/Loader";
+import useNotification from "../hooks/useNotification";
 
 const EditReviewPage = () => {
+  const showNotification = useNotification();
   const { id: reviewId } = useParams();
   const history = useHistory();
   const { data: review, loading, error } = useReq(`/api/reviews/${reviewId}`);
@@ -16,10 +18,20 @@ const EditReviewPage = () => {
   const handleSubmit = async (review) => {
     try {
       await axiosReq.put(`/api/reviews/${reviewId}`, review);
+
+      showNotification({
+        header: "Review",
+        message: "Review updated successfully",
+      });
+
       history.push(`/books/${review.book_id}`);
     } catch (error) {
       setErrors(error.response?.data);
     }
+  };
+
+  const handleCancel = () => {
+    history.goBack();
   };
 
   if (loading) {
@@ -46,6 +58,8 @@ const EditReviewPage = () => {
         review={review}
         submitBtnText="Update"
         errors={errors}
+        setErrors={setErrors}
+        onCancel={handleCancel}
         onSubmit={handleSubmit}
       />
     </Container>
