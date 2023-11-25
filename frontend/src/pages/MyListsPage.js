@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useReq from "../hooks/useReq";
 import {
   Alert,
@@ -21,10 +21,31 @@ import styles from "../styles/MyListsPage.module.css";
 import useNotification from "../hooks/useNotification";
 
 const MyListsPage = () => {
-  const { data: lists, loading, error, refresh } = useReq("/api/lists");
-  const [activeListIndex, setActiveListIndex] = useState(0);
+  const { data: initialLists, loading, error, refresh } = useReq("/api/lists");
+  const [activeListId, setActiveListId] = useState();
+
+  const [lists, setLists] = useState([]);
 
   const showNotification = useNotification();
+
+  useEffect(() => {
+    if (!initialLists) return;
+
+    setLists([...initialLists]);
+    setActiveListId(initialLists[0].id);
+  }, [initialLists]);
+
+  const removeList = (listId) => {
+    setLists((prevLists) => {
+      const lists = prevLists.filter((list) => list.id !== listId);
+
+      if (listId === activeListId && lists.length > 0) {
+        setActiveListId(lists[0].id);
+      }
+
+      return lists;
+    });
+  };
 
   const onDelete = async (listId) => {
     try {
@@ -35,7 +56,7 @@ const MyListsPage = () => {
         message: "List deleted successfully",
       });
 
-      refresh();
+      removeList(listId);
     } catch (error) {
       showNotification({
         header: "List",
@@ -45,8 +66,8 @@ const MyListsPage = () => {
     }
   };
 
-  const handleListClick = (index) => {
-    setActiveListIndex(index);
+  const handleListClick = (id) => {
+    setActiveListId(id);
   };
 
   if (loading) {
@@ -80,13 +101,13 @@ const MyListsPage = () => {
       <Row>
         <Col xs="auto">
           <ListGroup as="ul">
-            {lists.map((list, idx) => (
+            {lists.map((list) => (
               <ListGroup.Item
-                onClick={() => handleListClick(idx)}
+                onClick={() => handleListClick(list.id)}
                 key={list.id}
                 as="li"
                 className={`${styles.ListItem} ${
-                  idx === activeListIndex ? styles.Active : ""
+                  list.id === activeListId ? styles.Active : ""
                 }`}
               >
                 <span>
@@ -99,7 +120,7 @@ const MyListsPage = () => {
                   to={`/my-lists/${list.id}/edit`}
                   className="ms-2"
                 >
-                  <i class="fa-solid fa-xs fa-pen-to-square"></i>
+                  <i className="fa-solid fa-xs fa-pen-to-square"></i>
                 </AppButton>
 
                 <ConfirmDeleteButton
@@ -114,7 +135,7 @@ const MyListsPage = () => {
                 >
                   {(handleShow) => (
                     <AppButton variant="clear" onClick={handleShow}>
-                      <i class="fa-solid fa-xs fa-trash"></i>
+                      <i className="fa-solid fa-xs fa-trash"></i>
                     </AppButton>
                   )}
                 </ConfirmDeleteButton>
@@ -123,7 +144,7 @@ const MyListsPage = () => {
           </ListGroup>
         </Col>
         <Col>
-          <BooksTable listId={lists[activeListIndex].id} />
+          <BooksTable listId={activeListId} />
         </Col>
       </Row>
     </Container>
@@ -204,7 +225,7 @@ const BooksTable = ({ listId }) => {
                     variant="clear"
                     title="Remove from list"
                   >
-                    <i class="fa-solid fa-lg fa-square-minus"></i>
+                    <i className="fa-solid fa-lg fa-square-minus"></i>
                   </AppButton>
                 )}
               </ConfirmDeleteButton>
