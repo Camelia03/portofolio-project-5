@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Alert, Container, Form, Image } from "react-bootstrap";
 import { NavLink, useHistory } from "react-router-dom";
-import { axiosReq } from "../../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import AppButton from "../../components/AppButton";
 import Loader from "../../components/Loader";
 import {
@@ -12,7 +12,6 @@ import useReq from "../../hooks/useReq";
 
 const EditProfilePage = () => {
   const currentUser = useCurrentUser();
-  const { profile_id } = currentUser;
   const setCurrentUser = useSetCurrentUser();
   const history = useHistory();
   const imageFile = useRef();
@@ -27,6 +26,7 @@ const EditProfilePage = () => {
 
   const [errors, setErrors] = useState({});
 
+  const { profile_id } = currentUser || {};
   const {
     data: profile,
     loading,
@@ -57,7 +57,7 @@ const EditProfilePage = () => {
     }
 
     try {
-      const { data } = await axiosReq.put(
+      const { data } = await axiosRes.put(
         `/api/profiles/${profile_id}/`,
         formData
       );

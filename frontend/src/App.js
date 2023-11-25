@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/themes/light.css";
 import styles from "./App.module.css";
@@ -19,28 +19,47 @@ import SignUpPage from "./pages/auth/SignUpPage";
 import EditProfilePage from "./pages/profile/EditProfilePage";
 import ProfilePage from "./pages/profile/ProfilePage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
+import { useCurrentUser } from "./contexts/CurrentUserContext";
+import { useEffect } from "react";
 
 function App() {
   return (
     <div className="App">
       <NavBar />
+
       <div className={`${styles.Main} pt-5 pb-5`}>
         <Switch>
           <Route exact path="/" render={() => <HomePage />} />
           <Route exact path="/search" render={() => <SearchPage />} />
           <Route exact path="/signin" render={() => <SignInPage />} />
           <Route exact path="/signup" render={() => <SignUpPage />} />
-          <Route exact path="/profile" render={() => <ProfilePage />} />
+          <Route
+            exact
+            path="/profile"
+            render={() => (
+              <MemberPage>
+                <ProfilePage />
+              </MemberPage>
+            )}
+          />
           <Route
             exact
             path="/profile/edit"
-            render={() => <EditProfilePage />}
+            render={() => (
+              <MemberPage>
+                <EditProfilePage />
+              </MemberPage>
+            )}
           />
 
           <Route
             exact
             path="/profile/change-password"
-            render={() => <ChangePasswordPage />}
+            render={() => (
+              <MemberPage>
+                <ChangePasswordPage />
+              </MemberPage>
+            )}
           />
 
           <Route exact path="/profile/:id" render={() => <ProfilePage />} />
@@ -49,25 +68,61 @@ function App() {
           <Route
             exact
             path="/books/:id/review"
-            render={() => <CreateReviewPage />}
+            render={() => (
+              <MemberPage>
+                <CreateReviewPage />
+              </MemberPage>
+            )}
           />
-          <Route exact path="/reviews/:id" render={() => <EditReviewPage />} />
+          <Route
+            exact
+            path="/reviews/:id"
+            render={() => (
+              <MemberPage>
+                <EditReviewPage />
+              </MemberPage>
+            )}
+          />
           <Route
             exact
             path="/genres/:name"
             render={() => <GenreDetailPage />}
           />
-          <Route exact path="/my-reviews" render={() => <MyReviewsPage />} />
-          <Route exact path="/my-lists" render={() => <MyListsPage />} />
+          <Route
+            exact
+            path="/my-reviews"
+            render={() => (
+              <MemberPage>
+                <MyReviewsPage />
+              </MemberPage>
+            )}
+          />
+          <Route
+            exact
+            path="/my-lists"
+            render={() => (
+              <MemberPage>
+                <MyListsPage />
+              </MemberPage>
+            )}
+          />
           <Route
             exact
             path="/my-lists/create"
-            render={() => <CreateListPage />}
+            render={() => (
+              <MemberPage>
+                <CreateListPage />
+              </MemberPage>
+            )}
           />
           <Route
             exact
             path="/my-lists/:id/edit"
-            render={() => <EditListPage />}
+            render={() => (
+              <MemberPage>
+                <EditListPage />
+              </MemberPage>
+            )}
           />
 
           <Route exact path="/authors/:id" render={() => <AuthorPage />} />
@@ -80,3 +135,18 @@ function App() {
 }
 
 export default App;
+
+const MemberPage = ({ children }) => {
+  const currentUser = useCurrentUser();
+  const history = useHistory();
+
+  useEffect(() => {
+    if (!currentUser) {
+      history.push("/signin");
+    }
+  }, []);
+
+  if (!currentUser) return null;
+
+  return children;
+};

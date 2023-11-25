@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import AppButton from "../../components/AppButton";
 import Loader from "../../components/Loader";
@@ -14,9 +14,14 @@ const ProfilePage = () => {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const history = useHistory();
 
   useEffect(() => {
-    const profileId = id || currentUser.profile_id;
+    const profileId = id || currentUser?.profile_id;
+
+    if (!profileId) {
+      history.push("/signin");
+    }
 
     const getProfile = async () => {
       try {
@@ -29,7 +34,7 @@ const ProfilePage = () => {
       }
     };
     getProfile();
-  }, [id, currentUser]);
+  }, [id, currentUser, history]);
 
   if (loading) {
     return (

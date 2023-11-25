@@ -8,9 +8,11 @@ import BookReviewsList from "../components/BookReviewsList";
 import Loader from "../components/Loader";
 import useReq from "../hooks/useReq";
 import AppButton from "../components/AppButton";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const BookDetailsPage = () => {
   const { id } = useParams();
+  const currentUser = useCurrentUser();
 
   const { data: book, loading, error } = useReq(`/api/books/${id}`);
 
@@ -38,13 +40,15 @@ const BookDetailsPage = () => {
             <Image src={book.image_url} fluid alt={book.title} />
           </div>
 
-          <AddToListModal book={book}>
-            {(handleShow) => (
-              <AppButton variant="primary" onClick={handleShow}>
-                Add to list
-              </AppButton>
-            )}
-          </AddToListModal>
+          {currentUser && (
+            <AddToListModal book={book}>
+              {(handleShow) => (
+                <AppButton variant="primary" onClick={handleShow}>
+                  Add to list
+                </AppButton>
+              )}
+            </AddToListModal>
+          )}
         </Col>
         <Col xs={12} md={9}>
           <h2>{book.title}</h2>
@@ -102,9 +106,11 @@ const BookDetailsPage = () => {
           <i className="fa-solid fa-worm fa-sm"></i> Bookworms Reviews
         </h3>
 
-        <AppButton variant="primary" as={NavLink} to={`/books/${id}/review`}>
-          <i className="fa-solid fa-sm fa-plus"></i> add review
-        </AppButton>
+        {currentUser && (
+          <AppButton variant="primary" as={NavLink} to={`/books/${id}/review`}>
+            <i className="fa-solid fa-sm fa-plus"></i> add review
+          </AppButton>
+        )}
       </div>
 
       <BookReviewsList bookId={id} />

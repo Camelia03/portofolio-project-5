@@ -17,9 +17,11 @@ import AppButton from "./AppButton";
 import { NavLink } from "react-router-dom";
 import ConfirmDeleteButton from "./ConfirmDeleteButton";
 import useNotification from "../hooks/useNotification";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const CommentsList = ({ reviewId }) => {
   const showNotification = useNotification();
+  const currentUser = useCurrentUser();
 
   const {
     data: comments,
@@ -167,28 +169,31 @@ const CommentsList = ({ reviewId }) => {
             </Col>
           </Row>
         ))}
-      <Form onSubmit={handleSubmit} className="mt-3">
-        <FormGroup controlId="comment-text">
-          <InputGroup>
-            <Form.Control
-              onChange={handleChange}
-              value={comment}
-              name="text"
-              isInvalid={!!errors.text}
-            />
 
-            <AppButton type="submit" variant="secondary">
-              Add comment
-            </AppButton>
+      {currentUser && (
+        <Form onSubmit={handleSubmit} className="mt-3">
+          <FormGroup controlId="comment-text">
+            <InputGroup>
+              <Form.Control
+                onChange={handleChange}
+                value={comment}
+                name="text"
+                isInvalid={!!errors.text}
+              />
 
-            {errors.text?.map((message, idx) => (
-              <Form.Control.Feedback key={idx} type="invalid">
-                {message}
-              </Form.Control.Feedback>
-            ))}
-          </InputGroup>
-        </FormGroup>
-      </Form>
+              <AppButton type="submit" variant="secondary">
+                Add comment
+              </AppButton>
+
+              {errors.text?.map((message, idx) => (
+                <Form.Control.Feedback key={idx} type="invalid">
+                  {message}
+                </Form.Control.Feedback>
+              ))}
+            </InputGroup>
+          </FormGroup>
+        </Form>
+      )}
     </div>
   );
 };

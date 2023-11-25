@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import ReactStars from "react-rating-stars-component";
 import ConfirmDeleteButton from "./ConfirmDeleteButton";
-import { Button, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { axiosReq } from "../api/axiosDefaults";
 import CommentsList from "./CommentsList";
 import styles from "../styles/ReviewListItem.module.css";
 import AppButton from "./AppButton";
 import UserBadge from "./UserBadge";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const ReviewListItem = ({
   review: origReview,
   handleDelete,
   showLikeBtn = true,
 }) => {
+  const currentUser = useCurrentUser();
+
   const [review, setReview] = useState(origReview);
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
 
@@ -56,7 +59,7 @@ const ReviewListItem = ({
   return (
     <Row>
       <Col xs="2">
-        <UserBadge user={review.user} />
+        <UserBadge showProfileLink={false} user={review.user} />
       </Col>
       <Col>
         <div className="d-flex justify-content-between align-items-center">
@@ -77,6 +80,7 @@ const ReviewListItem = ({
 
         <div className="d-flex">
           {showLikeBtn &&
+            currentUser &&
             (review.like_id ? (
               <AppButton
                 className="me-2"

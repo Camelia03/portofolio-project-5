@@ -36,73 +36,69 @@ const NavBar = () => {
           </Navbar.Brand>
         </NavLink>
 
-        {currentUser && (
-          <NavLink activeClassName={styles.Active} to="/search">
-            Books
-          </NavLink>
-        )}
+        <NavLink activeClassName={styles.Active} to="/search">
+          Books
+        </NavLink>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="all" id="basic-navbar-nav">
-          <Nav className="ms-auto">
-            {currentUser ? (
-              <>
-                <SearchForm />
+          <Nav className="ms-auto align-items-center">
+            <SearchForm />
 
-                <NavDropdown
-                  title={`Welcome, ${currentUser.username}`}
-                  id="nav-dropdown"
-                  className={`${styles.NavDropdown} ms-3`}
+            {currentUser ? (
+              <NavDropdown
+                title={`Welcome, ${currentUser.username}`}
+                id="nav-dropdown"
+                className={`${styles.NavDropdown} ms-3`}
+              >
+                <NavDropdown.Item
+                  as={NavLink}
+                  className={styles.NavDropdownLink}
+                  activeClassName={styles.Active}
+                  to="/profile"
                 >
-                  <NavDropdown.Item
-                    as={NavLink}
-                    className={styles.NavDropdownLink}
-                    activeClassName={styles.Active}
-                    to="/profile"
-                  >
-                    <i
-                      className={`fa-solid fa-user fa-xs ${styles.NavDropdownIcon}`}
-                    ></i>
-                    My profile
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    as={NavLink}
-                    className={styles.NavDropdownLink}
-                    activeClassName={styles.Active}
-                    to="/my-reviews"
-                  >
-                    <i
-                      className={`fa-solid fa-star fa-xs ${styles.NavDropdownIcon}`}
-                    ></i>
-                    My reviews
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    as={NavLink}
-                    className={styles.NavDropdownLink}
-                    activeClassName={styles.Active}
-                    to="/my-lists"
-                  >
-                    <i
-                      className={`fa-solid fa-list fa-xs ${styles.NavDropdownIcon}`}
-                    ></i>
-                    My Lists
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item
-                    className={styles.NavDropdownLink}
-                    onClick={handleSignOut}
-                  >
-                    <i
-                      className={`fa-solid fa-right-from-bracket fa-xs ${styles.NavDropdownIcon}`}
-                    ></i>
-                    Sign out
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </>
+                  <i
+                    className={`fa-solid fa-user fa-xs ${styles.NavDropdownIcon}`}
+                  ></i>
+                  My profile
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={NavLink}
+                  className={styles.NavDropdownLink}
+                  activeClassName={styles.Active}
+                  to="/my-reviews"
+                >
+                  <i
+                    className={`fa-solid fa-star fa-xs ${styles.NavDropdownIcon}`}
+                  ></i>
+                  My reviews
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  as={NavLink}
+                  className={styles.NavDropdownLink}
+                  activeClassName={styles.Active}
+                  to="/my-lists"
+                >
+                  <i
+                    className={`fa-solid fa-list fa-xs ${styles.NavDropdownIcon}`}
+                  ></i>
+                  My Lists
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item
+                  className={styles.NavDropdownLink}
+                  onClick={handleSignOut}
+                >
+                  <i
+                    className={`fa-solid fa-right-from-bracket fa-xs ${styles.NavDropdownIcon}`}
+                  ></i>
+                  Sign out
+                </NavDropdown.Item>
+              </NavDropdown>
             ) : (
               <>
                 <NavLink
-                  className="me-3"
+                  className="me-3 ms-3"
                   activeClassName={styles.Active}
                   to="/signin"
                 >

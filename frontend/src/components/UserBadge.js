@@ -2,12 +2,16 @@ import React from "react";
 import { Image } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
-const UserBadge = ({ user }) => {
+const UserBadge = ({ user, showProfileLink = true }) => {
   return (
     <div className="text-center">
       <Image width="80" src={user.profile_image} />
       <div>
-        <NavLink to={`/profile/${user.profile_id}`}>{user.username}</NavLink>
+        {showProfileLink ? (
+          <NavLink to={`/profile/${user.profile_id}`}>{user.username}</NavLink>
+        ) : (
+          <span>{user.username}</span>
+        )}
       </div>
     </div>
   );
