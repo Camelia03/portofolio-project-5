@@ -99,7 +99,7 @@ const MyListsPage = () => {
       </div>
 
       <Row>
-        <Col xs="auto">
+        <Col md="auto">
           <ListGroup as="ul">
             {lists.map((list) => (
               <ListGroup.Item
@@ -143,7 +143,8 @@ const MyListsPage = () => {
             ))}
           </ListGroup>
         </Col>
-        <Col>
+
+        <Col md="auto">
           <BooksTable listId={activeListId} />
         </Col>
       </Row>
@@ -181,14 +182,14 @@ const BooksTable = ({ listId }) => {
   const { books } = list;
 
   return (
-    <Table hover>
+    <Table hover className="d-block d-md-table overflow-x-auto">
       <thead>
         <tr>
           <th>#</th>
           <th>Image</th>
           <th>Title</th>
           <th>Authors</th>
-          <th>Publication date</th>
+          <th className="text-nowrap">Publication date</th>
           <th>Actions</th>
         </tr>
       </thead>
