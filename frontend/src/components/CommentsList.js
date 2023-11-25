@@ -52,6 +52,11 @@ const CommentsList = ({ reviewId }) => {
         text: comment,
       });
 
+      showNotification({
+        header: "Comment",
+        message: "Comment added successfully",
+      });
+
       refresh();
     } catch (error) {
       setErrors(error.response?.data);
@@ -64,9 +69,18 @@ const CommentsList = ({ reviewId }) => {
     try {
       await axiosReq.delete(`/api/comments/${commentId}/`);
 
+      showNotification({
+        header: "Comment",
+        message: "Comment deleted successfully",
+      });
+
       refresh();
     } catch (error) {
-      console.log(error);
+      showNotification({
+        header: "Comment",
+        message: "Comment could not be deleted",
+        type: "danger",
+      });
     }
   };
 
@@ -76,9 +90,18 @@ const CommentsList = ({ reviewId }) => {
         text: commentText,
       });
 
+      showNotification({
+        header: "Comment",
+        message: "Comment edited successfully",
+      });
+
       refresh();
     } catch (error) {
-      console.log(error);
+      showNotification({
+        header: "Comment",
+        message: "Comment could not be edited",
+        type: "danger",
+      });
     }
   };
 
