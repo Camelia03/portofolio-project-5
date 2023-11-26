@@ -42,7 +42,9 @@ const GenreDetailPage = () => {
       {genre.description && <p>{genre.description}</p>}
 
       {books.results?.map((book) => (
-        <BookListItem key={book.id} book={book} />
+        <div key={book.id} className="mb-3">
+          <BookListItem book={book} />
+        </div>
       ))}
     </Container>
   );
