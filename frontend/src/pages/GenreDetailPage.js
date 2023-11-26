@@ -1,21 +1,16 @@
 import React from "react";
-import { Container } from "react-bootstrap";
-import useReq from "../hooks/useReq";
-import BookListItem from "../components/BookListItem";
-import Loader from "../components/Loader";
+import { Alert, Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import Loader from "../components/Loader";
+import useReq from "../hooks/useReq";
+import BooksList from "./BooksList";
 
 const GenreDetailPage = () => {
   const { name } = useParams();
-  const {
-    data: books,
-    error,
-    loading,
-  } = useReq(`/api/books?genres__name=${name}`, [name]);
 
-  const genreReq = useReq(`/api/genres/${name}`, [name]);
+  const { loading, data: genre, error } = useReq(`/api/genres/${name}`, [name]);
 
-  if (loading || genreReq.loading) {
+  if (loading) {
     return (
       <Container className="d-flex justify-content-center align-items-center vh-100">
         <Loader />
@@ -23,15 +18,13 @@ const GenreDetailPage = () => {
     );
   }
 
-  if (error || genreReq.error) {
+  if (error) {
     return (
       <Container className="text-center my-4">
-        <p className="text-danger">Error loading data.</p>
+        <Alert variant="danger">Error loading genre.</Alert>
       </Container>
     );
   }
-
-  const genre = genreReq.data;
 
   return (
     <Container>
@@ -41,11 +34,7 @@ const GenreDetailPage = () => {
 
       {genre.description && <p>{genre.description}</p>}
 
-      {books.results?.map((book) => (
-        <div key={book.id} className="mb-3">
-          <BookListItem book={book} />
-        </div>
-      ))}
+      <BooksList genre={name} />
     </Container>
   );
 };

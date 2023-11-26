@@ -3,12 +3,12 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import BookListItem from "../components/BookListItem";
 import useReq from "../hooks/useReq";
 
-const BooksList = ({ ordering, searchQuery }) => {
+const BooksList = ({ ordering = "", searchQuery = "", genre = "" }) => {
   const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
 
   const { data: books } = useReq(
-    `/api/books?search=${searchQuery}&ordering=${ordering}&page=${page}`
+    `/api/books?search=${searchQuery}&genres__name=${genre}&ordering=${ordering}&page=${page}`
   );
 
   useEffect(() => {
