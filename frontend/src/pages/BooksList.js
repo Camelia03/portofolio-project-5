@@ -7,12 +7,8 @@ const BooksList = ({ ordering, searchQuery }) => {
   const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
 
-  const {
-    data: books,
-    loading,
-    error,
-  } = useReq(
-    `/api/books?title__icontains=${searchQuery}&ordering=${ordering}&page=${page}`
+  const { data: books } = useReq(
+    `/api/books?search=${searchQuery}&ordering=${ordering}&page=${page}`
   );
 
   useEffect(() => {
