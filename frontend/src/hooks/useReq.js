@@ -28,6 +28,7 @@ const useReq = (url, dependencies = [url]) => {
     loading,
     error,
     refresh: doRequest,
+    update: setResponse,
   };
 };
 

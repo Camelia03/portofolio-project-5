@@ -3,19 +3,27 @@ from books.models import Book
 from bookworms.permissions import IsOwnerOrReadOnly
 from .serializers import ListDetailsSerializer, ListSerializer
 from .models import List
-from rest_framework import generics
+from rest_framework import generics, filters
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from rest_framework.response import Response
+from django_filters.rest_framework import DjangoFilterBackend
+from django_filters import FilterSet
 
-# Create your views here.
+
+class ListsFilter(FilterSet):
+    class Meta:
+        model = List
+        fields = {'books__id': ['exact']}
 
 
 class ListCreateLists(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = ListSerializer
     pagination_class = None
+    filter_backends = (filters.OrderingFilter, DjangoFilterBackend)
+    filterset_class = ListsFilter
 
     def get_queryset(self):
         return List.objects.filter(owner=self.request.user).order_by('name')
