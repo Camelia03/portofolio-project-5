@@ -59,7 +59,7 @@ const ReviewListItem = ({
   return (
     <Row>
       <Col md="3">
-        <UserBadge showProfileLink={false} user={review.user} />
+        <UserBadge showProfileLink={!!currentUser} user={review.user} />
       </Col>
       <Col>
         <div className="d-flex justify-content-between align-items-center">
