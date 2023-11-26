@@ -70,6 +70,25 @@ const MyListsPage = () => {
     setActiveListId(id);
   };
 
+  const handleBookRemove = (listId) => {
+    setLists((prevLists) => {
+      const lists = [];
+
+      for (let i = 0; i < prevLists.length; i++) {
+        const list = prevLists[i];
+
+        let books_count = list.books_count;
+        if (list.id === listId) {
+          books_count--;
+        }
+
+        lists.push({ ...list, books_count });
+      }
+
+      return lists;
+    });
+  };
+
   if (loading) {
     return (
       <Container className="d-flex justify-content-center align-items-center vh-100">
@@ -111,7 +130,7 @@ const MyListsPage = () => {
                 }`}
               >
                 <span>
-                  {list.name} ({list.books.length})
+                  {list.name} ({list.books_count})
                 </span>
 
                 <AppButton
@@ -145,7 +164,7 @@ const MyListsPage = () => {
         </Col>
 
         <Col md="auto">
-          <BooksTable listId={activeListId} />
+          <BooksTable onRemove={handleBookRemove} listId={activeListId} />
         </Col>
       </Row>
     </Container>
@@ -154,7 +173,9 @@ const MyListsPage = () => {
 
 export default MyListsPage;
 
-const BooksTable = ({ listId }) => {
+const BooksTable = ({ listId, onRemove }) => {
+  const showNotification = useNotification();
+
   const {
     data: list,
     loading,
@@ -162,12 +183,24 @@ const BooksTable = ({ listId }) => {
     refresh,
   } = useReq(`/api/lists/${listId}`);
 
-  const onRemove = async (bookId) => {
+  const handleRemove = async (bookId) => {
     try {
       await axiosReq.delete(`/api/lists/${listId}/books/${bookId}`);
+
+      showNotification({
+        header: "Lists",
+        message: "Book removed from list successfully",
+      });
+
       refresh();
+
+      onRemove(listId);
     } catch (error) {
-      console.log(error);
+      showNotification({
+        header: "Lists",
+        message: "Book could not be removed",
+        type: "danger",
+      });
     }
   };
 
@@ -215,10 +248,10 @@ const BooksTable = ({ listId }) => {
                 modalBody={
                   <span>
                     Remove <strong>{book.title}</strong> from
-                    <strong>{list.name}</strong> list?
+                    <strong> {list.name}</strong> list?
                   </span>
                 }
-                onConfirm={() => onRemove(book.id)}
+                onConfirm={() => handleRemove(book.id)}
               >
                 {(handleShow) => (
                   <AppButton

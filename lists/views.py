@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from books.models import Book
 from bookworms.permissions import IsOwnerOrReadOnly
-from .serializers import ListSerializer
+from .serializers import ListDetailsSerializer, ListSerializer
 from .models import List
 from rest_framework import generics
 from rest_framework.views import APIView
@@ -27,7 +27,7 @@ class ListCreateLists(generics.ListCreateAPIView):
 class ListDetails(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly, IsAuthenticated]
     queryset = List.objects
-    serializer_class = ListSerializer
+    serializer_class = ListDetailsSerializer
     pagination_class = None
 
 
