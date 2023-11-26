@@ -1,11 +1,23 @@
 from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from rest_framework import generics
+from .filters import ReviewsFilter
 from .models import Comment, Review, Like
 from books.models import Book
 from .serializers import CommentSerializer, LikeSerializer, ReviewSerializer
 from bookworms.permissions import IsOwnerOrReadOnly
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+
+
+class ReviewsList(generics.ListAPIView):
+    # queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+    pagination_class = None
+    permission_classes = [IsAuthenticated]
+    filterset_class = ReviewsFilter
+
+    def get_queryset(self):
+        return Review.objects.annotate(likes_count=Count('likes')).all()
 
 
 class BookReviews(generics.ListCreateAPIView):

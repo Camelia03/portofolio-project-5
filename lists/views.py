@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404
 from books.models import Book
 from bookworms.permissions import IsOwnerOrReadOnly
+from .filters import ListsFilter
 from .serializers import ListDetailsSerializer, ListSerializer
 from .models import List
 from rest_framework import generics, filters
@@ -9,13 +10,6 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
-from django_filters import FilterSet
-
-
-class ListsFilter(FilterSet):
-    class Meta:
-        model = List
-        fields = {'books__id': ['exact']}
 
 
 class ListCreateLists(generics.ListCreateAPIView):

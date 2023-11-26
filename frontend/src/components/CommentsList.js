@@ -69,7 +69,7 @@ const CommentsList = ({ reviewId }) => {
 
   const handleDelete = async (commentId) => {
     try {
-      await axiosReq.delete(`/api/comments/${commentId}/`);
+      await axiosReq.delete(`/api/comments/${commentId}`);
 
       showNotification({
         header: "Comment",
@@ -88,7 +88,7 @@ const CommentsList = ({ reviewId }) => {
 
   const handleEdit = async (commentId, commentText) => {
     try {
-      await axiosReq.patch(`/api/comments/${commentId}/`, {
+      await axiosReq.patch(`/api/comments/${commentId}`, {
         text: commentText,
       });
 

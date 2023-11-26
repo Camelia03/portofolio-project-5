@@ -7,6 +7,8 @@ import AppButton from "../../components/AppButton";
 import Loader from "../../components/Loader";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/ProfilePage.module.css";
+import useReq from "../../hooks/useReq";
+import ReviewListItem from "../../components/ReviewListItem";
 
 const ProfilePage = () => {
   const { id } = useParams();
@@ -53,8 +55,8 @@ const ProfilePage = () => {
   }
 
   return (
-    <Container className={`text-center ${styles["profile-container"]} my-4`}>
-      <Card bg="light" text="dark">
+    <Container className={`${styles["profile-container"]} my-4`}>
+      <Card bg="light" text="dark" className="text-center mb-3">
         <Card.Body>
           <Card.Title className="mt-4">{profile.owner}'s Profile</Card.Title>
           <div className="my-4">
@@ -95,8 +97,40 @@ const ProfilePage = () => {
           )}
         </Card.Body>
       </Card>
+
+      {id && <UserReviewsList userId={profile.owner_id} />}
     </Container>
   );
 };
 
 export default ProfilePage;
+
+const UserReviewsList = ({ userId }) => {
+  const {
+    data: reviews,
+    loading,
+    error,
+  } = useReq(`/api/reviews?owner=${userId}`);
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <p className="text-danger">Error loading user reviews</p>;
+  }
+
+  return (
+    <div>
+      <h2>User reviews</h2>
+
+      <hr />
+
+      {reviews.map((review) => (
+        <div key={review.id} className="mb-3">
+          <ReviewListItem review={review} />
+        </div>
+      ))}
+    </div>
+  );
+};
