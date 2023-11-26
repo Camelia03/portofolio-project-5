@@ -18,6 +18,7 @@ const BookListItem = ({ book, showImage = true }) => {
     image_url,
     goodreads_average_rating,
     goodreads_ratings_count,
+    publish_date,
   } = book;
 
   return (
@@ -43,6 +44,11 @@ const BookListItem = ({ book, showImage = true }) => {
             <Card.Text>
               <strong>ISBN:</strong> {ISBN}
             </Card.Text>
+
+            <Card.Text>
+              <strong>Publication date:</strong> {publish_date}
+            </Card.Text>
+
             <Card.Text>
               <strong>Authors: </strong>
               <AuthorsList authors={authors} />
