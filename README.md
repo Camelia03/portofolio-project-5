@@ -550,3 +550,27 @@ The logic consists of the following steps:
 1. Save the book one more time to link its authors and genres
 
 
+## Database Design
+By creating an entity relationship diagram, I gained a clear picture of how my data structures interconnect. This approach greatly facilitated the development process by providing a consolidated reference point, sparing me the need to navigate through individual models.py files for guidance.
+
+### Relationship Diagram
+
+![screenshot](frontend/src/assets/relationship_diagram.jpg)
+
+To create the databse diagram, I used [PyCharm](https://www.jetbrains.com/pycharm/) which helped me generate it automatically.
+
+### Models
+
+The following are the models created for GoGlobal.
+
+- **Django User Model**
+    - When a user is created, they're automatically assigned a profile through the Profile model.
+
+- [**Profile**]()
+
+- [**Book**](books/models.py#L22C26-L22C26)
+
+
+
+
+
