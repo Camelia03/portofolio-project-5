@@ -10,7 +10,6 @@
 
 * [User Experience (UX)](#User-Experience-UX)
   * [Initial Project](#Initial-Project)
-  * [User Stories](#User-Stories)
   * [Responsivity](#responsivity)
   * [User Friendly Messages](#user-friendly-messages)
 
@@ -18,20 +17,26 @@
   * [Color Scheme](#Color-Scheme)
   * [Typography](#Typography)
   * [Wireframes](#Wireframes)
-  * [Features](#Features)
 
-* [Technologies Used](#Technologies-Used)
+* [Features](#Features)
+
+* [Development](#Development)
   * [Languages Used](#Languages-Used)
-  * [Frameworks, Libraries & Programs Used](#Frameworks-Libraries--Programs-Used)
+  * [Frameworks & Libraries](#Frameworks--Libraries)
+  * [Tools](#Tools)
+  * [Commonly Reused Components](#Commonly-Reused-Components)
+  * [Books importer](#Books-importer)
 
 * [Database Design](#Database-Design)
   * [Relationship Diagram](#Relationship-Diagram)
   * [Models](#Models)
 
 * [Agile Development Process](#Agile-Development-Process)
+  * [User Stories](#User-Stories)
+    * [Moscow Prioritization](#Moscow-Prioritization)
+  * [Sprints(milestones)](#Sprints)
   * [GitHub Projects](#GitHub-Projects)
   * [GitHub Issues](#GitHub-Issues)
-  * [Moscow Prioritization](#Moscow-Prioritization)
 
 * [Testing](#Testing)
 
@@ -262,6 +267,19 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 </details>
 
+### My Lists page
+
+<details>
+<summary>View My Lists page</summary>
+
+#### Desktop
+![screenshot](frontend/src/assets/wireframes/My%20Lists%20Page%20Desktop.png)
+
+#### Mobile
+![screenshot](frontend/src/assets/wireframes/My%20Lists%20Page%20mobile%20version.png)
+
+</details>
+
 ### Other user's profile Page
 
 <details>
@@ -331,13 +349,13 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 - **Reset Password**
 
-    - Users who need to change their password can acces a Change Password Page from thei Edit Profile Page, where they can enter and update a new password.
+    - Users who need to change their password can acces a Change Password Page from the Edit Profile Page, where they can enter and update a new password.
 
     ![screenshot](frontend/src/assets/testing/change_password.png)
 
 - **All Books and Order by**
 
-    - The All Books Page displays a comprehensive list of all available books, allowing users to conveniently filter books by title and publication date.
+    - The All Books Page displays a comprehensive list of all available books, allowing users to conveniently order books by title and publication date.
 
     ![screenshot](frontend/src/assets/testing/all_books_page_desktop.jpeg)
 
@@ -409,7 +427,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 - **Search**
 
-    - The search bar empowers users to quickly find what they're looking for. It allows users to enter keywords or phrases, and it expertly guides them to books that match their interests. 
+    - The search bar empowers users to quickly find what they're looking for. It allows users to enter keywords to filter books by title, author, or description, expertly guiding them to books that match their interests. 
 
     - Even if no results are found for a specific keyword, the search bar ensures the user informed, allowing them to refine their search or explore other topics.
 
@@ -431,5 +449,104 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
     - Top Rated Books and Other Tops feature prominently on the home page, showcasing a collection of book images. Hovering over a book image reveals a concise card displaying key details such as the book title, author, brief description, ISBN, publication date, and ratings, providing a snapshot of each book's essential information.
 
     ![screenshot](frontend/src/assets/testing/top_rated_books_desktop.jpg)
+
+
+## Future Features
+- Follow other users
+    - Registered users will have the option to follow other users on the platform. This ensures they receive updates about their activities.
+
+- Receiving messages from other users
+    - Registered users will have the opportunity to receive and interact with messages sent by fellow readers or users within the platform.
+
+
+## Development
+
+### Technologies Used
+#### Frontend
+- Language:
+    - JavaScript & HTML/CSS: Provide the structural and stylistic foundation for the application's web pages.
+- Framework:
+    - React: Forms the core of the front-end, allowing dynamic and responsive user interfaces.
+- Libraries:
+    - Bootstrap with React Bootstrap: Aids in designing consistent and mobile-first front-end components.
+    - Axios: Facilitates HTTP requests handling within the application.
+    - React Router Dom: Manages navigation and routing in the React application.
+    - TippyJS: Creates tooltips used to display books.
+    - React Infinite Scroll: Used to implement infinite scroll instead of traditional pagination.
+    - React Rating Stars: Used to display stars for ratings.
+    - JWT Decode: Used to decode JWT tokens received from the Backend.
+
+#### Backend
+-Language:
+    - Python: High level general purpose programming language used for backend development.
+- Framework:
+    - Django Rest Framework: Utilized for backend infrastructure, offering a powerful framework for rapid development and enabling robust API development and data handling.
+- Libraries:
+    - Cloudinary Storage: Integrated for efficient cloud-based storage management.
+    - Pillow: Employed for image processing within the application.
+    - Django Filter: Provides a filtering backend for Django.
+    - Dj Rest Auth and Django All Auth: Provides authentication backend.
+    - Dj Database URL: Allows parsing of database DSNs.
+    
+
+
+### Tools
+
+Here's a rundown of the key tools and platforms utilized in this project:
+
+ - GitHub: Serves as the host for the website's source code. It also records the Agile development framework implementation, incorporating issues, milestones, and projects.
+ - ElephantSQL: Used as the Postgres database.
+ - Heroku: Used for deploying the live version of the website.
+ - Cloudinary: Acts as a cloud storage solution for website media and static files. It also offers media manipulation and optimization features.
+ - Balsamiq: Chosen for creating project wireframes.
+ - Google Dev Tools - to troubleshoot and test features, solve issues with responsiveness and styling.
+ - [Am I Responsive?](http://ami.responsivedesign.is/) - to show the website image on a range of devices.
+ - Google Fonts: Imports fonts to enhance the website's typography.
+ - Font Awesome: Provides the necessary icons across the site.
+ - LOGO: Provides the necessary official logo across the site.
+ - Coolors: Provides the color palette across the site.
+
+
+### Commonly-Reused-Components
+
+#### AppButton
+The [App Button](frontend/src/components/AppButton.js) component is used throughout the app as the main way of showing buttons. It has 3 styling variants: _primary, secondary, and clear_ depending on the UI use case. It's purpose is to easily reuse styling inspired by Bootstrap's buttons.
+
+#### Confirm Delete Button
+The [Confirm Delete Button](frontend/src/components/ConfirmDeleteButton.js) is used to easily show a delete confirmation modal. 
+
+#### Loader
+The [Loader](frontend/src/components/Loader.js) component encapsulates the design of a spinner animation and is used throughout the app to highlight the fact that a backend request is in progress.
+
+#### Compact Books List
+The [Compact Books List](frontend/src/components/CompactBooksList.js) is used to show a grid of books. When a user hovers over a book, he can see all the details of the book.
+
+#### UseReq Hook
+The [UseReq Hook](frontend/src/hooks/useReq.js) is used in any component that makes a get request of data to the backend. It contains all logic necessary to do the request, save it to state and show loading or error states.
+
+#### Notification Context
+The [Notification Context](frontend/src/contexts/NotificationContext.js) along with the [Use Notification Hook](frontend/src/hooks/useNotification.js) are used to show a notification in the bottom-right corner. It supports all Bootstrap variants(succes, danger and warning), a header and a message. It is primarily used to show the success or failure of a backend request.
+
+#### Book List Item
+The [Book List Item](frontend/src/components/BookListItem.js) is used to show a book in a list of books.
+
+
+
+### Books-importer
+
+Bookworms relies on an external dataset of books extracted from the GitHub [repository](https://github.com/malcolmosh/MATH80629/tree/main) as a CSV file. 
+This file was imported into the database using Django custom [command](books/management/commands/import_books.py).
+
+The dataset contains around 10k books, however only 5k have been imported into the app due to size constraints of the ElephantSql free-tier database.
+
+The logic consists of the following steps:
+1. Open the CSV file
+1. Parse every row into a python dictionary
+1. Clean up the publish date
+1. Clean up the number of pages
+1. Create the book in the database
+1. Create the books authors if they don't exist already
+1. Create the books genres if they don't exist already
+1. Save the book one more time to link its authors and genres
 
 
