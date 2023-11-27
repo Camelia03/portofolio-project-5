@@ -30,6 +30,7 @@
 * [Database Design](#Database-Design)
   * [Relationship Diagram](#Relationship-Diagram)
   * [Models](#Models)
+  * [Endpoints](#Endpoints)
 
 * [Agile Development Process](#Agile-Development-Process)
   * [User Stories](#User-Stories)
@@ -561,16 +562,40 @@ To create the databse diagram, I used [PyCharm](https://www.jetbrains.com/pychar
 
 ### Models
 
-The following are the models created for GoGlobal.
+The following are the models created for Bookworms:
 
 - **Django User Model**
     - When a user is created, they're automatically assigned a profile through the Profile model.
 
-- [**Profile**]()
+- [**Profile**](profiles/model.py#L6)
+- [**Book**](books/models.py#L22)
+- [**Genre**](books/models.py#L6)
+- [**Author**](books/models.py#L14)
+- [**Lists**](lists/models.py#L8)
+- [**Reviews**](reviews/models.py#L6)
+- [**Like**](reviews/models.py#L21)
+- [**Comment**](reviews/models.py#L36)
 
-- [**Book**](books/models.py#L22C26-L22C26)
+### Endpoints
 
-
-
-
-
+| model     | endpoints                    | methods| description |
+| --------- | ---------------------------- | -------| ----------- |
+| book      | /api/books                   | GET    | Get all books paginated. Filtering is available by title, genre, and a general search property which is one of title description or author.     |
+|           | /api/books/:id               | GET    | Returns one book |
+| genre     | /api/genres                  | GET    | Get all genres   | 
+|           | /api/genres/:id/             | GET    | Get specific genre by name |
+| author    | /api/authors/:id/            | GET    | Get one author |
+|           | /api/authors/:id/books       | GET    | Get the books of one author |
+| review    | /api/books/:id/reviews       | GET, POST | Get all reviews or create a review for a specific book |
+|           | /api/reviews                 | GET    | Get all reviews. Supports filtering by user.|
+|           | /api/reviews/:id/like        | POST   | Create a like for a review |
+|           | /api/users/:id/reviews       | GET    | Get all reviews for a user |
+| like      | /api/likes                   | POST   | Create a like |
+|           | /api/likes/:id               | GET, DELETE   | Get or delete a like |
+| comment   | /api/comments                | GET, POST | List or create a comment |
+|           | /api/comments/:id            | GET, PUT, PATCH, DELETE | Get, update or delete a comment |
+|           | /api/reviews/:id/comments    | GET    | Get all comments for a review |
+| list      | /api/lists                   | GET, POST   | Get or create lists for the logged in user |
+|           | /api/lists/:id               | GET, PUT, PATCH, DELETE | Get, update or delete a list |
+|           | /api/lists/:id/books/:id     | POST, DELETE    | Add or remove a book from a list |
+| profile   | /api/profiles/:id            | GET, PUT, PATCH | Get or update a profile |
