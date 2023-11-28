@@ -1,27 +1,25 @@
 import React, { useEffect, useState } from "react";
-import useReq from "../../hooks/useReq";
 import {
   Alert,
-  Button,
   Col,
   Container,
   Image,
   ListGroup,
-  Nav,
   Row,
   Table,
 } from "react-bootstrap";
-import Loader from "../../components/Loader";
-import AppButton from "../../components/AppButton";
 import { NavLink } from "react-router-dom";
-import ConfirmDeleteButton from "../../components/ConfirmDeleteButton";
 import { axiosReq } from "../../api/axiosDefaults";
+import AppButton from "../../components/AppButton";
 import AuthorsList from "../../components/AuthorsList";
-import styles from "../styles/MyListsPage.module.css";
+import ConfirmDeleteButton from "../../components/ConfirmDeleteButton";
+import Loader from "../../components/Loader";
 import useNotification from "../../hooks/useNotification";
+import useReq from "../../hooks/useReq";
+import styles from "../../styles/MyListsPage.module.css";
 
 const MyListsPage = () => {
-  const { data: initialLists, loading, error, refresh } = useReq("/api/lists");
+  const { data: initialLists, loading, error } = useReq("/api/lists");
   const [activeListId, setActiveListId] = useState();
 
   const [lists, setLists] = useState([]);
