@@ -13,6 +13,11 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 
 class ListCreateLists(generics.ListCreateAPIView):
+    """
+    GET - Get all lists of the logged in user
+    POST - Create a new list with logged in user as owner
+    """
+
     permission_classes = [IsAuthenticated]
     serializer_class = ListSerializer
     pagination_class = None
@@ -27,6 +32,13 @@ class ListCreateLists(generics.ListCreateAPIView):
 
 
 class ListDetails(generics.RetrieveUpdateDestroyAPIView):
+    """
+    GET - Get one list
+    PUT, PATCH - Update a list
+    DELETE - Delete a list
+    Requires the user to be logged in
+    """
+
     permission_classes = [IsOwnerOrReadOnly, IsAuthenticated]
     queryset = List.objects
     serializer_class = ListDetailsSerializer
@@ -34,9 +46,14 @@ class ListDetails(generics.RetrieveUpdateDestroyAPIView):
 
 
 class AddRemoveBook(APIView):
+    """Add or remove a book from a list"""
+
+    # Allow only logged in users
     permission_classes = [IsOwnerOrReadOnly, IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
+        """Add book to a list"""
+
         list = get_object_or_404(List, id=kwargs['pk'])
         book = get_object_or_404(Book, id=kwargs['book_id'])
 
@@ -47,6 +64,8 @@ class AddRemoveBook(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     def delete(self, request, *args, **kwargs):
+        """Remove a book from a list"""
+
         list = get_object_or_404(List, id=kwargs['pk'])
         book = get_object_or_404(Book, id=kwargs['book_id'])
 

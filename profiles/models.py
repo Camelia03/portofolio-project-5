@@ -21,6 +21,8 @@ class Profile(models.Model):
 
 
 def create_profile(sender, instance, created, **kwargs):
+    """Create a profile for every new user"""
+
     if created:
         Profile.objects.create(owner=instance)
 

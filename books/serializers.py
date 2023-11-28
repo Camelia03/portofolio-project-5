@@ -20,6 +20,8 @@ class BookSerializer(serializers.ModelSerializer):
     summary = serializers.SerializerMethodField()
 
     def get_summary(self, obj):
+        """Truncate the description to 200 chars"""
+
         if len(obj.description) > 200:
             return obj.description[:200] + '...'
 

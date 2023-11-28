@@ -5,7 +5,6 @@ from books.serializers import BookSerializer
 
 class ListSerializer(serializers.ModelSerializer):
     username = serializers.ReadOnlyField(source='owner.username')
-    # books = BookSerializer(read_only=True, many=True)
     books_count = serializers.SerializerMethodField()
 
     def get_books_count(self, obj):

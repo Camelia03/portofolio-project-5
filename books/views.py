@@ -8,6 +8,10 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 
 class BooksList(generics.ListAPIView):
+    """
+    List all books with pagination, filtering and ordering
+    """
+
     queryset = Book.objects.all().order_by('title')
     serializer_class = BookSerializer
     filterset_class = BookFilter
@@ -18,28 +22,38 @@ class BooksList(generics.ListAPIView):
 
 
 class BookDetail(generics.RetrieveAPIView):
+    """Get a specific book"""
+
     queryset = Book.objects
     serializer_class = BookSerializer
 
 
 class GenresList(generics.ListAPIView):
+    """Get all genres"""
+
     queryset = Genre.objects.all().order_by('name')
     serializer_class = GenreSerializer
     pagination_class = None
 
 
 class GenreDetail(generics.RetrieveAPIView):
+    """Get one genre"""
+
     serializer_class = GenreSerializer
     lookup_field = 'name'
     queryset = Genre.objects
 
 
 class AuthorDetail(generics.RetrieveAPIView):
+    """Get one author"""
+    
     serializer_class = AuthorSerializer
     queryset = Author.objects
 
 
 class AuthorBooksList(generics.ListAPIView):
+    """Get list of paginated books written by an author"""
+
     serializer_class = BookSerializer
     pagination_class = ClientPagination
 

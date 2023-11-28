@@ -14,6 +14,8 @@ class List(models.Model):
 
 
 def create_default_lists(sender, instance, created, **kwargs):
+    """Create 3 default lists for every new user"""
+
     if created:
         List.objects.create(owner=instance, name='want-to-read')
         List.objects.create(owner=instance, name='reading')

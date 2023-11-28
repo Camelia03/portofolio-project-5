@@ -4,7 +4,6 @@ from .models import Profile
 from .serializers import ProfileSerializer
 from bookworms.permissions import IsOwnerOrReadOnly
 
-# Create your views here.
 
 class ProfileDetail(generics.RetrieveUpdateAPIView):
     """
