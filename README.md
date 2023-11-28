@@ -19,6 +19,7 @@
   * [Wireframes](#Wireframes)
 
 * [Features](#Features)
+  *[Future Features](#Future-Features)
 
 * [Development](#Development)
   * [Languages Used](#Languages-Used)
@@ -34,17 +35,13 @@
 
 * [Agile Development Process](#Agile-Development-Process)
   * [User Stories](#User-Stories)
-    * [Moscow Prioritization](#Moscow-Prioritization)
+  * [Moscow Prioritization](#Moscow-Prioritization)
   * [Sprints(milestones)](#Sprints)
-  * [GitHub Projects](#GitHub-Projects)
-  * [GitHub Issues](#GitHub-Issues)
 
 * [Testing](#Testing)
+     * [Bugs](#Bugs)
 
-* [Deployment & Development](#Deployment--Development)
-    * [Deploy on Heroku](#Deploy-on-Heroku)
-     * [Database Setup](#Database-Setup)
-    * [Development](#Development)
+* [Deployment](#Deployment)
 
 * [ Credits](#Credits)
     * [Code](#Code)
@@ -75,38 +72,15 @@ _"It doesn't take much to make a bookworm happy!"_ - Bookworms strives to be you
 
 Join us as we grow into a thriving community for bibliophiles and readers to explore, discuss, and share their love for books.
 
-# User-Stories
 
-Some of the most important user stories are:
-
-- As a guest I can sign in to the app to access functionality for logged-in users.
-
-- As a guest or registered user, I can access a navigation bar from any page so that I can easily navigate between pages.
-
-- As a guest or registered user, I can view the details of a single book so that I can learn more about the book's summary, author, and user reviews but also a comments section.
-
-- As a guest or registered user, I can search for books with keywords to find books I'm most interested in.
-
-- As a guest or registered user, I can view the details of a single book so that I can learn more about the book's summary, author, and user reviews but also a comments section.
-
-- As a registered user, I can add a review to a book so that I can share my thoughts and feedback about the book with others.
-
-- As a registered user, I can edit my book review so that I can make corrections or updates to my review.
-
-- As a registered user, I can delete my own review of a book so that I can manage and remove my feedback when necessary.
-
-All user stories as part of a project: https://github.com/users/Camelia03/projects/8
-
-
-
-# Responsivity
+### Responsivity
 
 Two primary device views have been considered to ensure responsiveness in Bookworms: mobile and larger monitor displays. While efforts have been made to enhance the application's mobile-friendliness, there's still room for improvement. Bootstrap5 features and custom CSS have been utilized as methods to achieve the desired level of device responsiveness.
 
 <img width="78%" alt="responsivity" src="frontend/src/assets/am_i_responsive.jpg">
 
 
-# User-friendly-messages
+### User-friendly-messages
 To ensure users feel confident about their actions and to offer clear guidance, the system generates user-friendly messages. These messages are crafted to provide reassurance, affirming the user's choices, while also offering helpful direction to navigate through the platform effectively. They serve as informative prompts, designed to support users by acknowledging their actions and steering them toward successful interactions within the system.
 
 <img width="78%" alt="friendly messages" src="frontend/src/assets/testing/book_added_to_list_successfully.png">
@@ -164,7 +138,7 @@ Google Fonts was used for the following fonts:
 ### Wireframes
 I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wireframes for mobile and desktop.
 
-### Sign In Page
+#### Sign In Page
 
 <details>
 <summary>View Sign In Page</summary>
@@ -177,7 +151,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 </details>
 
-### Sign Up Page
+#### Sign Up Page
 
 <details>
 <summary>View Sign Up Page</summary>
@@ -190,7 +164,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 </details>
 
-### Home Page
+#### Home Page
 
 <details>
 <summary>View Home Page</summary>
@@ -203,7 +177,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 </details>
 
-### All Books Page
+#### All Books Page
 
 <details>
 <summary>View All Books Page</summary>
@@ -216,7 +190,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 </details>
 
-### Book Details Page
+#### Book Details Page
 
 <details>
 <summary>View Book Details Page</summary>
@@ -229,7 +203,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 </details>
 
-### Edit Review Page
+#### Edit Review Page
 
 <details>
 <summary>View Edit Review Page</summary>
@@ -242,7 +216,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 </details>
 
-### Genres Sidebar
+#### Genres Sidebar
 
 <details>
 <summary>View Genres sidebar</summary>
@@ -255,7 +229,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 </details>
 
-### My Reviews page
+#### My Reviews page
 
 <details>
 <summary>View My Reviews page</summary>
@@ -268,7 +242,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 </details>
 
-### My Lists page
+#### My Lists page
 
 <details>
 <summary>View My Lists page</summary>
@@ -281,7 +255,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 </details>
 
-### Other user's profile Page
+#### Other user's profile Page
 
 <details>
 <summary>View Other user's profile Page</summary>
@@ -294,7 +268,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 </details>
 
-### Search Filter
+#### Search Filter
 
 <details>
 <summary>View Search Filter</summary>
@@ -307,7 +281,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 </details>
 
-### My Profile Page
+#### My Profile Page
 
 <details>
 <summary>View My Profile Page</summary>
@@ -321,7 +295,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 </details>
 
 
-### Features
+## Features
 
 ### Existing Features
 
@@ -444,7 +418,6 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
     ![screenshot](frontend/src/assets/testing/dropdown_menu.png)
 
-
 - **Top Rated books**
 
     - Top Rated Books and Other Tops feature prominently on the home page, showcasing a collection of book images. Hovering over a book image reveals a concise card displaying key details such as the book title, author, brief description, ISBN, publication date, and ratings, providing a snapshot of each book's essential information.
@@ -452,7 +425,7 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
     ![screenshot](frontend/src/assets/testing/top_rated_books_desktop.jpg)
 
 
-## Future Features
+### Future Features
 - Follow other users
     - Registered users will have the option to follow other users on the platform. This ensures they receive updates about their activities.
 
@@ -489,7 +462,6 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
     - Dj Rest Auth and Django All Auth: Provides authentication backend.
     - Dj Database URL: Allows parsing of database DSNs.
     
-
 
 ### Tools
 
@@ -530,8 +502,6 @@ The [Notification Context](frontend/src/contexts/NotificationContext.js) along w
 
 #### Book List Item
 The [Book List Item](frontend/src/components/BookListItem.js) is used to show a book in a list of books.
-
-
 
 ### Books-importer
 
@@ -576,6 +546,7 @@ The following are the models created for Bookworms:
 - [**Like**](reviews/models.py#L21)
 - [**Comment**](reviews/models.py#L36)
 
+
 ### Endpoints
 
 | model     | endpoints                    | methods| description |
@@ -599,3 +570,193 @@ The following are the models created for Bookworms:
 |           | /api/lists/:id               | GET, PUT, PATCH, DELETE | Get, update or delete a list |
 |           | /api/lists/:id/books/:id     | POST, DELETE    | Add or remove a book from a list |
 | profile   | /api/profiles/:id            | GET, PUT, PATCH | Get or update a profile |
+
+
+## Agile-Development-Process
+
+The project's development was coordinated using GitHub's issues, milestones, and projects features. GitHub Projects served as an Agile tool, adapted effectively with appropriate tags and issue assignments.
+
+This approach utilized user stories and a basic [Kanban board](https://github.com/users/Camelia03/projects/8). It helped me manage tasks, track progress, and smoothly move through development, testing, and completion phases.
+
+### User-Stories
+
+Some of the most important user stories are:
+
+- As a guest I can sign in to the app to access functionality for logged-in users.
+
+- As a guest or registered user, I can access a navigation bar from any page so that I can easily navigate between pages.
+
+- As a guest or registered user, I can view the details of a single book so that I can learn more about the book's summary, author, and user reviews but also a comments section.
+
+- As a guest or registered user, I can search for books with keywords to find books I'm most interested in.
+
+- As a guest or registered user, I can view the details of a single book so that I can learn more about the book's summary, author, and user reviews but also a comments section.
+
+- As a registered user, I can add a review to a book so that I can share my thoughts and feedback about the book with others.
+
+- As a registered user, I can edit my book review so that I can make corrections or updates to my review.
+
+- As a registered user, I can delete my own review of a book so that I can manage and remove my feedback when necessary.
+
+All user stories as part of a project: https://github.com/users/Camelia03/projects/8
+
+
+### Moscow-Prioritization
+
+|                  |       |      |      |
+| ---------------- | ----- | ---- | ---- |
+|  **Must Have** | *max 60% of stories* | guaranteed to be delivered | These are the core features that are vital for the initial release.|
+|  **Should Have** | *aprox.20% of stories* | adds significant value, but not vital | These features are important and should be prioritized, but the project can proceed without them.|
+|  **Could Have** | *20% of stories* | has small impact if left out | These features provide added value and are desirable, but they are not essential for the current release.|
+|  **Won't Have** |  | not a priority | These are features that have been deliberately deferred to a later phase or release.|
+
+### Sprints
+
+Structured project tasks into distinct [Sprints](https://github.com/Camelia03/portofolio-project-5/milestones) within the Milestones section for efficient management.
+
+[Sprint 1](https://github.com/Camelia03/portofolio-project-5/milestone/1)
+
+The inaugural sprint focuses on establishing the project's foundation and integrating the front end with the back end. Tasks encompass configuring WhiteNoise for static files, setting up routes for the React front end, and creating a new user story template to streamline future development.
+
+Emphasizing the MoSCoW method, user stories are categorized by criticality—Must-haves, Should-haves, Could-haves, and Won't-haves—to prioritize essential functionalities. Furthermore, within this sprint, the MoSCoW method refines these priorities into Must-haves, Should-haves, Could-haves, and Won't-haves, guiding development efforts with clear distinctions.
+
+The sprint culminates in the convergence of Django and React static files, integration of Bootstrap, and react-router, and the creation of a polished navbar for enhanced user navigation. Authentication functionalities, facilitated by the dj-rest-auth library, enable user registration, login, and profile creation, setting the groundwork for subsequent development phases.
+
+This sprint sets the stage for a cohesive, prioritized, and integrated development approach.
+
+<img width="78%" alt="sprint1" src="frontend/src/assets/testing/sprint1.png">
+
+[Sprint 2](https://github.com/Camelia03/portofolio-project-5/milestone/2)
+
+Sprint 2 focuses on expanding features and user interaction. Following the MoSCoW method, tasks are prioritized as Must-haves, Should-haves, Could-haves, and Won't-haves, ensuring a focused development approach.
+
+Key tasks include implementing Sign Out, creating a dedicated books app, and establishing genre, author, and book models. Endpoints for book lists, home page display, and loader addition enhance user experience.
+
+Improvements encompass filtering, ordering, navbar search integration, and Goodreads book import commands. Genre-specific pages, review functionalities, and infinite scrolls on the home page enrich user engagement.
+
+This sprint significantly augments app capabilities, improving user interaction and expanding functionalities.
+
+<img width="78%" alt="sprint2" src="frontend/src/assets/testing/sprint2.png">
+
+[Sprint 3](https://github.com/Camelia03/portofolio-project-5/milestone/3)
+
+Sprint 3 emphasizes list management and UI refinement, employing the MoSCoW method to prioritize tasks as Must-haves, Should-haves, Could-haves, and Won't-haves for a streamlined development approach.
+
+This sprint commences by creating a new Lists app, establishing models, and implementing list creation and management endpoints. User-centric features include 'My Lists' and 'Create List' pages, with functionalities for adding, updating, and deleting lists.
+
+Enhancements encompass adding books to lists, creating list details pages, and facilitating book removal from lists. Default lists for new users and filtering list access for logged-in users improve user experience and security.
+
+Review functionalities are integrated with improved design elements, including star ratings on book rows and enhanced spacing and headers for review creation. Additionally, genre descriptions are added, and the home page is redesigned to showcase concise book lists.
+
+UI refinements involve spacing adjustments in book lists, providing additional book rating details, and improving header styling for search pages and the navbar.
+
+Sprint 3 significantly enhances list management capabilities, refines the user interface, and improves overall user experience.
+
+<img width="78%" alt="sprint3" src="frontend/src/assets/testing/sprint3.png">
+
+[Sprint 4](https://github.com/Camelia03/portofolio-project-5/milestone/4)
+
+Sprint 4 focuses on refining user interaction and expanding key features. Using the MoSCoW method, tasks prioritize essential functionalities for a streamlined development approach.
+
+This sprint introduces an Author Page and allows users to like reviews, fostering deeper engagement. Enhancements in comments on reviews and UI refinements, including improved page styling and navigation, elevate the user experience.
+
+Authentication refinements, such as enhanced sign-in/up processes and validation, ensure a smoother user journey. Bug fixes, font updates, and spacing adjustments contribute to an overall polished user interface.
+
+Sprint 4 significantly enhances user interaction, expands features, and refines the application's overall user experience.
+
+<img width="78%" alt="sprint4" src="frontend/src/assets/testing/sprint4.png">
+
+
+## Testing
+
+- User Stories Validation: Ensured each user story met its acceptance criteria by systematically testing and verifying functionality.
+
+- Feature-based User Account Testing: Created a dedicated user account to methodically navigate and evaluate each platform feature individually, ensuring complete coverage and functionality across all aspects.
+
+- Cross-Device and Browser Testing: Conducted thorough testing across multiple devices such as mobile phones, tablets, and various browsers like Chrome, Safari, Firefox, Microsoft Edge, ensuring a consistent and optimized user experience across different platforms and environments.
+
+- Postman API Testing:
+    - Verified API Endpoints: Utilized Postman to rigorously test and validate the functionality of API endpoints, ensuring seamless communication and accurate data exchange.
+
+    - Request and Response Validation: Conducted comprehensive tests to confirm the correctness of request formats and validate the accuracy of responses received from the API endpoints.
+
+    - Automation and Collection Management: Leveraged Postman's collection features for organized and automated API testing, streamlining the testing process and ensuring consistent and reliable API performance.
+
+![Postman API Testing](frontend/src/assets/testing/postman_testing.png)
+
+
+### Bugs
+
+- When implementing infinite scroll for Books, the pagination returned the same book on different pages.    
+_Fix:_ Adding an extra order by title when listing Books
+- The infinite scroll component was flickering and showing a scroll bar.
+_Fix:_ The issue was caused by the react-bootstrap spinner. Instead of the spinner, a simple text was used: “Loading:”
+- There are 3 genres that have no books attached due to importing only half the number of books.    
+_Fix:_ Remove the empty genres
+- The cancel button within a form would also submit the form when going back.   
+_Fix:_ Add `type="button"` to the `button`
+- The change password page was not shown. Instead, the profile page was shown.  
+_Fix:_ Move the change password route (`/profile/change-password`) above the profile route (`/profile/:id`) so that the first one is rendered
+
+## Deployment
+
+The Bookworms API Deployment has been successfully executed through the following steps:
+
+1. Initialization of a Heroku App.
+
+2. Creation of a new ElephantSQL database.
+
+4. Installation and configuration of additional libraries:
+
+    - Integration of dj_database_url.
+    - Incorporation of gunicorn.
+    - Creation of a Procfile specifically for Heroku, defining the project's execution method.
+    - Configuration of ALLOWED_HOSTS.
+    - Implementation of CORS.
+
+1. Configure Django to render the index of the React application.
+
+1. Configure React to proxy API requests to Django.
+
+5. Configuration of remaining environment variables:
+
+    - Adjustment within settings.py.
+    - Configuration of Heroku's config vars.
+
+1. Run commands to build the frontend application and move files to the static files folder.
+    `npm run build && rm-rf ../staticfiles/build && mv build ../staticfiles`
+
+6. Connect the project's GitHub repository to Heroku for streamlined synchronization.
+
+## Credits
+### Code
+While working on the project, I frequently referred to the following websites for troubleshooting:  
+
+- [W3 Schools](https://www.w3schools.com)
+- [Stack Overflow](https://stackoverflow.com)
+- [MDN web docs](https://developer.mozilla.org)
+- [Django documentation](https://docs.djangoproject.com/en/4.2/)
+- [Django Rest Framework documentation](https://www.django-rest-framework.org/)
+- [Dj-rest-auth documentation](https://dj-rest-auth.readthedocs.io/en/latest/)
+- [React Bootstrap documentation](https://react-bootstrap.netlify.app/)
+- [React router](https://v5.reactrouter.com/web/api/location)
+- [React/DjangoRF Authentication App](https://github.com/dotja/authentication_app_react_django_rest)
+- Moments walkthrough project for basic component examples
+
+### Media
+All media files on the webiste, except one, were taken from [Unsplash](https://unsplash.com/)
+
+To create a favicon I used [LOGO](https://app.logo.com/)
+
+Throughout the site, I used icons, such as the add, edit or delete buttons, and the little worm in the header of the _Home Page_ and _Bookworms reviews_ from [Font Awesome](https://fontawesome.com).
+
+### Acknowledgements
+I extend my gratitude to _my mentor Jubril Akolade_, whose feedback, advice, guidance, and support significantly enriched this project and the preceding three. 
+
+_The Code Institute Slack community_ deserves recognition for providing unwavering encouragement during moments of self-doubt and imposter syndrome.   
+
+A heartfelt thanks to _my parents_ for their constant encouragement and support throughout this journey. 
+
+The _tutors at tutor support_, though rarely contacted during this project, consistently showcased swift and effective resolution of issues when needed.    
+
+Lastly, I appreciate _my husband, Mihai_, for his continuous support and unwavering belief throughout the course and project journey.
