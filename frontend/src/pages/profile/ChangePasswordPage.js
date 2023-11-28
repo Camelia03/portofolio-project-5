@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Alert, Container, Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { axiosReq } from "../api/axiosDefaults";
-import useNotification from "../hooks/useNotification";
-import AppButton from "../components/AppButton";
+import { axiosReq } from "../../api/axiosDefaults";
+import useNotification from "../../hooks/useNotification";
+import AppButton from "../../components/AppButton";
 
 const ChangePasswordPage = () => {
   const history = useHistory();

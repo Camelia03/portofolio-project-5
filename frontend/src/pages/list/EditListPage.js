@@ -1,10 +1,10 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import useReq from "../hooks/useReq";
-import ListForm from "../components/ListForm";
-import { axiosReq } from "../api/axiosDefaults";
-import Loader from "../components/Loader";
+import useReq from "../../hooks/useReq";
+import ListForm from "../../components/ListForm";
+import { axiosReq } from "../../api/axiosDefaults";
+import Loader from "../../components/Loader";
 import { useHistory } from "react-router-dom";
 
 const EditListPage = () => {

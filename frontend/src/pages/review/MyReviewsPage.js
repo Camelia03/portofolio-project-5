@@ -1,10 +1,10 @@
 import React from "react";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
-import useReq from "../hooks/useReq";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import useReq from "../../hooks/useReq";
 import { Container } from "react-bootstrap";
-import Loader from "../components/Loader";
-import ReviewListItem from "../components/ReviewListItem";
-import { axiosReq } from "../api/axiosDefaults";
+import Loader from "../../components/Loader";
+import ReviewListItem from "../../components/ReviewListItem";
+import { axiosReq } from "../../api/axiosDefaults";
 import { NavLink } from "react-router-dom";
 
 const MyReviewsPage = () => {

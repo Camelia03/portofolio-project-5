@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import { axiosReq } from "../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory } from "react-router-dom";
-import ListForm from "../components/ListForm";
-import Loader from "../components/Loader";
-import useNotification from "../hooks/useNotification";
+import ListForm from "../../components/ListForm";
+import Loader from "../../components/Loader";
+import useNotification from "../../hooks/useNotification";
 
 const CreateListPage = () => {
   const history = useHistory();

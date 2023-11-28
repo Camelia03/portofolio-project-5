@@ -1,9 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import useReq from "../hooks/useReq";
-import Loader from "../components/Loader";
+import useReq from "../../hooks/useReq";
+import Loader from "../../components/Loader";
 import { Alert, Container } from "react-bootstrap";
-import CompactBooksList from "../components/CompactBooksList";
+import CompactBooksList from "../../components/CompactBooksList";
 
 const AuthorPage = () => {
   const { id } = useParams();

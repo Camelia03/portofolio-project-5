@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import ReviewForm from "../components/ReviewForm";
-import { axiosReq } from "../api/axiosDefaults";
+import ReviewForm from "../../components/ReviewForm";
+import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory, useParams } from "react-router-dom";
-import useReq from "../hooks/useReq";
+import useReq from "../../hooks/useReq";
 import { Container } from "react-bootstrap";
-import Loader from "../components/Loader";
-import useNotification from "../hooks/useNotification";
+import Loader from "../../components/Loader";
+import useNotification from "../../hooks/useNotification";
 
 const EditReviewPage = () => {
   const showNotification = useNotification();

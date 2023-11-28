@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import BookListItem from "../components/BookListItem";
-import useReq from "../hooks/useReq";
+import BookListItem from "../../components/BookListItem";
+import useReq from "../../hooks/useReq";
 
 const BooksList = ({ ordering = "", searchQuery = "", genre = "" }) => {
   const [items, setItems] = useState([]);

@@ -3,12 +3,12 @@ import { Button, Card, Col, Image, Row } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Rating from "react-rating-stars-component";
 import { NavLink, useParams } from "react-router-dom";
-import AddToListModal from "../components/AddToListModal";
-import BookReviewsList from "../components/BookReviewsList";
-import Loader from "../components/Loader";
-import useReq from "../hooks/useReq";
-import AppButton from "../components/AppButton";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import AddToListModal from "../../components/AddToListModal";
+import BookReviewsList from "../../components/BookReviewsList";
+import Loader from "../../components/Loader";
+import useReq from "../../hooks/useReq";
+import AppButton from "../../components/AppButton";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const BookDetailsPage = () => {
   const { id } = useParams();

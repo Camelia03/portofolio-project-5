@@ -1,8 +1,8 @@
 import React from "react";
 import { Alert, Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import Loader from "../components/Loader";
-import useReq from "../hooks/useReq";
+import Loader from "../../components/Loader";
+import useReq from "../../hooks/useReq";
 import BooksList from "./BooksList";
 
 const GenreDetailPage = () => {

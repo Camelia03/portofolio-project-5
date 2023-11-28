@@ -19,7 +19,7 @@
   * [Wireframes](#Wireframes)
 
 * [Features](#Features)
-  *[Future Features](#Future-Features)
+  * [Future Features](#Future-Features)
 
 * [Development](#Development)
   * [Languages Used](#Languages-Used)
@@ -426,10 +426,10 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 
 ### Future Features
-- Follow other users
+- [Follow other users](https://github.com/Camelia03/portofolio-project-5/issues/36)
     - Registered users will have the option to follow other users on the platform. This ensures they receive updates about their activities.
 
-- Receiving messages from other users
+- [Receiving messages from other users](https://github.com/Camelia03/portofolio-project-5/issues/36)
     - Registered users will have the opportunity to receive and interact with messages sent by fellow readers or users within the platform.
 
 
@@ -601,6 +601,8 @@ Some of the most important user stories are:
 All user stories as part of a project: https://github.com/users/Camelia03/projects/8
 
 
+**Two user stories** have been marked as part of [Future Features](#Future-Features) and labeled as 'Won't Have' within the [project's GitHub repository](https://github.com/Camelia03/portofolio-project-5/issues). These stories are intentionally kept _open_ for potential implementation in future iterations but are categorized as features that won't be pursued in the current development phase.
+
 ### Moscow-Prioritization
 
 |                  |       |      |      |
@@ -727,6 +729,18 @@ The Bookworms API Deployment has been successfully executed through the followin
     `npm run build && rm-rf ../staticfiles/build && mv build ../staticfiles`
 
 6. Connect the project's GitHub repository to Heroku for streamlined synchronization.
+
+### Database Setup
+Log into ElephantSQL.com and access your dashboard.
+Click "Create New Instance".
+Configure a plan, set a Name, choose the Tiny Turtle (Free) plan, and leave the Tags field empty.
+Pick a data center near you under "Select Region".
+Review your settings and click "Create instance".
+Return to the ElephantSQL dashboard and click on the instance name for your project.
+In the URL section, click the copy icon to copy the database URL.
+In your workspace, ensure you have Django and Gunicorn installed using pip3 install 'django<4' gunicorn
+Also, make sure to install infrastructure for the database with pip3 install dj_database_url===0.5.0 psycopg2
+Update the requirements.txt file if necessary.
 
 ## Credits
 ### Code

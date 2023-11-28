@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import useReq from "../hooks/useReq";
+import useReq from "../../hooks/useReq";
 import {
   Alert,
   Button,
@@ -11,14 +11,14 @@ import {
   Row,
   Table,
 } from "react-bootstrap";
-import Loader from "../components/Loader";
-import AppButton from "../components/AppButton";
+import Loader from "../../components/Loader";
+import AppButton from "../../components/AppButton";
 import { NavLink } from "react-router-dom";
-import ConfirmDeleteButton from "../components/ConfirmDeleteButton";
-import { axiosReq } from "../api/axiosDefaults";
-import AuthorsList from "../components/AuthorsList";
+import ConfirmDeleteButton from "../../components/ConfirmDeleteButton";
+import { axiosReq } from "../../api/axiosDefaults";
+import AuthorsList from "../../components/AuthorsList";
 import styles from "../styles/MyListsPage.module.css";
-import useNotification from "../hooks/useNotification";
+import useNotification from "../../hooks/useNotification";
 
 const MyListsPage = () => {
   const { data: initialLists, loading, error, refresh } = useReq("/api/lists");

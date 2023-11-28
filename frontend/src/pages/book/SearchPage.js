@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
-import Loader from "../components/Loader";
-import useReq from "../hooks/useReq";
+import Loader from "../../components/Loader";
+import useReq from "../../hooks/useReq";
 import styles from "../styles/HomePage.module.css";
 import ListGroup from "react-bootstrap/ListGroup";
-import useQuery from "../hooks/useQuery";
-import OrderingSelect from "../components/OrderingSelect";
+import useQuery from "../../hooks/useQuery";
+import OrderingSelect from "../../components/OrderingSelect";
 import { Col, Row } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import BooksList from "./BooksList";
