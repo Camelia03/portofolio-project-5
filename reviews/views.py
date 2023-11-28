@@ -83,6 +83,7 @@ class LikeDetail(generics.RetrieveDestroyAPIView):
 class CommentsList(generics.ListCreateAPIView):
     """Get all comments or create a new one"""
 
+    queryset = Comment.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = CommentSerializer
 
