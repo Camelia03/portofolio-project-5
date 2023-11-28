@@ -26,7 +26,10 @@ const EditProfilePage = () => {
 
   const [errors, setErrors] = useState({});
 
+  // Get profile id from the logged in user
   const { profile_id } = currentUser || {};
+
+  // Get user profile
   const {
     data: profile,
     loading,
@@ -48,19 +51,25 @@ const EditProfilePage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Use multi-part form to upload
     const formData = new FormData();
     formData.append("full_name", full_name);
     formData.append("description", description);
 
+    // Add image to form
     if (imageFile?.current?.files[0]) {
       formData.append("avatar", imageFile?.current?.files[0]);
     }
 
+    // Update user profile
     try {
       const { data } = await axiosRes.put(
         `/api/profiles/${profile_id}`,
         formData
       );
+
+      // Update the profile image of the logged in user
       setCurrentUser((currentUser) => ({
         ...currentUser,
         profile_image: data.image,

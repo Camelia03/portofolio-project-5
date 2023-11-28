@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
-import { axiosReq } from "../../api/axiosDefaults";
+import { Container } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults";
 import ListForm from "../../components/ListForm";
 import Loader from "../../components/Loader";
 import useNotification from "../../hooks/useNotification";
@@ -16,6 +16,8 @@ const CreateListPage = () => {
   const onSubmit = async (list) => {
     try {
       setLoading(true);
+
+      // Create new list
       await axiosReq.post("/api/lists", list);
 
       showNotification({ message: "List added successfully", header: "List" });

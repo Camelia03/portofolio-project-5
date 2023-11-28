@@ -11,11 +11,14 @@ const EditReviewPage = () => {
   const showNotification = useNotification();
   const { id: reviewId } = useParams();
   const history = useHistory();
+
+  // Get review details
   const { data: review, loading, error } = useReq(`/api/reviews/${reviewId}`);
 
   const [errors, setErrors] = useState({});
 
   const handleSubmit = async (review) => {
+    // Update review
     try {
       await axiosReq.put(`/api/reviews/${reviewId}`, review);
 

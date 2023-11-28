@@ -4,6 +4,9 @@ import { Col, Row } from "react-bootstrap";
 import Tippy from "@tippyjs/react";
 import styles from "../styles/CompactBooksList.module.css";
 
+/**
+ * List books as a grid with images each with a tooltip of details
+ */
 const CompactBooksList = ({ books }) => {
   return (
     <Row className="gy-2 gx-2">

@@ -1,6 +1,9 @@
 import React from "react";
 import Spinner from "react-bootstrap/Spinner";
 
+/**
+ * Loader with a spinner animation
+ */
 const Loader = () => {
   return (
     <Spinner animation="border" role="status">

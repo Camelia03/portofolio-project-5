@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Alert, Col, Image, InputGroup, Row } from "react-bootstrap";
+import { Alert, Col, Image, Row } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import { useHistory } from "react-router-dom";
@@ -20,7 +20,6 @@ function SignUpPage() {
 
   const [errors, setErrors] = useState({});
 
-  const { username, password1, password2 } = signupData;
   const handleChange = (event) => {
     setSignupData({
       ...signupData,
@@ -39,6 +38,7 @@ function SignUpPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Create new account
     try {
       await axios.post("/dj-rest-auth/registration/", signupData);
       showNotification({

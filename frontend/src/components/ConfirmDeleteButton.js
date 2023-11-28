@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import AppButton from "./AppButton";
 
+/**
+ * Component that shows a modal for confirming delete
+ */
 const ConfirmDeleteButton = ({
   children,
   onConfirm,

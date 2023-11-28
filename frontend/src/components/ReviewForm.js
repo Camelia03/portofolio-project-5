@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { Alert, Button, Form } from "react-bootstrap";
+import { Alert, Form } from "react-bootstrap";
 import ReactStars from "react-rating-stars-component";
 import AppButton from "./AppButton";
 
+/**
+ * Form for creating or editing a review
+ */
 const ReviewForm = ({
   review: initialReview = {
     content: "",

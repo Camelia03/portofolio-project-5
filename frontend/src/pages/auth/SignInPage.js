@@ -42,8 +42,11 @@ function SignInPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Log in a user
     try {
       const response = await axios.post("/dj-rest-auth/login/", signinData);
+
+      // Set state of the logged in user
       setCurrentUser(response.data.user);
       setTokenTimestamp(response.data);
       showNotification({

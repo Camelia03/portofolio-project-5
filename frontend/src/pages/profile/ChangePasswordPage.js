@@ -36,6 +36,7 @@ const ChangePasswordPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Change password of user
     try {
       await axiosReq.post("/dj-rest-auth/password/change/", changePasswordData);
 

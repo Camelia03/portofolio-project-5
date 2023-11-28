@@ -7,7 +7,10 @@ const useReq = (url, dependencies = [url]) => {
   const [error, setError] = useState(null);
 
   const doRequest = async () => {
+    // Start loading
     setLoading(true);
+
+    // Fetch some data
     try {
       const response = await axiosReq.get(url);
 
@@ -16,9 +19,11 @@ const useReq = (url, dependencies = [url]) => {
       setError(error);
     }
 
+    // Stop loading
     setLoading(false);
   };
 
+  // Redo request if dependencies change, by default the url
   useEffect(() => {
     doRequest();
   }, dependencies);

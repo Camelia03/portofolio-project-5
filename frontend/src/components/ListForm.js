@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import AppButton from "./AppButton";
 
+/**
+ * Form for creating a list
+ */
 const ListForm = ({
   list: initialList = {
     name: "",

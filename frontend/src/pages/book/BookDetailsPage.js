@@ -1,19 +1,20 @@
 import React from "react";
-import { Button, Card, Col, Image, Row } from "react-bootstrap";
+import { Card, Col, Image, Row } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Rating from "react-rating-stars-component";
 import { NavLink, useParams } from "react-router-dom";
 import AddToListModal from "../../components/AddToListModal";
+import AppButton from "../../components/AppButton";
 import BookReviewsList from "../../components/BookReviewsList";
 import Loader from "../../components/Loader";
-import useReq from "../../hooks/useReq";
-import AppButton from "../../components/AppButton";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import useReq from "../../hooks/useReq";
 
 const BookDetailsPage = () => {
   const { id } = useParams();
   const currentUser = useCurrentUser();
 
+  // Fetch details of a book
   const { data: book, loading, error } = useReq(`/api/books/${id}`);
 
   if (loading) {
@@ -40,6 +41,7 @@ const BookDetailsPage = () => {
             <Image src={book.image_url} fluid alt={book.title} />
           </div>
 
+          {/* Only show button for logged in users */}
           {currentUser && (
             <AddToListModal book={book}>
               {(handleShow) => (
@@ -50,6 +52,7 @@ const BookDetailsPage = () => {
             </AddToListModal>
           )}
         </Col>
+
         <Col xs={12} md={9}>
           <h2>{book.title}</h2>
           <p>
@@ -106,6 +109,7 @@ const BookDetailsPage = () => {
           <i className="fa-solid fa-worm fa-sm"></i> Bookworms Reviews
         </h3>
 
+        {/* Only show button for logged in users */}
         {currentUser && (
           <AppButton variant="primary" as={NavLink} to={`/books/${id}/review`}>
             <i className="fa-solid fa-sm fa-plus"></i> add review

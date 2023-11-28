@@ -6,8 +6,10 @@ import useReq from "../../hooks/useReq";
 import BooksList from "./BooksList";
 
 const GenreDetailPage = () => {
+  // Get genre name from the url
   const { name } = useParams();
 
+  // Fetch genre by name
   const { loading, data: genre, error } = useReq(`/api/genres/${name}`, [name]);
 
   if (loading) {

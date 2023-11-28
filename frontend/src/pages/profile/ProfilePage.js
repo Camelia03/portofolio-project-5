@@ -19,14 +19,17 @@ const ProfilePage = () => {
   const history = useHistory();
 
   useEffect(() => {
+    // Load the profile of the user in the url or the logged in user
     const profileId = id || currentUser?.profile_id;
 
+    // Don't allow anonymous users to see profiles
     if (!profileId) {
       history.push("/signin");
     }
 
     const getProfile = async () => {
       try {
+        // Fetch user profile
         const response = await axiosReq.get(`/api/profiles/${profileId}`);
         setProfile(response.data);
         setLoading(false);
@@ -106,6 +109,7 @@ const ProfilePage = () => {
 export default ProfilePage;
 
 const UserReviewsList = ({ userId }) => {
+  // Fetch user reviews
   const {
     data: reviews,
     loading,

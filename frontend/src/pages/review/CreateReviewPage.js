@@ -12,6 +12,8 @@ const CreateReviewPage = () => {
 
   const { id } = useParams();
   const history = useHistory();
+
+  // Get book details
   const { data: book, loading, error } = useReq(`/api/books/${id}`);
   const [errors, setErrors] = useState({});
 
@@ -20,6 +22,7 @@ const CreateReviewPage = () => {
   };
 
   const handleSubmit = async (review) => {
+    // Create a new review
     try {
       await axiosReq.post(`/api/books/${id}/reviews`, review);
 

@@ -8,6 +8,7 @@ import CompactBooksList from "../../components/CompactBooksList";
 const AuthorPage = () => {
   const { id } = useParams();
 
+  // Fetch authors
   const { data: author, loading, error } = useReq(`/api/authors/${id}`);
 
   if (loading) {
@@ -40,6 +41,7 @@ const AuthorPage = () => {
 export default AuthorPage;
 
 const AuthorBooksList = ({ author_id }) => {
+  // Fetch 15 books for an author
   const {
     data: books,
     loading,

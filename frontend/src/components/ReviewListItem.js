@@ -25,10 +25,13 @@ const ReviewListItem = ({
   };
 
   const handleLike = async () => {
+    // Create a like for a review
     try {
       const { data } = await axiosReq.post("/api/likes", {
         review: review.id,
       });
+
+      // Update the count of likes on the review
       setReview((oldReview) => {
         return {
           ...oldReview,
@@ -42,8 +45,11 @@ const ReviewListItem = ({
   };
 
   const handleDislike = async (likeId) => {
+    // Remove like from a review
     try {
       await axiosReq.delete(`/api/likes/${likeId}`);
+
+      // Update count of likes on review
       setReview((oldReview) => {
         return {
           ...oldReview,

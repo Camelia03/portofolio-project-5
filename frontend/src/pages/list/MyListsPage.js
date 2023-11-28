@@ -19,6 +19,7 @@ import useReq from "../../hooks/useReq";
 import styles from "../../styles/MyListsPage.module.css";
 
 const MyListsPage = () => {
+  // Fetch all lists
   const { data: initialLists, loading, error } = useReq("/api/lists");
   const [activeListId, setActiveListId] = useState();
 
@@ -30,10 +31,13 @@ const MyListsPage = () => {
     if (!initialLists) return;
 
     setLists([...initialLists]);
+
+    // Set the first list as active
     setActiveListId(initialLists[0].id);
   }, [initialLists]);
 
   const removeList = (listId) => {
+    // Remove a list after it was deleted
     setLists((prevLists) => {
       const lists = prevLists.filter((list) => list.id !== listId);
 
@@ -47,6 +51,7 @@ const MyListsPage = () => {
 
   const onDelete = async (listId) => {
     try {
+      // Delete a list
       await axiosReq.delete(`/api/lists/${listId}`);
 
       showNotification({
@@ -69,6 +74,7 @@ const MyListsPage = () => {
   };
 
   const handleBookRemove = (listId) => {
+    // Update list after removing a book
     setLists((prevLists) => {
       const lists = [];
 
@@ -174,6 +180,7 @@ export default MyListsPage;
 const BooksTable = ({ listId, onRemove }) => {
   const showNotification = useNotification();
 
+  // Get list
   const {
     data: list,
     loading,
@@ -182,6 +189,7 @@ const BooksTable = ({ listId, onRemove }) => {
   } = useReq(`/api/lists/${listId}`);
 
   const handleRemove = async (bookId) => {
+    // Remove a book from a list
     try {
       await axiosReq.delete(`/api/lists/${listId}/books/${bookId}`);
 

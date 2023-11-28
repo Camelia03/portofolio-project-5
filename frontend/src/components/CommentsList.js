@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import useReq from "../hooks/useReq";
-import Loader from "./Loader";
 import {
   Alert,
-  Button,
   Col,
   Form,
   FormGroup,
@@ -12,17 +9,20 @@ import {
   Modal,
   Row,
 } from "react-bootstrap";
-import { axiosReq } from "../api/axiosDefaults";
-import AppButton from "./AppButton";
 import { NavLink } from "react-router-dom";
-import ConfirmDeleteButton from "./ConfirmDeleteButton";
-import useNotification from "../hooks/useNotification";
+import { axiosReq } from "../api/axiosDefaults";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
+import useNotification from "../hooks/useNotification";
+import useReq from "../hooks/useReq";
+import AppButton from "./AppButton";
+import ConfirmDeleteButton from "./ConfirmDeleteButton";
+import Loader from "./Loader";
 
 const CommentsList = ({ reviewId }) => {
   const showNotification = useNotification();
   const currentUser = useCurrentUser();
 
+  // Fetch all comments for a review
   const {
     data: comments,
     loading,
@@ -48,6 +48,7 @@ const CommentsList = ({ reviewId }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Create new comment
     try {
       await axiosReq.post("/api/comments", {
         review: reviewId,
@@ -68,6 +69,7 @@ const CommentsList = ({ reviewId }) => {
   };
 
   const handleDelete = async (commentId) => {
+    // Delete a comment
     try {
       await axiosReq.delete(`/api/comments/${commentId}`);
 
@@ -87,6 +89,7 @@ const CommentsList = ({ reviewId }) => {
   };
 
   const handleEdit = async (commentId, commentText) => {
+    // Edit a comment
     try {
       await axiosReq.patch(`/api/comments/${commentId}`, {
         text: commentText,
@@ -200,6 +203,9 @@ const CommentsList = ({ reviewId }) => {
 
 export default CommentsList;
 
+/**
+ * Modal for editing a comment
+ */
 const EditCommentModal = ({ comment, onSubmit }) => {
   const [commentText, setCommentText] = useState(comment.text);
 

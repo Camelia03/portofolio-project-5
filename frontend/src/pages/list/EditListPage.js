@@ -11,10 +11,12 @@ const EditListPage = () => {
   const history = useHistory();
   const { id: listId } = useParams();
 
+  // Get list details
   const { data: list, loading, error } = useReq(`/api/lists/${listId}`);
 
   const onSubmit = async (list) => {
     try {
+      // Update list
       await axiosReq.put(`/api/lists/${listId}`, list);
       history.push("/my-lists");
     } catch (error) {

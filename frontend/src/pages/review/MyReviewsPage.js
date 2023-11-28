@@ -6,10 +6,13 @@ import Loader from "../../components/Loader";
 import ReviewListItem from "../../components/ReviewListItem";
 import { axiosReq } from "../../api/axiosDefaults";
 import { NavLink } from "react-router-dom";
+import useNotification from "../../hooks/useNotification";
 
 const MyReviewsPage = () => {
+  const showNotification = useNotification();
   const currentUser = useCurrentUser();
 
+  // Fetch reviews of the logged in user
   const {
     error,
     loading,
@@ -18,12 +21,22 @@ const MyReviewsPage = () => {
   } = useReq(`/api/users/${currentUser.pk}/reviews`);
 
   const handleDelete = async (id) => {
+    // Delete a review
     try {
       await axiosReq.delete(`/api/reviews/${id}`);
 
+      showNotification({
+        header: "Review",
+        message: "Review deleted successfully",
+      });
+
       refresh();
     } catch (error) {
-      // TODO: handle error case
+      showNotification({
+        type: "danger",
+        header: "Review",
+        message: "Could not delete review",
+      });
     }
   };
 

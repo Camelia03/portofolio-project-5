@@ -5,6 +5,9 @@ import useQuery from "../hooks/useQuery";
 import styles from "../styles/SearchForm.module.css";
 import AppButton from "./AppButton";
 
+/**
+ * Form for searching books
+ */
 const SearchForm = () => {
   const urlQuery = useQuery();
   const searchQuery = urlQuery.get("q") || "";
@@ -18,6 +21,7 @@ const SearchForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    // Redirect to search page with the term as query param
     history.push(`/search?q=${queryValue}`);
   };
 

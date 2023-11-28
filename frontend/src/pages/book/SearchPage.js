@@ -11,6 +11,7 @@ import { NavLink } from "react-router-dom";
 import BooksList from "./BooksList";
 
 const SearchPage = () => {
+  // Get search query from query params
   const urlQuery = useQuery();
   const searchQuery = urlQuery.get("q") || "";
 
@@ -19,6 +20,7 @@ const SearchPage = () => {
     setOrdering(value);
   };
 
+  // Fetch all genres
   const genresReq = useReq("/api/genres");
 
   if (genresReq.loading) {

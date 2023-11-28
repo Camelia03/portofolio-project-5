@@ -17,12 +17,16 @@ const AddToListModal = ({ children, book }) => {
   };
   const handleShow = () => setShow(true);
 
+  // Fetch all user lists
   const { data: lists } = useReq(`/api/lists`);
+
+  // Fetch all lists that contain the current book
   const { data: filteredLists, update: setFilteredLists } = useReq(
     `/api/lists?books__id=${book.id}`
   );
 
   const handleRemove = async (list) => {
+    // Remove book from a list
     try {
       await axiosRes.delete(`/api/lists/${list.id}/books/${book.id}`);
 
@@ -31,6 +35,7 @@ const AddToListModal = ({ children, book }) => {
         message: "Book removed from list successfully",
       });
 
+      // Update status of list
       setFilteredLists((prevLists) => {
         const newLists = [...prevLists];
 
@@ -46,6 +51,7 @@ const AddToListModal = ({ children, book }) => {
   };
 
   const handleAdd = async (list) => {
+    // Add book to a list
     try {
       await axiosReq.post(`/api/lists/${list.id}/books/${book.id}`);
 

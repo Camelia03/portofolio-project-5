@@ -6,6 +6,7 @@ import ReviewListItem from "./ReviewListItem";
 import useNotification from "../hooks/useNotification";
 
 const BookReviewsList = ({ bookId }) => {
+  // Fetch all reviews for a book
   const {
     data: reviews,
     error,
@@ -16,6 +17,7 @@ const BookReviewsList = ({ bookId }) => {
   const showNotification = useNotification();
 
   const handleDelete = async (id) => {
+    // Delete a review
     try {
       await axiosReq.delete(`/api/reviews/${id}`);
 

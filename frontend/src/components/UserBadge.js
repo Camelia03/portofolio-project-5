@@ -2,6 +2,9 @@ import React from "react";
 import { Image } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
+/**
+ * Badge that shows the profile image and username of a user
+ */
 const UserBadge = ({ user, showProfileLink = true }) => {
   return (
     <div className="text-center">

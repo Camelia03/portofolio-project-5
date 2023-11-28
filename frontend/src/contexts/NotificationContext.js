@@ -7,6 +7,7 @@ export const NotificationContext = createContext({});
 const NotificationProvider = ({ children }) => {
   const [notifications, setNotifications] = useState([]);
 
+  // Add a new notification to be shown
   const showNotification = useCallback(
     ({ type = "success", header = "Notification", message }) => {
       setNotifications((prevNotifications) => {
@@ -17,6 +18,7 @@ const NotificationProvider = ({ children }) => {
   );
 
   const handleClose = (idx) => {
+    // Remove notification after it expires
     setNotifications((prevNotifications) => {
       const notifications = [...prevNotifications];
       notifications.splice(idx, 1);

@@ -9,10 +9,11 @@ import header_logo from "../assets/header_logo.png";
 import AppButton from "../components/AppButton";
 
 const HomePage = () => {
+  // Fetch genres
   const genresReq = useReq("/api/genres");
 
+  // State for the offcanvas genres list
   const [showGenres, setShowGenres] = useState(false);
-
   const handleClose = () => setShowGenres(false);
   const handleShow = () => setShowGenres(true);
 
@@ -34,6 +35,7 @@ const HomePage = () => {
 
   const genres = genresReq.data;
 
+  // URL of home page book lists
   const bookLists = {
     topRated: "/api/books?ordering=-goodreads_average_rating&page_size=15",
     newestReleases: "/api/books?ordering=-publish_date&page_size=15",
@@ -117,6 +119,7 @@ const HomePage = () => {
 export default HomePage;
 
 const BooksList = ({ url }) => {
+  // Fetch list of books
   const { data: books, loading, error } = useReq(url);
 
   if (loading) {
