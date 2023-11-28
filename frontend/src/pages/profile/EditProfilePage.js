@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Alert, Container, Form, Image } from "react-bootstrap";
 import { NavLink, useHistory } from "react-router-dom";
-import { axiosReq, axiosRes } from "../../api/axiosDefaults";
+import { axiosRes } from "../../api/axiosDefaults";
 import AppButton from "../../components/AppButton";
 import Loader from "../../components/Loader";
 import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
+import useNotification from "../../hooks/useNotification";
 import useReq from "../../hooks/useReq";
 
 const EditProfilePage = () => {
@@ -15,6 +16,7 @@ const EditProfilePage = () => {
   const setCurrentUser = useSetCurrentUser();
   const history = useHistory();
   const imageFile = useRef();
+  const showNotification = useNotification();
 
   const [profileData, setProfileData] = useState({
     full_name: "",
@@ -74,6 +76,12 @@ const EditProfilePage = () => {
         ...currentUser,
         profile_image: data.image,
       }));
+
+      showNotification({
+        header: "Profile",
+        message: "Profile saved successfully",
+      });
+
       history.goBack();
     } catch (err) {
       setErrors(err.response?.data);
