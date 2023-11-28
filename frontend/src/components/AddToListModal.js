@@ -28,7 +28,7 @@ const AddToListModal = ({ children, book }) => {
 
       showNotification({
         header: "Lists",
-        message: "Book removed to list successfully",
+        message: "Book removed from list successfully",
       });
 
       setFilteredLists((prevLists) => {
