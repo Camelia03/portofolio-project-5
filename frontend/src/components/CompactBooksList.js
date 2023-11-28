@@ -14,7 +14,7 @@ const CompactBooksList = ({ books }) => {
         <Col xs="auto" key={book.id}>
           <Tippy
             theme="light"
-            placement="right"
+            placement="auto"
             interactive
             content={<BookTooltip book={book} />}
           >
@@ -23,7 +23,6 @@ const CompactBooksList = ({ books }) => {
               role="button"
               style={{ backgroundImage: `url('${book.image_url}')` }}
             />
-            {/* <img  src={book.image_url} /> */}
           </Tippy>
         </Col>
       ))}
