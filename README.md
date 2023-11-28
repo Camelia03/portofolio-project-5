@@ -19,11 +19,11 @@
   * [Wireframes](#Wireframes)
 
 * [Features](#Features)
+  * [Existing Features](#Existing-Features)
   * [Future Features](#Future-Features)
 
 * [Development](#Development)
-  * [Languages Used](#Languages-Used)
-  * [Frameworks & Libraries](#Frameworks--Libraries)
+  * [Technologies Used](#Technologies-Used)
   * [Tools](#Tools)
   * [Commonly Reused Components](#Commonly-Reused-Components)
   * [Books importer](#Books-importer)
@@ -39,14 +39,14 @@
   * [Sprints(milestones)](#Sprints)
 
 * [Testing](#Testing)
-     * [Bugs](#Bugs)
 
 * [Deployment](#Deployment)
+ * [Database-Setup](#Database-Setup)
 
 * [ Credits](#Credits)
-    * [Code](#Code)
-    * [Media](#Media)
-    * [Acknowledgements](#Acknowledgements)
+ * [Code](#Code)
+ * [Media](#Media)
+ * [Acknowledgements](#Acknowledgements)
 
 
 
@@ -81,6 +81,7 @@ Two primary device views have been considered to ensure responsiveness in Bookwo
 
 
 ### User-friendly-messages
+
 To ensure users feel confident about their actions and to offer clear guidance, the system generates user-friendly messages. These messages are crafted to provide reassurance, affirming the user's choices, while also offering helpful direction to navigate through the platform effectively. They serve as informative prompts, designed to support users by acknowledging their actions and steering them toward successful interactions within the system.
 
 <img width="78%" alt="friendly messages" src="frontend/src/assets/testing/book_added_to_list_successfully.png">
@@ -144,10 +145,10 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 <summary>View Sign In Page</summary>
 
 #### Desktop
-![screenshot](frontend/src/assets/wireframes/LogIn%20Desktop%20version.png)
+![screenshot](frontend/src/assets/wireframes/login_desktop.png)
 
 #### Mobile
-![screenshot](frontend/src/assets/wireframes/LogIn%20mobile%20version.png)
+![screenshot](frontend/src/assets/wireframes/login_mobile.png)
 
 </details>
 
@@ -157,10 +158,10 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 <summary>View Sign Up Page</summary>
 
 #### Desktop
-![screenshot](frontend/src/assets/wireframes/Sign%20Up%20Desktop%20version.png)
+![screenshot](frontend/src/assets/wireframes/signup_desktop.png)
 
 #### Mobile
-![screenshot](frontend/src/assets/wireframes/Sign%20Up%20mobile%20version%20.png)
+![screenshot](frontend/src/assets/wireframes/signup_mobile.png)
 
 </details>
 
@@ -170,10 +171,10 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 <summary>View Home Page</summary>
 
 #### Desktop
-![screenshot](frontend/src/assets/wireframes/Home%20page%20Desktop%20version%20copy.png)
+![screenshot](frontend/src/assets/wireframes/home_page_desktop.png)
 
 #### Mobile
-![screenshot](frontend/src/assets/wireframes/Home%20page%20mobile%20version.png)
+![screenshot](frontend/src/assets/wireframes/home_page_mobile.png)
 
 </details>
 
@@ -183,10 +184,10 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 <summary>View All Books Page</summary>
 
 #### Desktop
-![screenshot](frontend/src/assets/wireframes/BookList%20Page%20Desktop%20version.png)
+![screenshot](frontend/src/assets/wireframes/book_list_page_desktop.png)
 
 #### Mobile
-![screenshot](frontend/src/assets/wireframes/BookList%20page%20mobile%20version.png)
+![screenshot](frontend/src/assets/wireframes/book_list_page_mobile.png)
 
 </details>
 
@@ -196,10 +197,10 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 <summary>View Book Details Page</summary>
 
 #### Desktop
-![screenshot](frontend/src/assets/wireframes/Book%20details%20Desktop%20version.png)
+![screenshot](frontend/src/assets/wireframes/book_details_desktop.png)
 
 #### Mobile
-![screenshot](frontend/src/assets/wireframes/Book%20details%20mobile%20version.png)
+![screenshot](frontend/src/assets/wireframes/book_details_mobile.png)
 
 </details>
 
@@ -209,10 +210,10 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 <summary>View Edit Review Page</summary>
 
 #### Desktop
-![screenshot](frontend/src/assets/wireframes/Edit%20your%20review%20Desktop%20version.png)
+![screenshot](frontend/src/assets/wireframes/edit_review_page_desktop.png)
 
 #### Mobile
-![screenshot](frontend/src/assets/wireframes/Edit%20your%20review%20mobile%20version.png)
+![screenshot](frontend/src/assets/wireframes/edit_review_page_mobile.png)
 
 </details>
 
@@ -222,10 +223,10 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 <summary>View Genres sidebar</summary>
 
 #### Desktop
-![screenshot](frontend/src/assets/wireframes/Genres%20Desktop%20version.png)
+![screenshot](frontend/src/assets/wireframes/genres_desktop.png)
 
 #### Mobile
-![screenshot](frontend/src/assets/wireframes/Genres%20mobile%20version.png)
+![screenshot](frontend/src/assets/wireframes/genres_mobile.png)
 
 </details>
 
@@ -235,10 +236,10 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 <summary>View My Reviews page</summary>
 
 #### Desktop
-![screenshot](frontend/src/assets/wireframes/My%20reviews%20Desktop%20version.png)
+![screenshot](frontend/src/assets/wireframes/my_reviews_desktop.png)
 
 #### Mobile
-![screenshot](frontend/src/assets/wireframes/My%20reviews%20mobile%20version.png)
+![screenshot](frontend/src/assets/wireframes/my_reviews_mobile.png)
 
 </details>
 
@@ -248,10 +249,10 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 <summary>View My Lists page</summary>
 
 #### Desktop
-![screenshot](frontend/src/assets/wireframes/My%20Lists%20Page%20Desktop.png)
+![screenshot](frontend/src/assets/wireframes/my_lists_page_desktop.png)
 
 #### Mobile
-![screenshot](frontend/src/assets/wireframes/My%20Lists%20Page%20mobile%20version.png)
+![screenshot](frontend/src/assets/wireframes/my_lists_page_mobile.png)
 
 </details>
 
@@ -261,10 +262,10 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 <summary>View Other user's profile Page</summary>
 
 #### Desktop
-![screenshot](frontend/src/assets/wireframes/Other%20user's%20profile%20Desktop%20version.png)
+![screenshot](frontend/src/assets/wireframes/other_user_profile_desktop.png)
 
 #### Mobile
-![screenshot](frontend/src/assets/wireframes/Other%20user's%20profile%20mobile%20version.png)
+![screenshot](frontend/src/assets/wireframes/other_user_profile_mobile.png)
 
 </details>
 
@@ -274,10 +275,10 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 <summary>View Search Filter</summary>
 
 #### Desktop
-![screenshot](frontend/src/assets/wireframes/Search%20Desktop%20version.png)
+![screenshot](frontend/src/assets/wireframes/search_desktop.png)
 
 #### Mobile
-![screenshot](frontend/src/assets/wireframes/Search%20mobile%20version.png)
+![screenshot](frontend/src/assets/wireframes/search_mobile.png)
 
 </details>
 
@@ -287,10 +288,10 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 <summary>View My Profile Page</summary>
 
 #### Desktop
-![screenshot](frontend/src/assets/wireframes/User%20profile%20Desktop%20version.png)
+![screenshot](frontend/src/assets/wireframes/user_profile_desktop.png)
 
 #### Mobile
-![screenshot](frontend/src/assets/wireframes/User%20profile%20mobile%20version.png)
+![screenshot](frontend/src/assets/wireframes/user_profile_mobile.png)
 
 </details>
 
@@ -537,7 +538,7 @@ The following are the models created for Bookworms:
 - **Django User Model**
     - When a user is created, they're automatically assigned a profile through the Profile model.
 
-- [**Profile**](profiles/model.py#L6)
+- [**Profile**](profiles/models.py#L6)
 - [**Book**](books/models.py#L22)
 - [**Genre**](books/models.py#L6)
 - [**Author**](books/models.py#L14)
@@ -599,8 +600,8 @@ Some of the most important user stories are:
 - As a registered user, I can delete my own review of a book so that I can manage and remove my feedback when necessary.
 
 All user stories as part of a project: https://github.com/users/Camelia03/projects/8
-
-
+     
+           
 **Two user stories** have been marked as part of [Future Features](#Future-Features) and labeled as 'Won't Have' within the [project's GitHub repository](https://github.com/Camelia03/portofolio-project-5/issues). These stories are intentionally kept _open_ for potential implementation in future iterations but are categorized as features that won't be pursued in the current development phase.
 
 ### Moscow-Prioritization
@@ -670,35 +671,8 @@ Sprint 4 significantly enhances user interaction, expands features, and refines 
 
 
 ## Testing
+The testing documentation can be found at [TESTING.md](TESTING.md).
 
-- User Stories Validation: Ensured each user story met its acceptance criteria by systematically testing and verifying functionality.
-
-- Feature-based User Account Testing: Created a dedicated user account to methodically navigate and evaluate each platform feature individually, ensuring complete coverage and functionality across all aspects.
-
-- Cross-Device and Browser Testing: Conducted thorough testing across multiple devices such as mobile phones, tablets, and various browsers like Chrome, Safari, Firefox, Microsoft Edge, ensuring a consistent and optimized user experience across different platforms and environments.
-
-- Postman API Testing:
-    - Verified API Endpoints: Utilized Postman to rigorously test and validate the functionality of API endpoints, ensuring seamless communication and accurate data exchange.
-
-    - Request and Response Validation: Conducted comprehensive tests to confirm the correctness of request formats and validate the accuracy of responses received from the API endpoints.
-
-    - Automation and Collection Management: Leveraged Postman's collection features for organized and automated API testing, streamlining the testing process and ensuring consistent and reliable API performance.
-
-![Postman API Testing](frontend/src/assets/testing/postman_testing.png)
-
-
-### Bugs
-
-- When implementing infinite scroll for Books, the pagination returned the same book on different pages.    
-_Fix:_ Adding an extra order by title when listing Books
-- The infinite scroll component was flickering and showing a scroll bar.
-_Fix:_ The issue was caused by the react-bootstrap spinner. Instead of the spinner, a simple text was used: “Loading:”
-- There are 3 genres that have no books attached due to importing only half the number of books.    
-_Fix:_ Remove the empty genres
-- The cancel button within a form would also submit the form when going back.   
-_Fix:_ Add `type="button"` to the `button`
-- The change password page was not shown. Instead, the profile page was shown.  
-_Fix:_ Move the change password route (`/profile/change-password`) above the profile route (`/profile/:id`) so that the first one is rendered
 
 ## Deployment
 
@@ -731,16 +705,17 @@ The Bookworms API Deployment has been successfully executed through the followin
 6. Connect the project's GitHub repository to Heroku for streamlined synchronization.
 
 ### Database Setup
-Log into ElephantSQL.com and access your dashboard.
-Click "Create New Instance".
-Configure a plan, set a Name, choose the Tiny Turtle (Free) plan, and leave the Tags field empty.
-Pick a data center near you under "Select Region".
-Review your settings and click "Create instance".
-Return to the ElephantSQL dashboard and click on the instance name for your project.
-In the URL section, click the copy icon to copy the database URL.
-In your workspace, ensure you have Django and Gunicorn installed using pip3 install 'django<4' gunicorn
-Also, make sure to install infrastructure for the database with pip3 install dj_database_url===0.5.0 psycopg2
-Update the requirements.txt file if necessary.
+
+- Log into ElephantSQL.com and access your dashboard.
+- Click "Create New Instance".
+- Configure a plan, set a Name, choose the Tiny Turtle (Free) plan, and leave the Tags field empty.
+- Pick a data center near you under "Select Region".
+- Review your settings and click "Create instance".
+- Return to the ElephantSQL dashboard and click on the instance name for your project.
+- In the URL section, click the copy icon to copy the database URL.
+- In your workspace, ensure you have Django and Gunicorn installed using `pip3 install 'django<4' gunicorn`
+- Also, make sure to install infrastructure for the database with `pip3 install dj_database_url===0.5.0 psycopg2`
+- Update the requirements.txt file if necessary.
 
 ## Credits
 ### Code
